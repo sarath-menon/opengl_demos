@@ -1,4 +1,4 @@
-#include "gl_app.hpp"
+#include "glfw_helper.hpp"
 #include <iostream>
 
 GLFWHelper::GLFWHelper() {
