@@ -11,19 +11,9 @@
 class Triangle {
 
 public:
-  Triangle(std::array<std::array<float, 2>, 3> &vertices, GLuint *VAO,
-           GLuint *VBO);
-
-  // auto set_vao(std::shared_ptr<GLuint> VAO) { VAO_ = VAO; }
-
-  // auto set_vbo(std::shared_ptr<GLuint> VBO) { VBO_ = VBO; }
+  Triangle(std::array<std::array<float, 2>, 3> &vertices, VAO &vao);
 
 private:
-  GLuint *VAO_;
-  GLuint *VBO_;
-
-  GLuint *vao[2];
-
   // Vertices coordinates
   GLfloat vertices_[9]{};
 };

@@ -32,15 +32,12 @@ auto Shader::create_program_shader() {
   return shaderProgram;
 }
 
-Shader::Shader(GLuint *VAO, GLuint *VBO) {
-
-  VAO_ = VAO;
-  VBO_ = VBO;
+Shader::Shader(VAO &vao) {
 
   shaderProgram_ = create_program_shader();
 
   // Tell OpenGL which Shader Program we want to use
   glUseProgram(shaderProgram_);
   // Bind the VAO so OpenGL knows to use it
-  glBindVertexArray(*VAO_);
+  glBindVertexArray(vao.a);
 };

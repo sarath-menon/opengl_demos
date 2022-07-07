@@ -1,10 +1,6 @@
 #include "triangle.hpp"
 
-Triangle::Triangle(std::array<std::array<float, 2>, 3> &vertices, GLuint *VAO,
-                   GLuint *VBO) {
-
-  VAO_ = VAO;
-  VBO_ = VBO;
+Triangle::Triangle(std::array<std::array<float, 2>, 3> &vertices, VAO &vao) {
 
   // Set triangle coordinates
   vertices_[0] = vertices[0][0];
@@ -22,14 +18,14 @@ Triangle::Triangle(std::array<std::array<float, 2>, 3> &vertices, GLuint *VAO,
   // Buffer Object
 
   // Generate the VAO_ and VBO_ with only 1 object each
-  glGenVertexArrays(1, VAO_);
-  glGenBuffers(1, VBO_);
+  glGenVertexArrays(1, &vao.a);
+  glGenBuffers(1, &vao.b);
 
   // Make the VAO_ the current Vertex Array Object by binding it
-  glBindVertexArray(*VAO_);
+  glBindVertexArray(vao.a);
 
   // Bind the VBO_ specifying it's a GL_ARRAY_BUFFER
-  glBindBuffer(GL_ARRAY_BUFFER, *VBO_);
+  glBindBuffer(GL_ARRAY_BUFFER, vao.b);
   // Introduce the vertices_ into the VBO_
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices_), vertices_, GL_STATIC_DRAW);
 

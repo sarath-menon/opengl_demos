@@ -5,7 +5,7 @@
 int main() {
 
   GLFWHelper glfw_helper;
-  GLuint VAO, VBO;
+  struct VAO vao;
 
   std::array<std::array<float, 2>, 3> vertices = {
       {{-0.5f, -0.5f * float(sqrt(3)) / 3},
@@ -14,9 +14,9 @@ int main() {
 
   auto window = glfw_helper.get_window();
 
-  Triangle triangle(vertices, &VAO, &VBO);
+  Triangle triangle(vertices, vao);
 
-  Shader shader(&VAO, &VBO);
+  Shader shader(vao);
   auto shaderProgram = shader.get_shader_program();
 
   //  Render loop: show window till close button is pressed
@@ -40,8 +40,8 @@ int main() {
   }
 
   // Delete all the objects we've created
-  glDeleteVertexArrays(1, &VAO);
-  glDeleteBuffers(1, &VBO);
+  glDeleteVertexArrays(1, &vao.a);
+  glDeleteBuffers(1, &vao.b);
   glDeleteProgram(shaderProgram);
   // Delete window before ending the program
   glfwDestroyWindow(window);
