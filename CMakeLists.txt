@@ -14,6 +14,7 @@ include_directories(external)
 add_executable(opengl_demo 
 src/main.cpp
 src/glfw_helper.cpp
+src/shader.cpp
 src/glad.c
 )
 

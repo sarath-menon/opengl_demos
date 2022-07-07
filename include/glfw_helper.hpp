@@ -1,5 +1,6 @@
 #pragma once
-#include "essential_functions.h"
+#include "include_glad.h"
+#include <GLFW/glfw3.h>
 
 class GLFWHelper {
 
