@@ -9,13 +9,16 @@
 
 class Shader {
 public:
-  Shader();
+  Shader(GLuint *VAO, GLuint *VBO);
 
   auto &get_shader_program() { return shaderProgram_; }
 
 private:
   // Create Shader Program Object and get its reference
   GLuint shaderProgram_{};
+
+  GLuint *VAO_;
+  GLuint *VBO_;
 
   auto create_program_shader();
 

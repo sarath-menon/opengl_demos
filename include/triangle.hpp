@@ -19,9 +19,10 @@ public:
   // auto set_vbo(std::shared_ptr<GLuint> VBO) { VBO_ = VBO; }
 
 private:
-  // GLuint VAO_, VBO_;
   GLuint *VAO_;
   GLuint *VBO_;
+
+  GLuint *vao[2];
 
   // Vertices coordinates
   GLfloat vertices_[9]{};

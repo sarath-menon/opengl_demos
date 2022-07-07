@@ -5,7 +5,7 @@
 int main() {
 
   GLFWHelper glfw_helper;
-  Shader shader;
+  GLuint VAO, VBO;
 
   std::array<std::array<float, 2>, 3> vertices = {
       {{-0.5f, -0.5f * float(sqrt(3)) / 3},
@@ -13,11 +13,11 @@ int main() {
        {0.0f, 0.5f * float(sqrt(3)) * 2 / 3}}};
 
   auto window = glfw_helper.get_window();
-  auto shaderProgram = shader.get_shader_program();
-
-  GLuint VAO, VBO;
 
   Triangle triangle(vertices, &VAO, &VBO);
+
+  Shader shader(&VAO, &VBO);
+  auto shaderProgram = shader.get_shader_program();
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(window)) {
@@ -30,10 +30,6 @@ int main() {
 
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    // Tell OpenGL which Shader Program we want to use
-    glUseProgram(shaderProgram);
-    // Bind the VAO so OpenGL knows to use it
-    glBindVertexArray(VAO);
     // Start drawing-GLSL pipeline starts (primitive,start vertex, vertex count)
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
