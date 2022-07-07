@@ -15,6 +15,7 @@ add_executable(opengl_demo
 src/main.cpp
 src/glfw_helper.cpp
 src/shader.cpp
+src/triangle.cpp
 src/glad.c
 )
 
