@@ -1,10 +1,8 @@
 #include "shader.hpp"
 
-Shader::Shader() {
+auto Shader::create_program_shader() {
 
-  // Shaders ------------------------------------------------------------
-
-  // Create reference to access vertex shader
+  // Create reference to access vertex  shader
   GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
   // Attach Vertex Shader source to the Vertex Shader Object, 1-> one screen
   glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -19,7 +17,7 @@ Shader::Shader() {
   glCompileShader(fragmentShader);
 
   // Create Shader Program Object and get its reference
-  shaderProgram = glCreateProgram();
+  GLuint shaderProgram = glCreateProgram();
 
   // Attach the Vertex and Fragment Shaders to the Shader Program
   glAttachShader(shaderProgram, vertexShader);
@@ -30,4 +28,8 @@ Shader::Shader() {
   // Delete the now useless Vertex and Fragment Shader objects
   glDeleteShader(vertexShader);
   glDeleteShader(fragmentShader);
-};
+
+  return shaderProgram;
+}
+
+Shader::Shader() { shaderProgram_ = create_program_shader(); };

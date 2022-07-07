@@ -37,7 +37,7 @@ int main() {
     glUseProgram(shaderProgram);
     // Bind the VAO so OpenGL knows to use it
     glBindVertexArray(VAO);
-    // Draw the triangle using the GL_TRIANGLES primitive
+    // Start drawing-GLSL pipeline starts (primitive,start vertex, vertex count)
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
     // Swap the back buffer with the front buffer

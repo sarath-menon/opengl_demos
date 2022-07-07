@@ -11,11 +11,13 @@ class Shader {
 public:
   Shader();
 
-  auto &get_shader_program() { return shaderProgram; }
+  auto &get_shader_program() { return shaderProgram_; }
 
 private:
   // Create Shader Program Object and get its reference
-  GLuint shaderProgram{};
+  GLuint shaderProgram_{};
+
+  auto create_program_shader();
 
   // Vertex Shader source code
   constexpr static char *vertexShaderSource =
