@@ -28,12 +28,8 @@ int main() {
     // Inputs
     glfw_helper.processInput(window);
 
-    // rendering commands here~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // set colour
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-    // set back buffer colour
-    glClear(GL_COLOR_BUFFER_BIT);
+    // Display
+    glfw_helper.display(window, glfwGetTime());
 
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
