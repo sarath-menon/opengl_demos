@@ -4,8 +4,9 @@
 
 int main() {
 
-  GLFWHelper glfw_helper;
   struct VAO vao;
+
+  GLFWHelper glfw_helper;
 
   std::array<std::array<float, 2>, 3> vertices = {
       {{-0.5f, -0.5f * float(sqrt(3)) / 3},
@@ -26,7 +27,7 @@ int main() {
     glfw_helper.processInput(window);
 
     // Display
-    glfw_helper.display(window, glfwGetTime());
+    glfw_helper.display(glfwGetTime());
 
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -39,13 +40,6 @@ int main() {
     glfwPollEvents();
   }
 
-  // Delete all the objects we've created
-  glDeleteVertexArrays(1, &vao.a);
-  glDeleteBuffers(1, &vao.b);
-  glDeleteProgram(shaderProgram);
-  // Delete window before ending the program
-  glfwDestroyWindow(window);
-  // Terminate GLFW before ending the program
-  glfwTerminate();
+  glfw_helper.terminate_window(shaderProgram, vao);
   return 0;
 }

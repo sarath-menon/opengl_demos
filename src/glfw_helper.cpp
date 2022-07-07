@@ -59,10 +59,23 @@ void GLFWHelper::processInput(GLFWwindow *window) {
     glfwSetWindowShouldClose(window, true);
 }
 
-void GLFWHelper::display(GLFWwindow *window, double current_time) {
+void GLFWHelper::display(double current_time) {
 
   // set clear (reset) colour
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
   // set clear colour to back buffer
   glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void GLFWHelper::terminate_window(GLuint shaderProgram, VAO &vao) {
+
+  // Delete all the objects we've created
+  glDeleteVertexArrays(1, &vao.a);
+  glDeleteBuffers(1, &vao.b);
+  glDeleteProgram(shaderProgram);
+
+  // Delete window before ending the program
+  glfwDestroyWindow(window);
+  // Terminate GLFW before ending the program
+  glfwTerminate();
 }
