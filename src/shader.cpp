@@ -16,13 +16,14 @@ auto Shader::create_program_shader() {
   // Compile the Fragment Shader into machine code for GPU
   glCompileShader(fragmentShader);
 
-  // Create Shader Program Object and get its reference
+  // create list of compiles shaders
   GLuint shaderProgram = glCreateProgram();
 
   // Attach the Vertex and Fragment Shaders to the Shader Program
   glAttachShader(shaderProgram, vertexShader);
   glAttachShader(shaderProgram, fragmentShader);
-  // Wrap-up/Link all the shaders together into the Shader Program
+
+  // request GLSL to ensure that shader is compatible
   glLinkProgram(shaderProgram);
 
   // Delete the now useless Vertex and Fragment Shader objects
@@ -38,6 +39,7 @@ Shader::Shader(VAO &vao) {
 
   // Tell OpenGL which Shader Program we want to use
   glUseProgram(shaderProgram_);
+
   // Bind the VAO so OpenGL knows to use it
   glBindVertexArray(vao.a);
 };
