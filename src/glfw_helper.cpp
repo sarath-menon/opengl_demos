@@ -1,12 +1,6 @@
 #include "glfw_helper.hpp"
 #include <iostream>
 
-// // Callback definition
-// static void framebuffer_size_callback(GLFWwindow *window, int width,
-//                                       int height) {
-//   glViewport(0, 0, width, height);
-// }
-
 GLFWHelper::GLFWHelper() {
   // Initialize GLFW
   glfwInit();
