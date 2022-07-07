@@ -61,8 +61,8 @@ void GLFWHelper::processInput(GLFWwindow *window) {
 
 void GLFWHelper::display(GLFWwindow *window, double current_time) {
 
-  // set colour
+  // set clear (reset) colour
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-  // set back buffer colour
+  // set clear colour to back buffer
   glClear(GL_COLOR_BUFFER_BIT);
 }

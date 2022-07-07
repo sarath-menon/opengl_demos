@@ -39,10 +39,10 @@ int main() {
     glBindVertexArray(VAO);
     // Draw the triangle using the GL_TRIANGLES primitive
     glDrawArrays(GL_TRIANGLES, 0, 3);
+
     // Swap the back buffer with the front buffer
     glfwSwapBuffers(window);
-
-    // process events, such as close button pressed
+    // handles window events, such as close button pressed
     glfwPollEvents();
   }
 
