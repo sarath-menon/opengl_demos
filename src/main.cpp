@@ -12,13 +12,18 @@ int main() {
        {0.5f, -0.5f * float(sqrt(3)) / 3},
        {0.0f, 0.5f * float(sqrt(3)) * 2 / 3}}};
 
-  Triangle triangle(vertices);
-
   auto window = glfw_helper.get_window();
   auto shaderProgram = shader.get_shader_program();
 
-  auto VAO = triangle.get_vao();
-  auto VBO = triangle.get_vbo();
+  auto VAO = std::make_shared<GLuint>();
+  auto VBO = std::make_shared<GLuint>();
+
+  Triangle triangle(vertices, VAO, VBO);
+
+  // triangle.set_vao(VAO);
+  // triangle.set_vbo(VBO);
+
+  // std::unique_ptr<GLuint> vao[2] = std::make_unique<GLuint>(2);
 
   // ------------------------------------------------------------------------------
 
@@ -36,7 +41,7 @@ int main() {
     // Tell OpenGL which Shader Program we want to use
     glUseProgram(shaderProgram);
     // Bind the VAO so OpenGL knows to use it
-    glBindVertexArray(VAO);
+    glBindVertexArray(*VAO);
     // Start drawing-GLSL pipeline starts (primitive,start vertex, vertex count)
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
@@ -47,8 +52,8 @@ int main() {
   }
 
   // Delete all the objects we've created
-  glDeleteVertexArrays(1, &VAO);
-  glDeleteBuffers(1, &VBO);
+  glDeleteVertexArrays(1, VAO.get());
+  glDeleteBuffers(1, VBO.get());
   glDeleteProgram(shaderProgram);
   // Delete window before ending the program
   glfwDestroyWindow(window);
