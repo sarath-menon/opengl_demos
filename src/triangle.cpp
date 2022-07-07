@@ -1,7 +1,7 @@
 #include "triangle.hpp"
 
-Triangle::Triangle(std::array<std::array<float, 2>, 3> &vertices,
-                   std::shared_ptr<GLuint> VAO, std::shared_ptr<GLuint> VBO) {
+Triangle::Triangle(std::array<std::array<float, 2>, 3> &vertices, GLuint *VAO,
+                   GLuint *VBO) {
 
   VAO_ = VAO;
   VBO_ = VBO;
@@ -22,8 +22,8 @@ Triangle::Triangle(std::array<std::array<float, 2>, 3> &vertices,
   // Buffer Object
 
   // Generate the VAO_ and VBO_ with only 1 object each
-  glGenVertexArrays(1, VAO_.get());
-  glGenBuffers(1, VBO_.get());
+  glGenVertexArrays(1, VAO_);
+  glGenBuffers(1, VBO_);
 
   // Make the VAO_ the current Vertex Array Object by binding it
   glBindVertexArray(*VAO_);
