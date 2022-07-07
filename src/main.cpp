@@ -15,21 +15,9 @@ int main() {
   auto window = glfw_helper.get_window();
   auto shaderProgram = shader.get_shader_program();
 
-  // auto VAO = triangle.get_vao();
-  // auto VBO = triangle.get_vbo();
   GLuint VAO, VBO;
 
-  // auto VAO = std::make_shared<GLuint>();
-  // auto VBO = std::make_shared<GLuint>();
-
   Triangle triangle(vertices, &VAO, &VBO);
-
-  // triangle.set_vao(VAO);
-  // triangle.set_vbo(VBO);
-
-  // std::unique_ptr<GLuint> vao[2] = std::make_unique<GLuint>(2);
-
-  // ------------------------------------------------------------------------------
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(window)) {
