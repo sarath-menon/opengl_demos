@@ -8,15 +8,3 @@
 #include <glm/mat4x4.hpp>               // glm::mat4
 #include <glm/vec3.hpp>                 // glm::vec3
 #include <glm/vec4.hpp>                 // glm::vec4
-
-// Callback definition
-inline void framebuffer_size_callback(GLFWwindow *window, int width,
-                                      int height) {
-  glViewport(0, 0, width, height);
-}
-
-// close window when esc key pressed
-inline void processInput(GLFWwindow *window) {
-  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-    glfwSetWindowShouldClose(window, true);
-}

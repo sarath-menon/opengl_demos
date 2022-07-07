@@ -1,6 +1,12 @@
 #include "glfw_helper.hpp"
 #include <iostream>
 
+// // Callback definition
+// static void framebuffer_size_callback(GLFWwindow *window, int width,
+//                                       int height) {
+//   glViewport(0, 0, width, height);
+// }
+
 GLFWHelper::GLFWHelper() {
   // Initialize GLFW
   glfwInit();
@@ -38,4 +44,16 @@ GLFWHelper::GLFWHelper() {
   // Set widnow area for rendering
   glViewport(0, 0, 800, 800);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+}
+
+// Callback definition
+void GLFWHelper::framebuffer_size_callback(GLFWwindow *window, int width,
+                                           int height) {
+  glViewport(0, 0, width, height);
+}
+
+// close window when esc key pressed
+void GLFWHelper::processInput(GLFWwindow *window) {
+  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    glfwSetWindowShouldClose(window, true);
 }

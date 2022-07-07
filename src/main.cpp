@@ -1,8 +1,5 @@
 #include "glfw_helper.hpp"
 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height);
-void processInput(GLFWwindow *window);
-
 int main() {
 
   GLFWHelper app;
@@ -77,7 +74,7 @@ int main() {
   while (!glfwWindowShouldClose(window)) {
 
     // Inputs
-    processInput(window);
+    app.processInput(window);
 
     // rendering commands here~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

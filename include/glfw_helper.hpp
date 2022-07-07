@@ -10,4 +10,8 @@ public:
   GLFWHelper();
 
   auto get_window() { return window; }
+
+  static void framebuffer_size_callback(GLFWwindow *window, int width,
+                                        int height);
+  void processInput(GLFWwindow *window);
 };
