@@ -13,6 +13,7 @@ include_directories(external)
 
 add_executable(opengl_demo 
 src/main.cpp
+src/gl_app.cpp
 src/glad.c
 )
 
