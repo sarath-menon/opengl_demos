@@ -7,14 +7,10 @@ int main() {
   GLFWHelper glfw_helper;
   Shader shader;
 
-  std::array<float, 9> vertices = {
-      -0.5f, -0.5f * float(sqrt(3)) / 3,
-      0.0f, // Lower left corner
-      0.5f,  -0.5f * float(sqrt(3)) / 3,
-      0.0f, // Lower right corner
-      0.0f,  0.5f * float(sqrt(3)) * 2 / 3,
-      0.0f // Upper corner
-  };
+  std::array<std::array<float, 2>, 3> vertices = {
+      {{-0.5f, -0.5f * float(sqrt(3)) / 3},
+       {0.5f, -0.5f * float(sqrt(3)) / 3},
+       {0.0f, 0.5f * float(sqrt(3)) * 2 / 3}}};
 
   Triangle triangle(vertices);
 

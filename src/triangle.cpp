@@ -1,18 +1,16 @@
 #include "triangle.hpp"
 
-Triangle::Triangle(std::array<float, 9> &vertices) {
+Triangle::Triangle(std::array<std::array<float, 2>, 3> &vertices) {
 
   // Set triangle coordinates
-  vertices_[0] = vertices[0];
-  vertices_[1] = vertices[1];
-  vertices_[2] = vertices[2];
-  vertices_[3] = vertices[3];
-  vertices_[4] = vertices[4];
-  vertices_[5] = vertices[5];
-  vertices_[6] = vertices[6];
-  vertices_[7] = vertices[7];
-  vertices_[8] = vertices[8];
-  vertices_[9] = vertices[9];
+  vertices_[0] = vertices[0][0];
+  vertices_[1] = vertices[0][1];
+
+  vertices_[3] = vertices[1][0];
+  vertices_[4] = vertices[1][1];
+
+  vertices_[6] = vertices[2][0];
+  vertices_[7] = vertices[2][1];
 
   // Pack data into buffers to send to GPU
 
