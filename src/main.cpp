@@ -6,7 +6,17 @@ int main() {
 
   GLFWHelper glfw_helper;
   Shader shader;
-  Triangle triangle;
+
+  std::array<float, 9> vertices = {
+      -0.5f, -0.5f * float(sqrt(3)) / 3,
+      0.0f, // Lower left corner
+      0.5f,  -0.5f * float(sqrt(3)) / 3,
+      0.0f, // Lower right corner
+      0.0f,  0.5f * float(sqrt(3)) * 2 / 3,
+      0.0f // Upper corner
+  };
+
+  Triangle triangle(vertices);
 
   auto window = glfw_helper.get_window();
   auto shaderProgram = shader.get_shader_program();

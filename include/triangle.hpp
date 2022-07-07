@@ -1,5 +1,6 @@
 #pragma once
 #include "include_glad.h"
+#include <array>
 #include <glm/ext/matrix_clip_space.hpp> // glm::perspective
 #include <glm/ext/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale
 #include <glm/ext/scalar_constants.hpp> // glm::pi
@@ -10,7 +11,7 @@
 class Triangle {
 
 public:
-  Triangle();
+  Triangle(std::array<float, 9> &vertices);
 
   auto &get_vao() { return VAO; }
 
@@ -20,9 +21,5 @@ private:
   GLuint VAO, VBO;
 
   // Vertices coordinates
-  GLfloat vertices[9] = {
-      -0.5f, -0.5f * float(sqrt(3)) / 3,    0.0f, // Lower left corner
-      0.5f,  -0.5f * float(sqrt(3)) / 3,    0.0f, // Lower right corner
-      0.0f,  0.5f * float(sqrt(3)) * 2 / 3, 0.0f  // Upper corner
-  };
+  GLfloat vertices_[9]{};
 };
