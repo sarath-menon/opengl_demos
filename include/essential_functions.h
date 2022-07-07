@@ -1,5 +1,6 @@
 #pragma once
 #include "include_glad.h"
+#include "vertex_shader.h"
 #include <GLFW/glfw3.h>
 #include <glm/ext/matrix_clip_space.hpp> // glm::perspective
 #include <glm/ext/matrix_transform.hpp> // glm::translate, glm::rotate, glm::scale

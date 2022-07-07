@@ -13,6 +13,7 @@ int main() {
   // std::cout << vec.x << '\t' << vec.y << '\t' << vec.z << std::endl;
 
   glfwInit();
+  // Set opengl version
   glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
   glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -42,6 +43,20 @@ int main() {
   // Set widnow area for rendering
   glViewport(0, 0, 800, 800);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+  // Create Vertex Shader Object and get its reference
+  GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+  // Attach Vertex Shader source to the Vertex Shader Object
+  glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+  // Compile the Vertex Shader into machine code
+  glCompileShader(vertexShader);
+
+  // Vertices coordinates
+  GLfloat vertices[] = {
+      -0.5f, -0.5f * float(sqrt(3)) / 3,    0.0f, // Lower left corner
+      0.5f,  -0.5f * float(sqrt(3)) / 3,    0.0f, // Lower right corner
+      0.0f,  0.5f * float(sqrt(3)) * 2 / 3, 0.0f  // Upper corner
+  };
 
   // Show window. Render loop
   while (!glfwWindowShouldClose(window)) {
