@@ -63,7 +63,8 @@ void GLFWHelper::display(double current_time) {
 
   // set clear (reset) colour
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-  // set clear colour to back buffer
+
+  // set clear colour to front buffer
   glClear(GL_COLOR_BUFFER_BIT);
 
   // Start drawing-GLSL pipeline starts (primitive,start vertex, vertex count)
