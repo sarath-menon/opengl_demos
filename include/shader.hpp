@@ -20,4 +20,7 @@ private:
   void create_program_shader();
 
   std::string readShaderSource(const char *filePath);
+
+  // Checks if the different Shaders have compiled properly
+  void compileErrors(unsigned int shader, const char *type);
 };

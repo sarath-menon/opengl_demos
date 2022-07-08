@@ -20,6 +20,9 @@ void Shader::create_program_shader() {
   glCompileShader(vShader);
   glCompileShader(fShader);
 
+  // Checks if Shader compiled succesfully
+  compileErrors(fShader, "FRAGMENT");
+
   // create list of compiles shaders
   shaderProgram_ = glCreateProgram();
 
@@ -63,3 +66,26 @@ void Shader::Activate() { glUseProgram(shaderProgram_); }
 
 // Deletes the Shader Program
 void Shader::Delete() { glDeleteProgram(shaderProgram_); }
+
+// Checks if the different Shaders have compiled properly
+void Shader::compileErrors(unsigned int shader, const char *type) {
+  // Stores status of compilation
+  GLint hasCompiled;
+  // Character array to store error message in
+  char infoLog[1024];
+  if (type != "PROGRAM") {
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &hasCompiled);
+    if (hasCompiled == GL_FALSE) {
+      glGetShaderInfoLog(shader, 1024, NULL, infoLog);
+      std::cout << "SHADER_COMPILATION_ERROR for:" << type << "\n"
+                << infoLog << std::endl;
+    }
+  } else {
+    glGetProgramiv(shader, GL_LINK_STATUS, &hasCompiled);
+    if (hasCompiled == GL_FALSE) {
+      glGetProgramInfoLog(shader, 1024, NULL, infoLog);
+      std::cout << "SHADER_LINKING_ERROR for:" << type << "\n"
+                << infoLog << std::endl;
+    }
+  }
+}
