@@ -16,6 +16,9 @@ src/main.cpp
 src/glfw_helper.cpp
 src/shader.cpp
 src/triangle.cpp
+# src/VAO.cpp
+# src/VBO.cpp
+# src/EBO.cpp
 src/glad.c
 )
 
