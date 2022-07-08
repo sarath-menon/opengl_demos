@@ -1,6 +1,6 @@
 #include "shader.hpp"
 
-auto Shader::create_program_shader() {
+void Shader::create_program_shader() {
 
   // read shader source files
   std::string vertShaderStr = readShaderSource("shaders/vertShader.glsl");
@@ -16,29 +16,31 @@ auto Shader::create_program_shader() {
   glShaderSource(vShader, 1, &vertShaderSrc, NULL);
   glShaderSource(fShader, 1, &fragShaderSrc, NULL);
 
+  // Compile the shaders into machine code
+  glCompileShader(vShader);
+  glCompileShader(fShader);
+
   // create list of compiles shaders
-  GLuint shaderProgram = glCreateProgram();
+  shaderProgram_ = glCreateProgram();
 
   // Attach the Vertex and Fragment Shaders to the Shader Program
-  glAttachShader(shaderProgram, vShader);
-  glAttachShader(shaderProgram, fShader);
+  glAttachShader(shaderProgram_, vShader);
+  glAttachShader(shaderProgram_, fShader);
 
   // request GLSL to ensure that shader is compatible
-  glLinkProgram(shaderProgram);
+  glLinkProgram(shaderProgram_);
 
   // Delete the now useless Vertex and Fragment Shader objects
   glDeleteShader(vShader);
   glDeleteShader(fShader);
-
-  return shaderProgram;
 }
 
-Shader::Shader(VO &vao) {
+Shader::Shader() {
 
-  shaderProgram_ = create_program_shader();
+  create_program_shader();
 
-  // Bind the VO so OpenGL knows to use it
-  glBindVertexArray(vao.a);
+  // // Bind the VO so OpenGL knows to use it
+  // glBindVertexArray(vao.a);
 };
 
 // to read shader text file
@@ -55,3 +57,9 @@ std::string Shader::readShaderSource(const char *filePath) {
   fileStream.close();
   return content;
 }
+
+// Activates the Shader Program
+void Shader::Activate() { glUseProgram(shaderProgram_); }
+
+// Deletes the Shader Program
+void Shader::Delete() { glDeleteProgram(shaderProgram_); }

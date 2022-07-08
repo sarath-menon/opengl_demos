@@ -60,27 +60,22 @@ void GLFWHelper::processInput(GLFWwindow *window) {
     glfwSetWindowShouldClose(window, true);
 }
 
-void GLFWHelper::display(GLuint shaderProgram, double current_time) {
-
-  // Load the compiled shaders to the GPU
-  glUseProgram(shaderProgram);
+void GLFWHelper::display(Shader &shader, double current_time) {
 
   // set clear (reset) colour
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
   // set clear colour to front buffer
   glClear(GL_COLOR_BUFFER_BIT);
-
-  // Start drawing-GLSL pipeline starts (primitive,start vertex, vertex count)
-  glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
-void GLFWHelper::terminate_window(GLuint shaderProgram, VO &vao) {
+void GLFWHelper::terminate_window(Shader &shader) {
 
-  // Delete all the objects we've created
-  glDeleteVertexArrays(1, &vao.a);
-  glDeleteBuffers(1, &vao.b);
-  glDeleteProgram(shaderProgram);
+  // // Delete all the objects we've created
+  // glDeleteVertexArrays(1, &vao.a);
+  // glDeleteBuffers(1, &vao.b);
+
+  glDeleteProgram(shader.get_shader_program());
 
   // Delete window before ending the program
   glfwDestroyWindow(window);

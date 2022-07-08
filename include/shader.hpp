@@ -10,15 +10,21 @@
 
 class Shader {
 public:
-  Shader(VO &vao);
+  Shader();
 
   auto &get_shader_program() { return shaderProgram_; }
+
+  // Activates the Shader Program
+  void Activate();
+
+  // Deletes the Shader Program
+  void Delete();
 
 private:
   // Create Shader Program Object and get its reference
   GLuint shaderProgram_{};
 
-  auto create_program_shader();
+  void create_program_shader();
 
   std::string readShaderSource(const char *filePath);
 };
