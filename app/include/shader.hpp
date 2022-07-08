@@ -1,5 +1,8 @@
 #pragma once
-#include "include_glad.h"
+#include <fstream>
+#include <glad/glad.h>
+#include <iostream>
+#include <string>
 
 class Shader {
 public:

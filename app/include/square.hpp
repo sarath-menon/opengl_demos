@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 #include <string>
 
-class Triangle {
+class Square {
 
 public:
   Triangle(std::array<std::array<float, 2>, 3> &vertices,
