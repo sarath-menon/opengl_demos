@@ -19,7 +19,7 @@ private:
 
   auto create_program_shader();
 
-  // Vertex Shader source code
+  // Vertex Shader - send vertices down the pipeline
   constexpr static char *vertexShaderSource =
       "#version 410 core\n"
       "layout (location = 0) in vec3 aPos;\n"
@@ -28,7 +28,7 @@ private:
       "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
       "}\0";
 
-  // Fragment Shader source code
+  // Fragment Shader - set RGB color of pixel to be displayed
   constexpr static char *fragmentShaderSource =
       "#version 410 core\n"
       "out vec4 FragColor;\n"
