@@ -4,6 +4,7 @@
 
 int main() {
 
+  // create vertex buffer, array (Attributes - position(4D), color, texture etc)
   struct VAO vao;
 
   GLFWHelper glfw_helper;
@@ -27,7 +28,7 @@ int main() {
     glfw_helper.processInput(window);
 
     // Display
-    glfw_helper.display(glfwGetTime());
+    glfw_helper.display(shader.get_shader_program(), glfwGetTime());
 
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -18,7 +18,7 @@ public:
 
   auto get_window() { return window; }
 
-  void display(double current_time);
+  void display(GLuint shaderProgram, double current_time);
 
   static void framebuffer_size_callback(GLFWwindow *window, int width,
                                         int height);

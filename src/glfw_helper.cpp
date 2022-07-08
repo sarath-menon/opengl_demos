@@ -2,6 +2,7 @@
 #include <iostream>
 
 GLFWHelper::GLFWHelper() {
+
   // Initialize GLFW
   if (!glfwInit()) {
     exit(EXIT_FAILURE);
@@ -59,7 +60,10 @@ void GLFWHelper::processInput(GLFWwindow *window) {
     glfwSetWindowShouldClose(window, true);
 }
 
-void GLFWHelper::display(double current_time) {
+void GLFWHelper::display(GLuint shaderProgram, double current_time) {
+
+  // Load the compiled shaders to the GPU
+  glUseProgram(shaderProgram);
 
   // set clear (reset) colour
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

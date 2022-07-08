@@ -37,9 +37,6 @@ Shader::Shader(VAO &vao) {
 
   shaderProgram_ = create_program_shader();
 
-  // Tell OpenGL which Shader Program we want to use
-  glUseProgram(shaderProgram_);
-
   // Bind the VAO so OpenGL knows to use it
   glBindVertexArray(vao.a);
 };
