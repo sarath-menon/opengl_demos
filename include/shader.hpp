@@ -5,7 +5,7 @@ class Shader {
 public:
   Shader();
 
-  auto &get_shader_program() { return shaderProgram_; }
+  auto &get_program() { return shaderProgram_; }
 
   // Activates the Shader Program
   void Activate();

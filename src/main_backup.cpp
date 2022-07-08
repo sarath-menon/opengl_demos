@@ -4,9 +4,6 @@
 #include "shader.hpp"
 #include "triangle.hpp"
 
-constexpr unsigned int width = 800;
-constexpr unsigned int height = 800;
-
 int main() {
 
   GLFWHelper glfw_helper;
@@ -34,10 +31,6 @@ int main() {
   VAO1.Unbind();
   VBO1.Unbind();
 
-  // Variables that help the rotation of the pyramid
-  float rotation = 0.0f;
-  double prevTime = glfwGetTime();
-
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(window)) {
 
@@ -49,26 +42,6 @@ int main() {
 
     // Load the compiled shaders to the GPU
     shader.Activate();
-
-    // Initializes matrices so they are not the null matrix
-    auto model = glm::mat4(1.0f);
-    auto view = glm::mat4(1.0f);
-    auto proj = glm::mat4(1.0f);
-
-    // Assigns different transformations to each matrix
-    model =
-        glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
-    view = glm::translate(view, glm::vec3(0.0f, -0.5f, -2.0f));
-    proj = glm::perspective(glm::radians(45.0f), (float)width / height, 0.1f,
-                            100.0f);
-
-    // Outputs the matrices into the Vertex Shader
-    int modelLoc = glGetUniformLocation(shader.get_program(), "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    int viewLoc = glGetUniformLocation(shader.get_program(), "view");
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-    int projLoc = glGetUniformLocation(shader.get_program(), "proj");
-    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
     // Bind the VAO so OpenGL knows to use it
     VAO1.Bind();

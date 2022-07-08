@@ -75,7 +75,7 @@ void GLFWHelper::terminate_window(Shader &shader) {
   // glDeleteVertexArrays(1, &vao.a);
   // glDeleteBuffers(1, &vao.b);
 
-  glDeleteProgram(shader.get_shader_program());
+  glDeleteProgram(shader.get_program());
 
   // Delete window before ending the program
   glfwDestroyWindow(window);
