@@ -6,13 +6,16 @@
 
 class Square {
 
+private:
+  constexpr static int edges_ = 4;
+
 public:
-  Triangle(std::array<std::array<float, 2>, 3> &vertices,
-           std::array<std::array<float, 3>, 3> &colours);
+  Square(std::array<std::array<float, 2>, edges_> &vertices,
+         std::array<std::array<float, 3>, edges_> &colours);
 
   auto &get_vertices() { return vertices_; }
 
 private:
   // Vertices coordinates
-  GLfloat vertices_[18]{};
+  GLfloat vertices_[6 * edges_]{};
 };
