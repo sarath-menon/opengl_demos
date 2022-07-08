@@ -10,6 +10,8 @@ int main() {
 
   auto window = glfw_helper.get_window();
 
+  Shader shader;
+
   std::array<std::array<float, 2>, 3> vertices = {
       {{-0.5f, -0.5f * float(sqrt(3)) / 3},
        {0.5f, -0.5f * float(sqrt(3)) / 3},
@@ -17,15 +19,12 @@ int main() {
 
   Triangle triangle(vertices);
 
-  Shader shader;
-
   // Generates Vertex Array Object and binds it
   VAO VAO1;
   VAO1.Bind();
 
   // Generates Vertex Buffer Object and links it to vertices
   VBO VBO1(triangle.get_vertices(), sizeof(triangle.get_vertices()));
-
   // Links VBO to VAO
   VAO1.LinkVBO(VBO1, 0);
   // Unbind all to prevent accidentally modifying them
