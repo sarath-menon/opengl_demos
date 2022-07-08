@@ -6,8 +6,10 @@ layout(location = 1) in vec3 aColour;
 // output colours from vertex shader to fragment shader
 out vec3 colour;
 
+uniform float scale;
+
 // opengl recognises as output, vertex position
 void main() {
-  gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+  gl_Position = vec4(aPos.x * scale, aPos.y * scale, aPos.z * scale, 1.0);
   colour = aColour;
 }

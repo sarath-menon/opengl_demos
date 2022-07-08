@@ -42,6 +42,9 @@ int main() {
   VAO1.Unbind();
   VBO1.Unbind();
 
+  // Gets ID of uniform called "scale"
+  GLuint uniID = glGetUniformLocation(shader.get_program(), "scale");
+
   // Variables that help the rotation of the pyramid
   float rotation = 0.0f;
   double prevTime = glfwGetTime();
@@ -56,6 +59,9 @@ int main() {
 
     // Load the compiled shaders to the GPU
     shader.Activate();
+    // Assigns a value to the uniform; NOTE: Must always be done after
+    // activating the Shader Program
+    glUniform1f(uniID, 1.5f);
 
     // // Initializes matrices so they are not the null matrix
     // auto model = glm::mat4(1.0f);
