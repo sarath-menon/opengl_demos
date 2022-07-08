@@ -11,11 +11,12 @@
 class Triangle {
 
 public:
-  Triangle(std::array<std::array<float, 2>, 3> &vertices);
+  Triangle(std::array<std::array<float, 2>, 3> &vertices,
+           std::array<std::array<float, 3>, 3> &colours);
 
   auto &get_vertices() { return vertices_; }
 
 private:
   // Vertices coordinates
-  GLfloat vertices_[9]{};
+  GLfloat vertices_[18]{};
 };
