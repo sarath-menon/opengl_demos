@@ -21,7 +21,7 @@ private:
 
   // Vertex Shader source code
   constexpr static char *vertexShaderSource =
-      "#version 330 core\n"
+      "#version 410 core\n"
       "layout (location = 0) in vec3 aPos;\n"
       "void main()\n"
       "{\n"
@@ -30,7 +30,7 @@ private:
 
   // Fragment Shader source code
   constexpr static char *fragmentShaderSource =
-      "#version 330 core\n"
+      "#version 410 core\n"
       "out vec4 FragColor;\n"
       "void main()\n"
       "{\n"
