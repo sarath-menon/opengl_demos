@@ -1,7 +1,7 @@
-#include "triangle.hpp"
+#include "square.hpp"
 
-Triangle::Triangle(std::array<std::array<float, 2>, edges_> &vertices,
-                   std::array<std::array<float, 3>, edges_> &colours) {
+Square::Square(std::array<std::array<float, 2>, edges_> &vertices,
+               std::array<std::array<float, 3>, edges_> &colours) {
 
   // Set triangle coordinates
   vertices_[0] = vertices[0][0];

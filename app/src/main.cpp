@@ -1,3 +1,4 @@
+#include "EBO.hpp"
 #include "VAO.h"
 #include "VBO.h"
 #include "glfw_helper.hpp"
@@ -16,23 +17,39 @@ int main() {
 
   Shader shader;
 
-  std::array<std::array<float, 2>, 3> vertices = {
-      {{-0.5f, -0.5f * float(sqrt(3)) / 3},
-       {0.5f, -0.5f * float(sqrt(3)) / 3},
-       {0.0f, 0.5f * float(sqrt(3)) * 2 / 3}}};
+  // Vertices coordinates
+  GLfloat vertices[] = {
+      //               COORDINATES                  /     COLORS           //
+      -0.5f,  -0.5f * float(sqrt(3)) * 1 / 3, 0.0f, 0.8f, 0.3f,
+      0.02f, // Lower left corner
+      0.5f,   -0.5f * float(sqrt(3)) * 1 / 3, 0.0f, 0.8f, 0.3f,
+      0.02f, // Lower right corner
+      0.0f,   0.5f * float(sqrt(3)) * 2 / 3,  0.0f, 1.0f, 0.6f,
+      0.32f, // Upper corner
+      -0.25f, 0.5f * float(sqrt(3)) * 1 / 6,  0.0f, 0.9f, 0.45f,
+      0.17f, // Inner left
+      0.25f,  0.5f * float(sqrt(3)) * 1 / 6,  0.0f, 0.9f, 0.45f,
+      0.17f, // Inner right
+      0.0f,   -0.5f * float(sqrt(3)) * 1 / 3, 0.0f, 0.8f, 0.3f,
+      0.02f // Inner down
+  };
 
-  // RGB vertex colours
-  std::array<std::array<float, 3>, 3> colours = {
-      {{0.8f, 0.3f, 0.02f}, {1.0f, 0.6f, 0.32f}, {0.9f, 0.45f, 0.17f}}};
-
-  Triangle triangle(vertices, colours);
+  // Indices for vertices order
+  GLuint indices[] = {
+      0, 3, 5, // Lower left triangle
+      3, 2, 4, // Lower right triangle
+      5, 4, 1  // Upper triangle
+  };
 
   // Generates Vertex Array Object and binds it
   VAO VAO1;
   VAO1.Bind();
 
   // Generates Vertex Buffer Object and links it to vertices
-  VBO VBO1(triangle.get_vertices(), sizeof(triangle.get_vertices()));
+  VBO VBO1(vertices, sizeof(vertices));
+
+  // Generates Element Buffer Object and links it to indices
+  EBO EBO1(indices, sizeof(indices));
 
   // Links VBO to VAO
   VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 6 * sizeof(float), (void *)0);
@@ -42,6 +59,7 @@ int main() {
   // Unbind all to prevent accidentally modifying them
   VAO1.Unbind();
   VBO1.Unbind();
+  EBO1.Unbind();
 
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.get_program(), "scale");
@@ -88,8 +106,8 @@ int main() {
     // Bind the VAO so OpenGL knows to use it
     VAO1.Bind();
 
-    // Start drawing-GLSL pipeline starts (primitive,start vertex, vertex count)
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    // Draw primitives, number of indices, datatype of indices, index of indices
+    glDrawElements(GL_TRIANGLES, 9, GL_UNSIGNED_INT, 0);
 
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -102,6 +120,7 @@ int main() {
   // Delete all the objects we've created
   VAO1.Delete();
   VBO1.Delete();
+  EBO1.Delete();
 
   shader.Delete();
 

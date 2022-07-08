@@ -1,3 +1,4 @@
+#include "EBO.hpp"
 #include "VAO.h"
 #include "VBO.h"
 #include "glfw_helper.hpp"
@@ -25,6 +26,13 @@ int main() {
   std::array<std::array<float, 3>, 3> colours = {
       {{0.8f, 0.3f, 0.02f}, {1.0f, 0.6f, 0.32f}, {0.9f, 0.45f, 0.17f}}};
 
+  // Indices for vertices order
+  GLuint indices[] = {
+      0, 3, 5, // Lower left triangle
+      3, 2, 4, // Lower right triangle
+      5, 4, 1  // Upper triangle
+  };
+
   Triangle triangle(vertices, colours);
 
   // Generates Vertex Array Object and binds it
@@ -34,6 +42,9 @@ int main() {
   // Generates Vertex Buffer Object and links it to vertices
   VBO VBO1(triangle.get_vertices(), sizeof(triangle.get_vertices()));
 
+  // Generates Element Buffer Object and links it to indices
+  EBO EBO1(indices, sizeof(indices));
+
   // Links VBO to VAO
   VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 6 * sizeof(float), (void *)0);
   VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 6 * sizeof(float),
@@ -42,6 +53,7 @@ int main() {
   // Unbind all to prevent accidentally modifying them
   VAO1.Unbind();
   VBO1.Unbind();
+  EBO1.Unbind();
 
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.get_program(), "scale");
@@ -102,6 +114,7 @@ int main() {
   // Delete all the objects we've created
   VAO1.Delete();
   VBO1.Delete();
+  EBO1.Delete();
 
   shader.Delete();
 
