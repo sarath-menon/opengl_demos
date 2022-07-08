@@ -6,7 +6,7 @@ include(CTest)
 enable_testing()
 
 find_package(glfw3 3.3 REQUIRED)
-find_package(OpenGL 4.2 REQUIRED)
+find_package(OpenGL 4.1 REQUIRED)
 
 add_subdirectory(app)
 add_subdirectory(external)
