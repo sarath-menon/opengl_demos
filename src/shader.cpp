@@ -33,10 +33,10 @@ auto Shader::create_program_shader() {
   return shaderProgram;
 }
 
-Shader::Shader(VAO &vao) {
+Shader::Shader(VO &vao) {
 
   shaderProgram_ = create_program_shader();
 
-  // Bind the VAO so OpenGL knows to use it
+  // Bind the VO so OpenGL knows to use it
   glBindVertexArray(vao.a);
 };

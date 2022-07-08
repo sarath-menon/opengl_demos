@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-struct VAO {
+struct VO {
   GLuint a;
   GLuint b;
 };

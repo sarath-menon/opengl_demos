@@ -24,5 +24,5 @@ public:
                                         int height);
   void processInput(GLFWwindow *window);
 
-  void terminate_window(GLuint shaderProgram, VAO &vao);
+  void terminate_window(GLuint shaderProgram, VO &vao);
 };

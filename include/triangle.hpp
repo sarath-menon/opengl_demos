@@ -11,7 +11,7 @@
 class Triangle {
 
 public:
-  Triangle(std::array<std::array<float, 2>, 3> &vertices, VAO &vao);
+  Triangle(std::array<std::array<float, 2>, 3> &vertices, VO &vao);
 
 private:
   // Vertices coordinates

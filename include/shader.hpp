@@ -9,7 +9,7 @@
 
 class Shader {
 public:
-  Shader(VAO &vao);
+  Shader(VO &vao);
 
   auto &get_shader_program() { return shaderProgram_; }
 

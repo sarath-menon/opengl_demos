@@ -75,7 +75,7 @@ void GLFWHelper::display(GLuint shaderProgram, double current_time) {
   glDrawArrays(GL_TRIANGLES, 0, 3);
 }
 
-void GLFWHelper::terminate_window(GLuint shaderProgram, VAO &vao) {
+void GLFWHelper::terminate_window(GLuint shaderProgram, VO &vao) {
 
   // Delete all the objects we've created
   glDeleteVertexArrays(1, &vao.a);

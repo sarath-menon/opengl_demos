@@ -5,7 +5,7 @@
 int main() {
 
   // create vertex buffer, array (Attributes - position(4D), color, texture etc)
-  struct VAO vao;
+  struct VO vao;
 
   GLFWHelper glfw_helper;
 
