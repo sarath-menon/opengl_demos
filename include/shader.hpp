@@ -6,6 +6,7 @@
 #include <glm/mat4x4.hpp>               // glm::mat4
 #include <glm/vec3.hpp>                 // glm::vec3
 #include <glm/vec4.hpp>                 // glm::vec4
+#include <string>
 
 class Shader {
 public:
@@ -19,21 +20,5 @@ private:
 
   auto create_program_shader();
 
-  // Vertex Shader - send vertices down the pipeline
-  constexpr static char *vertexShaderSource =
-      "#version 410 core\n"
-      "layout (location = 0) in vec3 aPos;\n"
-      "void main()\n"
-      "{\n"
-      "   gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);\n"
-      "}\0";
-
-  // Fragment Shader - set RGB color of pixel to be displayed
-  constexpr static char *fragmentShaderSource =
-      "#version 410 core\n"
-      "out vec4 FragColor;\n"
-      "void main()\n"
-      "{\n"
-      "   FragColor = vec4(0.8f, 0.3f, 0.02f, 1.0f);\n"
-      "}\n\0";
+  std::string readShaderSource(const char *filePath);
 };
