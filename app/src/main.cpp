@@ -1,6 +1,6 @@
 #include "EBO.hpp"
-#include "VAO.h"
-#include "VBO.h"
+#include "VAO.hpp"
+#include "VBO.hpp"
 #include "glfw_helper.hpp"
 #include "shader.hpp"
 #include "stb_image.h"

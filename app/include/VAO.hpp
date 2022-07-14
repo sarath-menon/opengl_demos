@@ -1,6 +1,6 @@
 #pragma once
 
-#include "VBO.h"
+#include "VBO.hpp"
 
 class VAO {
 public:
