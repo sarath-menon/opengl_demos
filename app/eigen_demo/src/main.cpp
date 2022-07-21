@@ -1,4 +1,3 @@
-#include "EBO.hpp"
 #include "VAO.hpp"
 #include "VBO.hpp"
 #include "glfw_helper.hpp"
