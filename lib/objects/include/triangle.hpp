@@ -4,18 +4,19 @@
 //
 #include "gl_common.hpp"
 #include <array>
+#include <cmath>
 #include <glm/glm.hpp>
 #include <string>
 
 class Triangle {
 
 private:
-  Eigen::Matrix<float, 3, 3, Eigen::RowMajor> vertices_;
+  gl::M3 vertices_{};
 
 public:
-  Triangle(const gl::V3 start);
+  Triangle(const gl::V3 start, const float length);
 
-  auto &get_vertices() { return vertices_; }
+  auto &vertices() { return vertices_; }
 };
 
 // vertices << -0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
