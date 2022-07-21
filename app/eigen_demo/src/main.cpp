@@ -40,10 +40,6 @@ int main() {
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.get_program(), "scale");
 
-  // Variables that help the rotation of the pyramid
-  float rotation = 0.0f;
-  double prevTime = glfwGetTime();
-
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(window)) {
     // Inputs

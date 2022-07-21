@@ -6,6 +6,7 @@ src/triangle.cpp
 target_include_directories(objects PUBLIC include)
 
 target_link_libraries(objects PRIVATE
+common
 glfw
 external
 Eigen3::Eigen

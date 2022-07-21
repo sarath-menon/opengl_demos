@@ -2,29 +2,22 @@
 //
 #include <glad/glad.h>
 //
-
+#include "gl_common.hpp"
 #include <array>
-#include <eigen3/Eigen/Dense>
-#include <eigen3/unsupported/Eigen/OpenGLSupport>
 #include <glm/glm.hpp>
 #include <string>
 
 class Triangle {
 
 private:
-  constexpr static int edges_ = 3;
-
-  Eigen::Vector3f x, y;
-  Eigen::Matrix3f rot;
+  Eigen::Matrix<float, 3, 3, Eigen::RowMajor> vertices_;
 
 public:
-  Triangle(std::array<std::array<float, 2>, edges_> &vertices,
-           std::array<std::array<float, 3>, edges_> &colours);
-
-  Triangle();
+  Triangle(const V3 start);
 
   auto &get_vertices() { return vertices_; }
-
-  // Vertices coordinates
-  GLfloat vertices_[6 * edges_]{};
 };
+
+// vertices << -0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
+//       0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f,          // Lower right corner
+//       0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f;       // Upper corner
