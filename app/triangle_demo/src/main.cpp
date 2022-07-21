@@ -57,7 +57,8 @@ int main() {
     // Bind the VAO so OpenGL knows to use it
     VA.Bind();
 
-    // Start drawing-GLSL pipeline starts (primitive,start vertex, vertex count)
+    // send data in vertex buffer to the shader and start drawing
+    // (primitive,start vertex, vertex count)
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

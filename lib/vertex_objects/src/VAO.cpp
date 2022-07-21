@@ -13,6 +13,7 @@ void VAO::LinkAttrib(VBO &VBO, GLuint layout, gl::M3 &M, GLenum type) {
 
   // enable the (layout)th vertex attribute
   glEnableVertexAttribArray(layout);
+
   VBO.Unbind();
 }
 
