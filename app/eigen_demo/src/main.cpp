@@ -18,7 +18,7 @@ int main() {
 
   Shader shader;
 
-  Triangle t1(gl::V3(0, 0, 0), 1.0f);
+  Triangle t1(gl::V3(0, 0, 0), 1.0);
 
   // Generates Vertex Array Object and binds it
   VAO VAO1;
