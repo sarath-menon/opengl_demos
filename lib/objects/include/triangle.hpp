@@ -13,7 +13,7 @@ private:
   Eigen::Matrix<float, 3, 3, Eigen::RowMajor> vertices_;
 
 public:
-  Triangle(const V3 start);
+  Triangle(const gl::V3 start);
 
   auto &get_vertices() { return vertices_; }
 };
