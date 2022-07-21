@@ -12,7 +12,7 @@ void VAO::LinkAttrib(VBO &VBO, GLuint layout, gl::M3 &M, GLenum type) {
   VBO.Unbind();
 }
 
-// Binds the VAO
+// Activate the VAO
 void VAO::Bind() { glBindVertexArray(ID); }
 
 // Unbinds the VAO

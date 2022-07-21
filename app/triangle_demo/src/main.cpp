@@ -22,14 +22,16 @@ int main() {
   Triangle t1(gl::V3(-0.4, -0.4, 0), 1.0);
   Triangle t2(gl::V3(0.4, 0.4, 0), 1.0);
 
-  // Generates Vertex Array Object
+  // vertex array object to prganize vertex buffers
   VAO VA;
 
-  // Generates Vertex Buffer Object and links it to vertices
+  // vertex buffer to be sent to vertex shader
   VBO VB[] = {VBO(t1.vertices()), VBO(t2.vertices())};
 
-  // Links VAO and link to VBO
+  // Activate the VA
   VA.Bind();
+
+  // Link VAO to VBO
   VA.LinkAttrib(VB[0], 0, t1.vertices(), GL_FLOAT);
   VA.LinkAttrib(VB[1], 1, t2.vertices(), GL_FLOAT);
 
