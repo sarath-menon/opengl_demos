@@ -18,7 +18,7 @@ void VBO::Unbind() { glBindBuffer(GL_ARRAY_BUFFER, 0); }
 void VBO::Delete() { glDeleteBuffers(1, &ID); }
 
 // for use with eigen
-VBO::VBO(Eigen::Matrix<float, 3, 3> &V) {
+VBO::VBO(Eigen::Matrix<float, 3, 3, Eigen::RowMajor> &V) {
   glGenBuffers(1, &ID);
   glBindBuffer(GL_ARRAY_BUFFER, ID);
 
@@ -33,7 +33,7 @@ VBO::VBO(Eigen::Matrix<float, 3, 3> &V) {
 
   else {
     // Create temporary copy of transpose
-    Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> VT = V.transpose();
+    auto VT = V.transpose();
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * V.size(), VT.data(),
                  GL_STATIC_DRAW);
   }

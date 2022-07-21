@@ -12,7 +12,7 @@ public:
   // for use with eigen
   VBO(Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> &V);
 
-  VBO(Eigen::Matrix<float, 3, 3> &V);
+  VBO(Eigen::Matrix<float, 3, 3, Eigen::RowMajor> &V);
 
   // Binds the VBO
   void Bind();

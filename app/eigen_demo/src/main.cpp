@@ -19,7 +19,7 @@ int main() {
 
   Shader shader;
 
-  Eigen::Matrix<float, 3, 3> vertices;
+  Eigen::Matrix<float, 3, 3, Eigen::RowMajor> vertices;
   vertices << -0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f, // Lower left corner
       0.5f, -0.5f * float(sqrt(3)) / 3, 0.0f,          // Lower right corner
       0.0f, 0.5f * float(sqrt(3)) * 2 / 3, 0.0f;       // Upper corner
@@ -33,8 +33,8 @@ int main() {
   VBO VBO1(vertices);
 
   // Links VBO to VAO
-  VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 6 * sizeof(float), (void *)0);
-  VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 6 * sizeof(float),
+  VAO1.LinkAttrib(VBO1, 0, vertices, GL_FLOAT, 6 * sizeof(float), (void *)0);
+  VAO1.LinkAttrib(VBO1, 1, vertices, GL_FLOAT, 6 * sizeof(float),
                   (void *)(3 * sizeof(float)));
 
   // Unbind all to prevent accidentally modifying them
