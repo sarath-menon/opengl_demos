@@ -54,10 +54,6 @@ int main() {
     // Load the compiled shaders to the GPU
     shader.Activate();
 
-    // Set triangle scale (Assigns a value to the uniform); NOTE: Must always be
-    // done after activating the Shader Program
-    glUniform1f(uniID, 1.5f);
-
     // Bind the VAO so OpenGL knows to use it
     VA.Bind();
 

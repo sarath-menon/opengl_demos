@@ -10,6 +10,7 @@ VBO::VBO(gl::M3 &V) {
   // We expect a matrix with each vertex position on a row, we then want to
   // pass this data to OpenGL reading across rows (row-major)
 
+  // copy vertices to the active vertex buffer
   glBufferData(GL_ARRAY_BUFFER, sizeof(float) * V.size(), V.data(),
                GL_STATIC_DRAW);
 }
