@@ -6,7 +6,7 @@
 
 class Shader {
 public:
-  Shader();
+  Shader(std::string vs_path, std::string fs_path);
 
   auto &get_program() { return shaderProgram_; }
 
@@ -19,6 +19,9 @@ public:
 private:
   // Create Shader Program Object and get its reference
   GLuint shaderProgram_{};
+
+  std::string vs_path_{};
+  std::string fs_path_{};
 
   void create_program_shader();
 

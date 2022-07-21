@@ -16,7 +16,7 @@ int main() {
 
   auto window = glfw_helper.get_window();
 
-  Shader shader;
+  Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");
 
   Triangle t1(gl::V3(0, 0, 0), 1.0);
 

@@ -3,8 +3,8 @@
 void Shader::create_program_shader() {
 
   // read shader source files
-  std::string vertShaderStr = readShaderSource("shaders/vertShader.glsl");
-  std::string fragShaderStr = readShaderSource("shaders/fragShader.glsl");
+  std::string vertShaderStr = readShaderSource(vs_path_.c_str());
+  std::string fragShaderStr = readShaderSource(fs_path_.c_str());
 
   const char *vertShaderSrc = vertShaderStr.c_str();
   const char *fragShaderSrc = fragShaderStr.c_str();
@@ -38,7 +38,10 @@ void Shader::create_program_shader() {
   glDeleteShader(fShader);
 }
 
-Shader::Shader() {
+Shader::Shader(std::string vs_path, std::string fs_path) {
+
+  vs_path_ = vs_path;
+  fs_path_ = fs_path;
 
   create_program_shader();
 
