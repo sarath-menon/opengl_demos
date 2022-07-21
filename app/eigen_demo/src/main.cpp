@@ -33,9 +33,9 @@ int main() {
   VBO VBO1(vertices);
 
   // Links VBO to VAO
-  VAO1.LinkAttrib(VBO1, 0, vertices, GL_FLOAT, 6 * sizeof(float), (void *)0);
-  VAO1.LinkAttrib(VBO1, 1, vertices, GL_FLOAT, 6 * sizeof(float),
-                  (void *)(3 * sizeof(float)));
+  VAO1.LinkAttrib(VBO1, 0, vertices, GL_FLOAT, (void *)0);
+  // VAO1.LinkAttrib(VBO1, 1, vertices, GL_FLOAT, 6 * sizeof(float),
+  //                 (void *)(3 * sizeof(float)));
 
   // Unbind all to prevent accidentally modifying them
   VAO1.Unbind();

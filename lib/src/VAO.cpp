@@ -6,9 +6,10 @@ VAO::VAO() { glGenVertexArrays(1, &ID); }
 // Links a VBO to the VAO using a certain layout
 void VAO::LinkAttrib(VBO &VBO, GLuint layout,
                      Eigen::Matrix<float, 3, 3, Eigen::RowMajor> &M,
-                     GLenum type, GLsizeiptr stride, void *offset) {
+                     GLenum type, void *offset) {
   VBO.Bind();
-  glVertexAttribPointer(layout, M.cols(), type, GL_FALSE, stride, offset);
+  glVertexAttribPointer(layout, M.cols(), type, GL_FALSE, 3 * sizeof(float),
+                        offset);
   glEnableVertexAttribArray(layout);
   VBO.Unbind();
 }
