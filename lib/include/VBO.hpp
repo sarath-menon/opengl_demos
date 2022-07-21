@@ -1,5 +1,5 @@
 #pragma once
-
+#include <eigen3/Eigen/Dense>
 #include <glad/glad.h>
 
 class VBO {
@@ -8,6 +8,9 @@ public:
   GLuint ID;
   // Constructor that generates a Vertex Buffer Object and links it to vertices
   VBO(GLfloat *vertices, GLsizeiptr size);
+
+  // for use with eigen
+  VBO(Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic> V);
 
   // Binds the VBO
   void Bind();
