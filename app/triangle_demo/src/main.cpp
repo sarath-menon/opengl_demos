@@ -20,14 +20,14 @@ int main() {
 
   Triangle t1(gl::V3(0, 0, 0), 1.0);
 
-  // Generates Vertex Array Object and binds it
+  // Generates Vertex Array Object
   VAO VAO1;
-  VAO1.Bind();
 
   // Generates Vertex Buffer Object and links it to vertices
   VBO VBO1(t1.vertices());
 
-  // Links VBO to VAO
+  // Links VAO and link to VBO
+  VAO1.Bind();
   VAO1.LinkAttrib(VBO1, 0, t1.vertices(), GL_FLOAT);
 
   // Unbind all to prevent accidentally modifying them
