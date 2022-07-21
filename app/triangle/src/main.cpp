@@ -5,6 +5,8 @@
 #include "shader.hpp"
 #include "stb_image.h"
 #include "triangle.hpp"
+#include <Eigen/Dense>
+#include <unsupported/Eigen/OpenGLSupport>
 
 constexpr unsigned int width = 800;
 constexpr unsigned int height = 800;
@@ -26,13 +28,6 @@ int main() {
   std::array<std::array<float, 3>, 3> colours = {
       {{0.8f, 0.3f, 0.02f}, {1.0f, 0.6f, 0.32f}, {0.9f, 0.45f, 0.17f}}};
 
-  // Indices for vertices order
-  GLuint indices[] = {
-      0, 3, 5, // Lower left triangle
-      3, 2, 4, // Lower right triangle
-      5, 4, 1  // Upper triangle
-  };
-
   Triangle triangle(vertices, colours);
 
   // Generates Vertex Array Object and binds it
@@ -42,9 +37,6 @@ int main() {
   // Generates Vertex Buffer Object and links it to vertices
   VBO VBO1(triangle.get_vertices(), sizeof(triangle.get_vertices()));
 
-  // Generates Element Buffer Object and links it to indices
-  EBO EBO1(indices, sizeof(indices));
-
   // Links VBO to VAO
   VAO1.LinkAttrib(VBO1, 0, 3, GL_FLOAT, 6 * sizeof(float), (void *)0);
   VAO1.LinkAttrib(VBO1, 1, 3, GL_FLOAT, 6 * sizeof(float),
@@ -53,7 +45,6 @@ int main() {
   // Unbind all to prevent accidentally modifying them
   VAO1.Unbind();
   VBO1.Unbind();
-  EBO1.Unbind();
 
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.get_program(), "scale");
@@ -76,27 +67,6 @@ int main() {
     // activating the Shader Program
     glUniform1f(uniID, 1.5f);
 
-    // // Initializes matrices so they are not the null matrix
-    // auto model = glm::mat4(1.0f);
-    // auto view = glm::mat4(1.0f);
-    // auto proj = glm::mat4(1.0f);
-
-    // // Assigns different transformations to each matrix
-    // model =
-    //     glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f,
-    //     0.0f));
-    // view = glm::translate(view, glm::vec3(0.0f, -0.5f, -2.0f));
-    // proj = glm::perspective(glm::radians(45.0f), (float)width / height, 0.1f,
-    //                         100.0f);
-
-    // // Outputs the matrices into the Vertex Shader
-    // int modelLoc = glGetUniformLocation(shader.get_program(), "model");
-    // glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    // int viewLoc = glGetUniformLocation(shader.get_program(), "view");
-    // glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-    // int projLoc = glGetUniformLocation(shader.get_program(), "proj");
-    // glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
-
     // Bind the VAO so OpenGL knows to use it
     VAO1.Bind();
 
@@ -114,7 +84,6 @@ int main() {
   // Delete all the objects we've created
   VAO1.Delete();
   VBO1.Delete();
-  EBO1.Delete();
 
   shader.Delete();
 

@@ -7,5 +7,6 @@ target_link_libraries(triangle PRIVATE
 gl_lib
 glfw
 external
+Eigen3::Eigen
 )
 
