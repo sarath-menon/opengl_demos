@@ -18,21 +18,25 @@ int main() {
 
   Shader shader;
 
-  Triangle t1(gl::V3(0, 0, 0), 1.0);
+  // create triangles
+  Triangle t1(gl::V3(-0.4, -0.4, 0), 1.0);
+  Triangle t2(gl::V3(0.4, 0.4, 0), 1.0);
 
   // Generates Vertex Array Object
-  VAO VAO1;
+  VAO VA;
 
   // Generates Vertex Buffer Object and links it to vertices
-  VBO VBO1(t1.vertices());
+  VBO VB[] = {VBO(t1.vertices()), VBO(t2.vertices())};
 
   // Links VAO and link to VBO
-  VAO1.Bind();
-  VAO1.LinkAttrib(VBO1, 0, t1.vertices(), GL_FLOAT);
+  VA.Bind();
+  VA.LinkAttrib(VB[0], 0, t1.vertices(), GL_FLOAT);
+  VA.LinkAttrib(VB[1], 1, t2.vertices(), GL_FLOAT);
 
   // Unbind all to prevent accidentally modifying them
-  VAO1.Unbind();
-  VBO1.Unbind();
+  VA.Unbind();
+  VB[0].Unbind();
+  VB[1].Unbind();
 
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.get_program(), "scale");
@@ -53,7 +57,7 @@ int main() {
     glUniform1f(uniID, 1.5f);
 
     // Bind the VAO so OpenGL knows to use it
-    VAO1.Bind();
+    VA.Bind();
 
     // Start drawing-GLSL pipeline starts (primitive,start vertex, vertex count)
     glDrawArrays(GL_TRIANGLES, 0, 3);
@@ -67,8 +71,9 @@ int main() {
   }
 
   // Delete all the objects we've created
-  VAO1.Delete();
-  VBO1.Delete();
+  VA.Delete();
+  VB[0].Delete();
+  VB[1].Delete();
 
   shader.Delete();
 
