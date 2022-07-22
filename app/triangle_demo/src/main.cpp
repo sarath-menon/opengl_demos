@@ -15,25 +15,22 @@ int main() {
 
   // create triangles
   Triangle t1(gl::V3(-0.4, -0.4, 0), 1.0);
-  Triangle t2(gl::V3(0.4, 0.4, 0), 1.0);
 
   // vertex array object to prganize vertex buffers
   VAO VA;
 
   // vertex buffer to be sent to vertex shader
-  VBO VB[] = {VBO(t1.vertices()), VBO(t2.vertices())};
+  VBO VB[] = {VBO(t1.vertices())};
 
   // Activate the VA
   VA.Bind();
 
   // Link VAO to VBO
   VA.LinkAttrib(VB[0], 0, t1.vertices(), GL_FLOAT);
-  VA.LinkAttrib(VB[1], 1, t2.vertices(), GL_FLOAT);
 
   // Unbind all to prevent accidentally modifying them
   VA.Unbind();
   VB[0].Unbind();
-  VB[1].Unbind();
 
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.getHandle(), "scale");
