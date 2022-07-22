@@ -18,5 +18,5 @@ public:
                                         int height);
   void processInput(GLFWwindow *window);
 
-  void terminate_window(Shader &shader);
+  void terminate_window();
 };

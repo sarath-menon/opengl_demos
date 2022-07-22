@@ -69,13 +69,7 @@ void GLFWHelper::display(Shader &shader, double current_time) {
   glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void GLFWHelper::terminate_window(Shader &shader) {
-
-  // // Delete all the objects we've created
-  // glDeleteVertexArrays(1, &vao.a);
-  // glDeleteBuffers(1, &vao.b);
-
-  glDeleteProgram(shader.get_program());
+void GLFWHelper::terminate_window() {
 
   // Delete window before ending the program
   glfwDestroyWindow(window);

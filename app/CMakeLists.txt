@@ -1,5 +1,5 @@
 
 add_subdirectory(triangle_demo)
-add_subdirectory(cube_demo)
-add_subdirectory(waste)
+# add_subdirectory(cube_demo)
+# add_subdirectory(waste)
 

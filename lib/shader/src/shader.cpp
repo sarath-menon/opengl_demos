@@ -25,14 +25,14 @@ void Shader::create_program_shader() {
   compileErrors(fShader, "FRAGMENT");
 
   // create list of compiles shaders
-  shaderProgram_ = glCreateProgram();
+  handle_ = glCreateProgram();
 
   // Attach the Vertex and Fragment Shaders to the Shader Program
-  glAttachShader(shaderProgram_, vShader);
-  glAttachShader(shaderProgram_, fShader);
+  glAttachShader(handle_, vShader);
+  glAttachShader(handle_, fShader);
 
   // request GLSL to ensure that shader is compatible
-  glLinkProgram(shaderProgram_);
+  glLinkProgram(handle_);
 
   // Delete the now useless Vertex and Fragment Shader objects
   glDeleteShader(vShader);
@@ -68,10 +68,10 @@ std::string Shader::readShaderSource(const char *filePath) {
 }
 
 // Activates the Shader Program
-void Shader::Activate() { glUseProgram(shaderProgram_); }
+void Shader::Activate() { glUseProgram(handle_); }
 
 // Deletes the Shader Program
-void Shader::Delete() { glDeleteProgram(shaderProgram_); }
+void Shader::Delete() { glDeleteProgram(handle_); }
 
 // Checks if the different Shaders have compiled properly
 void Shader::compileErrors(unsigned int shader, const char *type) {

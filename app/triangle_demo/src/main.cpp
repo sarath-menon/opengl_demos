@@ -41,7 +41,7 @@ int main() {
   VB[1].Unbind();
 
   // Gets ID of uniform called "scale"
-  GLuint uniID = glGetUniformLocation(shader.get_program(), "scale");
+  GLuint uniID = glGetUniformLocation(shader.getHandle(), "scale");
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(window)) {
@@ -69,6 +69,6 @@ int main() {
     glfwPollEvents();
   }
 
-  glfw_helper.terminate_window(shader);
+  glfw_helper.terminate_window();
   return 0;
 }

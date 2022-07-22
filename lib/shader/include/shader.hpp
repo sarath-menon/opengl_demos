@@ -10,14 +10,15 @@ public:
 
   ~Shader();
 
-  auto &get_program() { return shaderProgram_; }
+  auto getType() const { return type_; }
+  auto getHandle() const { return handle_; }
 
   // Activates the Shader Program
   void Activate();
 
 private:
-  // Create Shader Program Object and get its reference
-  GLuint shaderProgram_{};
+  GLenum type_;
+  GLuint handle_;
 
   std::string vs_path_{};
   std::string fs_path_{};
