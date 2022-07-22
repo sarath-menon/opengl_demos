@@ -12,7 +12,7 @@ public:
   ~VAO();
 
   // Links a VBO to the VAO using a certain layout
-  void LinkAttrib(VBO &VBO, GLuint layout, gl::M3 &M, GLenum type);
+  void LinkAttrib(VBO &VBO, GLuint layout, gl::M3DC &M, GLenum type);
   // Binds the VAO
   void Bind();
   // Unbinds the VAO

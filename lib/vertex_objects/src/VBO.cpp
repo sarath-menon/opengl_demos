@@ -2,7 +2,7 @@
 #include <iostream>
 
 // Constructor that generates a Vertex Buffer Object and links it to vertices
-VBO::VBO(gl::M3 &V) {
+VBO::VBO(gl::M3DC &V) {
   glGenBuffers(1, &ID);
   glBindBuffer(GL_ARRAY_BUFFER, ID);
 

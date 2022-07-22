@@ -6,12 +6,13 @@
 #include <array>
 #include <cmath>
 #include <glm/glm.hpp>
+#include <memory>
 #include <string>
 
 class Triangle {
 
 private:
-  gl::M3 vertices_{};
+  gl::M3DC vertices_;
 
 public:
   // Equilateral triangle given starting coord and side length

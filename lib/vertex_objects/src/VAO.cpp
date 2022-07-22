@@ -6,7 +6,7 @@ VAO::VAO() { glGenVertexArrays(1, &ID); }
 VAO::~VAO() { this->Delete(); }
 
 // Links a VBO to the VAO using a certain layout
-void VAO::LinkAttrib(VBO &VBO, GLuint layout, gl::M3 &M, GLenum type) {
+void VAO::LinkAttrib(VBO &VBO, GLuint layout, gl::M3DC &M, GLenum type) {
   VBO.Bind();
 
   // associate active buffer with the (layout)th vertex attribute in the shader
