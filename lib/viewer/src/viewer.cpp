@@ -1,7 +1,7 @@
-#include "glfw_helper.hpp"
+#include "viewer.hpp"
 #include <iostream>
 
-GLFWHelper::GLFWHelper() {
+Viewer::Viewer() {
 
   // Initialize GLFW
   if (!glfwInit()) {
@@ -49,18 +49,18 @@ GLFWHelper::GLFWHelper() {
 }
 
 // Callback definition
-void GLFWHelper::framebuffer_size_callback(GLFWwindow *window, int width,
-                                           int height) {
+void Viewer::framebuffer_size_callback(GLFWwindow *window, int width,
+                                       int height) {
   glViewport(0, 0, width, height);
 }
 
 // close window when esc key pressed
-void GLFWHelper::processInput(GLFWwindow *window) {
+void Viewer::processInput(GLFWwindow *window) {
   if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     glfwSetWindowShouldClose(window, true);
 }
 
-void GLFWHelper::display(Shader &shader, double current_time) {
+void Viewer::display(Shader &shader, double current_time) {
 
   // set clear (reset) colour
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
@@ -69,7 +69,7 @@ void GLFWHelper::display(Shader &shader, double current_time) {
   glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void GLFWHelper::terminate_window() {
+void Viewer::terminate_window() {
 
   // Delete window before ending the program
   glfwDestroyWindow(window);

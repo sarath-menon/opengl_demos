@@ -1,6 +1,6 @@
 
 add_library(viewer STATIC
-src/glfw_helper.cpp
+src/viewer.cpp
 )
 
 target_include_directories(viewer PUBLIC include)

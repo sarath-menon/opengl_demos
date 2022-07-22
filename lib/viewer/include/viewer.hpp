@@ -2,13 +2,13 @@
 #include "shader.hpp"
 #include <GLFW/glfw3.h>
 
-class GLFWHelper {
+class Viewer {
 
 private:
   GLFWwindow *window{};
 
 public:
-  GLFWHelper();
+  Viewer();
 
   auto get_window() { return window; }
 

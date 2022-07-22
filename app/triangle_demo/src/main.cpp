@@ -1,9 +1,9 @@
 #include "VAO.hpp"
 #include "VBO.hpp"
-#include "glfw_helper.hpp"
 #include "shader.hpp"
 #include "stb_image.h"
 #include "triangle.hpp"
+#include "viewer.hpp"
 #include <Eigen/Dense>
 #include <unsupported/Eigen/OpenGLSupport>
 
@@ -12,9 +12,9 @@ constexpr unsigned int height = 800;
 
 int main() {
 
-  GLFWHelper glfw_helper;
+  Viewer viewer;
 
-  auto window = glfw_helper.get_window();
+  auto window = viewer.get_window();
 
   Shader shader("shaders/2d_vertShader.glsl", "shaders/2d_fragShader.glsl");
 
@@ -46,10 +46,10 @@ int main() {
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(window)) {
     // Inputs
-    glfw_helper.processInput(window);
+    viewer.processInput(window);
 
     // Display
-    glfw_helper.display(shader, glfwGetTime());
+    viewer.display(shader, glfwGetTime());
 
     // Load the compiled shaders to the GPU
     shader.Activate();
@@ -69,6 +69,6 @@ int main() {
     glfwPollEvents();
   }
 
-  glfw_helper.terminate_window();
+  viewer.terminate_window();
   return 0;
 }
