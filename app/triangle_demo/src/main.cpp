@@ -7,12 +7,9 @@
 #include <Eigen/Dense>
 #include <unsupported/Eigen/OpenGLSupport>
 
-constexpr unsigned int width = 800;
-constexpr unsigned int height = 800;
-
 int main() {
 
-  Viewer viewer;
+  Viewer viewer(720, 480);
 
   auto window = viewer.get_window();
 

@@ -1,7 +1,7 @@
 #include "viewer.hpp"
 #include <iostream>
 
-Viewer::Viewer() {
+Viewer::Viewer(const int width, const int height) {
 
   // Initialize GLFW
   if (!glfwInit()) {
@@ -21,7 +21,7 @@ Viewer::Viewer() {
 #endif
 
   // Parameters: width, height, windowname, full screen, resource sharing
-  window = glfwCreateWindow(800, 800, "LearnOpenGL", NULL, NULL);
+  window = glfwCreateWindow(width, height, "LearnOpenGL", NULL, NULL);
 
   // Error check for safety
   if (window == NULL) {
@@ -44,13 +44,13 @@ Viewer::Viewer() {
   }
 
   // Set widnow area for rendering
-  glViewport(0, 0, 800, 800);
+  glViewport(0, 0, width, height);
   glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 }
 
 // Callback definition
-void Viewer::framebuffer_size_callback(GLFWwindow *window, int width,
-                                       int height) {
+void Viewer::framebuffer_size_callback(GLFWwindow *window, const int width,
+                                       const int height) {
   glViewport(0, 0, width, height);
 }
 

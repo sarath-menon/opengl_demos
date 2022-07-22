@@ -8,7 +8,7 @@ private:
   GLFWwindow *window{};
 
 public:
-  Viewer();
+  Viewer(const int width, const int height);
 
   auto get_window() { return window; }
 
