@@ -21,17 +21,17 @@ Viewer::Viewer(const int width, const int height) {
 #endif
 
   // Parameters: width, height, windowname, full screen, resource sharing
-  window = glfwCreateWindow(width, height, "LearnOpenGL", NULL, NULL);
+  handle_ = glfwCreateWindow(width, height, "LearnOpenGL", NULL, NULL);
 
   // Error check for safety
-  if (window == NULL) {
+  if (handle_ == NULL) {
     std::cout << "Failed to create GLFW window" << std::endl;
     glfwTerminate();
     // return -1;
   }
 
   // Make window part of current context
-  glfwMakeContextCurrent(window);
+  glfwMakeContextCurrent(handle_);
 
   // the number of screen updates to wait from the time glfwSwapBuffers was
   // called before swapping the buffers and returning.
@@ -45,19 +45,19 @@ Viewer::Viewer(const int width, const int height) {
 
   // Set widnow area for rendering
   glViewport(0, 0, width, height);
-  glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+  glfwSetFramebufferSizeCallback(handle_, framebuffer_size_callback);
 }
 
 // Callback definition
-void Viewer::framebuffer_size_callback(GLFWwindow *window, const int width,
+void Viewer::framebuffer_size_callback(GLFWwindow *handle, const int width,
                                        const int height) {
   glViewport(0, 0, width, height);
 }
 
 // close window when esc key pressed
-void Viewer::processInput(GLFWwindow *window) {
-  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-    glfwSetWindowShouldClose(window, true);
+void Viewer::processInput() {
+  if (glfwGetKey(handle_, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    glfwSetWindowShouldClose(handle_, true);
 }
 
 void Viewer::display(Shader &shader, double current_time) {
@@ -69,10 +69,10 @@ void Viewer::display(Shader &shader, double current_time) {
   glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void Viewer::terminate_window() {
+void Viewer::terminate() {
 
   // Delete window before ending the program
-  glfwDestroyWindow(window);
+  glfwDestroyWindow(handle_);
   // Terminate GLFW before ending the program
   glfwTerminate();
 }

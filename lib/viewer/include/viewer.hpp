@@ -5,18 +5,18 @@
 class Viewer {
 
 private:
-  GLFWwindow *window{};
+  GLFWwindow *handle_{};
 
 public:
   Viewer(const int width, const int height);
 
-  auto get_window() { return window; }
+  auto getHandle() const { return handle_; }
 
   void display(Shader &shader, double current_time);
 
-  static void framebuffer_size_callback(GLFWwindow *window, int width,
+  static void framebuffer_size_callback(GLFWwindow *handle, int width,
                                         int height);
-  void processInput(GLFWwindow *window);
+  void processInput();
 
-  void terminate_window();
+  void terminate();
 };

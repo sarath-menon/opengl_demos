@@ -11,8 +11,6 @@ int main() {
 
   Viewer viewer(720, 480);
 
-  auto window = viewer.get_window();
-
   Shader shader("shaders/2d_vertShader.glsl", "shaders/2d_fragShader.glsl");
 
   // create triangles
@@ -41,9 +39,9 @@ int main() {
   GLuint uniID = glGetUniformLocation(shader.getHandle(), "scale");
 
   //  Render loop: show window till close button is pressed
-  while (!glfwWindowShouldClose(window)) {
+  while (!glfwWindowShouldClose(viewer.getHandle())) {
     // Inputs
-    viewer.processInput(window);
+    viewer.processInput();
 
     // Display
     viewer.display(shader, glfwGetTime());
@@ -61,11 +59,11 @@ int main() {
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // Swap the back buffer with the front buffer
-    glfwSwapBuffers(window);
+    glfwSwapBuffers(viewer.getHandle());
     // handles window events, such as close button pressed
     glfwPollEvents();
   }
 
-  viewer.terminate_window();
+  viewer.terminate();
   return 0;
 }
