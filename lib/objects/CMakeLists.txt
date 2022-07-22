@@ -1,14 +1,13 @@
 
-add_library(objects STATIC
-src/triangle.cpp
+set(LIB_NAME "objects")
+
+add_library(${LIB_NAME} INTERFACE)
+
+target_link_libraries(${LIB_NAME} INTERFACE 
+triangle
+cube
 )
 
-target_include_directories(objects PUBLIC include)
-
-target_link_libraries(objects PRIVATE
-common
-glfw
-external
-Eigen3::Eigen
-)
+add_subdirectory(triangle)
+add_subdirectory(cube)
 
