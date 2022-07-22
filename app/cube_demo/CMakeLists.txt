@@ -1,9 +1,11 @@
 
-add_executable(cube_demo src/main.cpp)
+set(EXEC_NAME "cube_demo")
 
-target_include_directories(cube_demo PUBLIC include)
+add_executable(${EXEC_NAME} src/main.cpp)
 
-target_link_libraries(cube_demo PRIVATE
+target_include_directories(${EXEC_NAME} PUBLIC include)
+
+target_link_libraries(${EXEC_NAME} PRIVATE
 glfw
 external
 Eigen3::Eigen

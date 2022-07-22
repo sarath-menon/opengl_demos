@@ -1,9 +1,11 @@
 
-add_executable(triangle_demo src/main.cpp)
+set(EXEC_NAME "triangle_demo")
 
-target_include_directories(triangle_demo PUBLIC include)
+add_executable(${EXEC_NAME} src/main.cpp)
 
-target_link_libraries(triangle_demo PRIVATE
+target_include_directories(${EXEC_NAME} PUBLIC include)
+
+target_link_libraries(${EXEC_NAME} PRIVATE
 glfw
 external
 Eigen3::Eigen

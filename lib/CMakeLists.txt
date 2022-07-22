@@ -1,8 +1,9 @@
 
-add_library(gl_lib INTERFACE
-)
 
-target_link_libraries(gl_lib INTERFACE 
+set(LIB_NAME gl_lib)
+
+# list of libs to combine as one interface lib
+set(SUB_LIBS 
 common
 objects
 shader
@@ -10,9 +11,15 @@ vertex_objects
 viewer
 )
 
-add_subdirectory(common)
-add_subdirectory(objects)
-add_subdirectory(shader)
-add_subdirectory(vertex_objects)
-add_subdirectory(viewer)
+####### Do not modify !
+
+add_library(${LIB_NAME} INTERFACE)
+
+target_link_libraries(${LIB_NAME} INTERFACE ${SUB_LIBS})
+
+foreach(LIB ${SUB_LIBS})
+    add_subdirectory(${LIB})
+endforeach()
+
+
 
