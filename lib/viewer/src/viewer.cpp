@@ -3,6 +3,12 @@
 
 Viewer::Viewer(const int width, const int height) {
 
+  // set parameters
+  width_ = width;
+  height_ = height;
+
+  aspect_ratio_ = static_cast<float>(width) / static_cast<float>(height);
+
   // Initialize GLFW
   if (!glfwInit()) {
     exit(EXIT_FAILURE);

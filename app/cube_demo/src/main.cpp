@@ -51,9 +51,12 @@ int main() {
 
     // Draw cube ////////////////////////////////
 
-    gl::M4 model = gl::M4::Identity();
-    gl::M4 view = gl::M4::Identity();
-    gl::M4 proj = gl::M4::Identity();
+    gl::A3 model = gl::A3::Identity();
+    gl::A3 view = gl::A3::Identity();
+    gl::A3 proj = gl::A3::Identity();
+
+    // view = view.translate(V3(0, -0.05, -0.2));
+    // proj = gl::perspective(3.14 / 4 , )
 
     // Bind the VAO so OpenGL knows to use it
     VA.Bind();

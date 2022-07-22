@@ -7,10 +7,12 @@ class Viewer {
 private:
   GLFWwindow *handle_{};
 
+  int width_{};
+  int height_{};
+  float aspect_ratio_{};
+
 public:
   Viewer(const int width, const int height);
-
-  auto getHandle() const { return handle_; }
 
   void display(Shader &shader, double current_time);
 
@@ -19,4 +21,14 @@ public:
   void processInput();
 
   void terminate();
+
+  // getter functions
+
+  auto getHandle() const { return handle_; }
+
+  auto width() const { return width_; }
+
+  auto height() const { return height_; }
+
+  auto aspect_ratio() const { return aspect_ratio_; }
 };
