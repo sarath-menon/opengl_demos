@@ -11,7 +11,7 @@ int main() {
 
   Viewer viewer(720, 480);
 
-  Shader shader("shaders/2d_vertShader.glsl", "shaders/2d_fragShader.glsl");
+  Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");
 
   // create triangles
   Triangle t1(gl::V3(-0.4, -0.4, 0), 1.0);
@@ -51,12 +51,13 @@ int main() {
 
     // Draw cube ////////////////////////////////
 
-    gl::A3 model = gl::A3::Identity();
-    gl::A3 view = gl::A3::Identity();
-    gl::A3 proj = gl::A3::Identity();
+    gl::A3 model_m = gl::A3::Identity();
+    gl::A3 view_m = gl::A3::Identity();
+    gl::A3 proj_m = gl::A3::Identity();
 
-    // view = view.translate(V3(0, -0.05, -0.2));
-    // proj = gl::perspective(3.14 / 4 , )
+    view_m = view_m.translate(gl::V3(0, -0.05, -0.2));
+    proj_m =
+        gl::perspective(gl::deg2rad(45.0f), viewer.aspect_ratio(), 0.1, 100.0);
 
     // Bind the VAO so OpenGL knows to use it
     VA.Bind();
