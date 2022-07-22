@@ -6,6 +6,10 @@ namespace gl {
 
 static auto perspective(float fovy, float aspect, float zNear, float zFar) {
 
+  // safety checks
+  assert(aspect > 0);
+  assert(zFar > zNear);
+
   const float tanHalfFovy = tan(fovy / 2);
 
   gl::A3 result;
