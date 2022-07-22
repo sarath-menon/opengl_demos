@@ -9,6 +9,7 @@ objects
 shader
 vertex_objects
 viewer
+camera
 )
 
 ####### Do not modify !
