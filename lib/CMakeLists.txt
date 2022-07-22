@@ -1,4 +1,4 @@
-
+# Template for pure interface library
 
 set(LIB_NAME gl_lib)
 

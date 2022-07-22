@@ -1,4 +1,5 @@
 
+# Template for pure interface library
 
 set(LIB_NAME objects)
 
