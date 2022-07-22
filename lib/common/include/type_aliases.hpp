@@ -11,4 +11,9 @@ using V4 = Eigen::Vector4f;
 using M3 = Eigen::Matrix<float, 3, 3, Eigen::RowMajor>;
 using M4 = Eigen::Matrix<float, 4, 4, Eigen::RowMajor>;
 
+using A3 = Eigen::Affine3d;
+
+// rotation transformations
+using Q = Eigen::Quaternionf;
+
 } // namespace gl
