@@ -10,10 +10,14 @@ public:
   // Constructor that generates a Vertex Buffer Object and links it to vertices
   VBO(gl::M3 &V);
 
+  ~VBO();
+
   // Binds the VBO
   void Bind();
   // Unbinds the VBO
   void Unbind();
+
+private:
   // Deletes the VBO
   void Delete();
 };

@@ -69,13 +69,6 @@ int main() {
     glfwPollEvents();
   }
 
-  // Delete all the objects we've created
-  VA.Delete();
-  VB[0].Delete();
-  VB[1].Delete();
-
-  shader.Delete();
-
   glfw_helper.terminate_window(shader);
   return 0;
 }

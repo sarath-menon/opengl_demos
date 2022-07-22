@@ -3,6 +3,8 @@
 // Constructor that generates a VAO ID
 VAO::VAO() { glGenVertexArrays(1, &ID); }
 
+VAO::~VAO() { this->Delete(); }
+
 // Links a VBO to the VAO using a certain layout
 void VAO::LinkAttrib(VBO &VBO, GLuint layout, gl::M3 &M, GLenum type) {
   VBO.Bind();

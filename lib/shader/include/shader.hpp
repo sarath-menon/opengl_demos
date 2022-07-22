@@ -8,13 +8,12 @@ class Shader {
 public:
   Shader(std::string vs_path, std::string fs_path);
 
+  ~Shader();
+
   auto &get_program() { return shaderProgram_; }
 
   // Activates the Shader Program
   void Activate();
-
-  // Deletes the Shader Program
-  void Delete();
 
 private:
   // Create Shader Program Object and get its reference
@@ -25,6 +24,10 @@ private:
 
   void create_program_shader();
 
+  // Deletes the Shader Program
+  void Delete();
+
+  // read .glsl shader file and covert to string format
   std::string readShaderSource(const char *filePath);
 
   // Checks if the different Shaders have compiled properly

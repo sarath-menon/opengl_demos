@@ -1,4 +1,5 @@
 #include "shader.hpp"
+#include <iostream>
 
 void Shader::create_program_shader() {
 
@@ -48,6 +49,8 @@ Shader::Shader(std::string vs_path, std::string fs_path) {
   // // Bind the VO so OpenGL knows to use it
   // glBindVertexArray(vao.a);
 };
+
+Shader::~Shader() { this->Delete(); }
 
 // to read shader text file
 std::string Shader::readShaderSource(const char *filePath) {

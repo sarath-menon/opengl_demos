@@ -48,9 +48,13 @@ int main() {
     // Load the compiled shaders to the GPU
     shader.Activate();
 
-    // Set triangle scale (Assigns a value to the uniform); NOTE: Must always be
-    // done after activating the Shader Program
-    glUniform1f(uniID, 1.5f);
+    // Draw cube ////////////////////////////////
+
+    gl::M4 model = Eigen::Matrix4f::Identity();
+    gl::M4 view = Eigen::Matrix4f::Identity();
+    gl::M4 proj = Eigen::Matrix4f::Identity();
+
+    ////////////////////////////////
 
     // Bind the VAO so OpenGL knows to use it
     VAO1.Bind();
@@ -65,12 +69,6 @@ int main() {
     // handles window events, such as close button pressed
     glfwPollEvents();
   }
-
-  // Delete all the objects we've created
-  VAO1.Delete();
-  VBO1.Delete();
-
-  shader.Delete();
 
   glfw_helper.terminate_window(shader);
   return 0;

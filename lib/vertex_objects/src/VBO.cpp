@@ -2,7 +2,6 @@
 #include <iostream>
 
 // Constructor that generates a Vertex Buffer Object and links it to vertices
-// for use with eigen
 VBO::VBO(gl::M3 &V) {
   glGenBuffers(1, &ID);
   glBindBuffer(GL_ARRAY_BUFFER, ID);
@@ -14,6 +13,8 @@ VBO::VBO(gl::M3 &V) {
   glBufferData(GL_ARRAY_BUFFER, sizeof(float) * V.size(), V.data(),
                GL_STATIC_DRAW);
 }
+
+VBO::~VBO() { this->Delete(); }
 
 // Binds the VBO
 void VBO::Bind() { glBindBuffer(GL_ARRAY_BUFFER, ID); }

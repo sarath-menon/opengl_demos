@@ -1,4 +1,5 @@
 #version 410 core
+
 // take input pos of vec3 type at location 0
 layout(location = 0) in vec3 pos;
 
