@@ -3,7 +3,7 @@
 
 Triangle::Triangle(gl::V3 c1, const float length) {
 
-  vertices_ = Eigen::Matrix3f::Identity();
+  vertices_ = Eigen::Matrix3Xf::Zero(3, 3);
 
   // c 1
   vertices_(0, 0) = c1(0);
