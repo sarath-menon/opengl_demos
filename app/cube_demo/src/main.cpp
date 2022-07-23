@@ -77,17 +77,8 @@ int main() {
     viewer.clear_display(glfwGetTime());
 
     // send data in vertex buffer to the shader and start drawing
-
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
-    // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Swap the back buffer with the front buffer
-    glfwSwapBuffers(viewer.getHandle());
-    // handles window events, such as close button pressed
-    glfwPollEvents();
+    viewer.start_display();
   }
-
-  viewer.terminate();
-  return 0;
 }
