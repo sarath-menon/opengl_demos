@@ -2,8 +2,9 @@
 #include <iostream>
 
 // Constructor that generates a Vertex Buffer Object and links it to vertices
-VBO::VBO(gl::M3DC &M) {
-  glGenBuffers(1, &ID);
+VBO::VBO() { glGenBuffers(1, &ID); }
+
+void VBO::set_data(gl::M3DC &M) {
   this->Bind();
 
   // We expect a matrix with each vertex position on a row, we then want to
@@ -12,6 +13,8 @@ VBO::VBO(gl::M3DC &M) {
   // copy vertices to the active vertex buffer
   glBufferData(GL_ARRAY_BUFFER, sizeof(float) * M.size(), M.data(),
                GL_STATIC_DRAW);
+
+  data_set_flag_ = true;
 }
 
 VBO::~VBO() { this->Delete(); }
