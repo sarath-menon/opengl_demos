@@ -6,40 +6,35 @@
 #include "stb_image.h"
 #include "triangle.hpp"
 #include "viewer.hpp"
+#include <iostream>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp> // glm::value_ptr
 
 int main() {
 
-  Viewer viewer(720, 480);
+  Viewer viewer(600, 600);
   Camera camera(gl::V3(0.0, 0.0, 8.0));
 
+  // Transformation matrices
+  gl::A3 model_m = gl::A3::Identity();
+  gl::A3 view_m = gl::A3::Identity();
+  gl::A3 modelview_m = gl::A3::Identity();
+  glm::mat4 proj_m;
+
   Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");
+  // to hold id's of uniform variables
+  GLuint modelview_loc, proj_loc;
 
   Cube cube(gl::V3(0.0, -2.0, 0.0), 1.0);
 
   // vertex array object to prganize vertex buffers
-  VAO VA;
+  VAO va;
 
   // vertex buffer to be sent to vertex shader
-  VBO VB[] = {VBO(cube.vertices())};
-
-  // Activate the VA
-  VA.Bind();
-
-  // Link VAO to VBO
-  VA.LinkAttrib(VB[0], 0, cube.vertices(), GL_FLOAT);
-
-  // Unbind all to prevent accidentally modifying them
-  VA.Unbind();
-  VB[0].Unbind();
-
-  // to hold id'd of uniform variables
-  GLuint model_loc, view_loc, proj_loc;
-
-  // setup matrices
-  gl::A3 model_m = gl::A3::Identity();
-  gl::A3 view_m = gl::A3::Identity();
-  gl::A3 proj_m = gl::A3::Identity();
-  gl::A3 mv_m = gl::A3::Identity();
+  VBO vb[2];
+  vb[0].set_data(cube.vertices());
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
@@ -54,27 +49,28 @@ int main() {
 
     // Draw cube ////////////////////////////////
 
-    // get the uniform variables for the matrices
-    model_loc = glGetUniformLocation(shader.getHandle(), "model");
-    view_loc = glGetUniformLocation(shader.getHandle(), "view");
+    // get locations of uniforms in the shader program
+    modelview_loc = glGetUniformLocation(shader.getHandle(), "modelview");
     proj_loc = glGetUniformLocation(shader.getHandle(), "proj");
 
     // build perspective matrix
-    proj_m =
-        gl::perspective(gl::deg2rad(60.0f), viewer.aspect_ratio(), 0.1, 100.0);
+    // gl::perspective(gl::deg2rad(45.0f)
+    proj_m = glm::perspective(1.0472f, viewer.aspect_ratio(), 0.1f,
+                              1000.0f); // 1.0472 radians == 60 degrees
 
     // build view,model matrices
-    view_m = view_m.translate(-camera.coord());
-    model_m = view_m.translate(cube.coord());
+    view_m.translation() = -camera.coord();
+    model_m.translation() = cube.coord();
+    modelview_m = view_m * model_m;
 
-    // move the whole world w.r.t the fixed camera
-    mv_m = view_m * model_m;
+    std::cout << modelview_m.translation() << '\n' << '\n';
 
-    glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
-    glUniformMatrix4fv(proj_loc, 1, GL_FALSE, proj_m.data());
+    // copy matrix data to corresponding uniform variables
+    glUniformMatrix4fv(modelview_loc, 1, GL_FALSE, modelview_m.data());
+    glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(proj_m));
 
-    // Bind the VAO so OpenGL knows to use it
-    VA.Bind();
+    // Link vaO to vbO
+    va.LinkAttrib(vb[0], 0, cube.vertices(), GL_FLOAT);
 
     // send data in vertex buffer to the shader and start drawing
     // adjust OpenGL settings and draw model

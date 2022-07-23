@@ -20,7 +20,8 @@ int main() {
   VAO VA;
 
   // vertex buffer to be sent to vertex shader
-  VBO VB[] = {VBO(t1.vertices())};
+  VBO vb[2];
+  // vb[0].set_data(t1.vertices());
 
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.getHandle(), "scale");
@@ -37,7 +38,7 @@ int main() {
     shader.Activate();
 
     // Link VAO to VBO
-    VA.LinkAttrib(VB[0], 0, t1.vertices(), GL_FLOAT);
+    VA.LinkAttrib(vb[0], 0, t1.vertices(), GL_FLOAT);
 
     // send data in vertex buffer to the shader and start drawing
     // (primitive,start vertex, vertex count)
