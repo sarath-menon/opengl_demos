@@ -1,17 +1,13 @@
 #pragma once
-//
-#include <glad/glad.h>
-//
-#include "gl_common.hpp"
-#include <array>
-#include <cmath>
-#include <glm/glm.hpp>
-#include <string>
 
-class Cube {
+#include "gl_common.hpp"
+#include "rigid3d.hpp"
+#include <cmath>
+
+class Cube : public Rigid3d {
 
 private:
-  gl::A3 pose_{};
+  // gl::A3 pose_{};
 
   // length of each side
   float length_{};
@@ -19,12 +15,12 @@ private:
   gl::M3DC vertices_;
 
 public:
-  // getter function
-  void set_pose(gl::A3 &pose);
+  // // getter function
+  // void set_pose(gl::A3 &pose);
 
-  void set_trans(gl::V3 pos);
+  // void set_trans(gl::V3 pos);
 
-  void set_rot(gl::Q quat);
+  // void set_rot(gl::Q quat);
 
   void rot_x(float angle);
 
@@ -32,7 +28,7 @@ public:
   Cube(const gl::V3 coord, const float length);
 
   // getter functions
-  auto &pose() { return pose_; }
+  // auto &pose() { return pose_; }
 
   auto &vertices() { return vertices_; }
 };

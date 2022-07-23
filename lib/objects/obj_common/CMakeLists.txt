@@ -7,6 +7,7 @@ src/rigid3d.cpp
 
 # list of library dependendcies
 set(LIB_DEP
+common
 Eigen3::Eigen
 )
 

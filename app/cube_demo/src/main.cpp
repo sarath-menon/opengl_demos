@@ -59,7 +59,7 @@ int main() {
 
     // Draw cube ////////////////////////////////
 
-    cube.rot_x(M_PI / 10.0f);
+    cube.rot_x(M_PI / 100.0f);
 
     // build view,model matrices
     view_m.translation() = -camera.coord();

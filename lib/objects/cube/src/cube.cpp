@@ -23,11 +23,11 @@ Cube::Cube(const gl::V3 coord, const float length) {
       1.0f, 1.0f, 1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, -1.0f;
 }
 
-void Cube::set_pose(gl::A3 &pose) { pose_ = pose; }
+// void Cube::set_pose(gl::A3 &pose) { pose_ = pose; }
 
-void Cube::set_trans(gl::V3 pos) { pose_.translation() = pos; }
+// void Cube::set_trans(gl::V3 pos) { pose_.translation() = pos; }
 
-void Cube::set_rot(gl::Q quat) { pose_.linear() = quat.toRotationMatrix(); }
+// void Cube::set_rot(gl::Q quat) { pose_.linear() = quat.toRotationMatrix(); }
 
 void Cube::rot_x(float angle) {
 

@@ -1,24 +1,28 @@
 #pragma once
 
+#include "gl_common.hpp"
+#include <cmath>
+
 /// Represents a Rigid body
-class RigidBody {
+class Rigid3d {
 
 private:
+protected:
   // pose of the rigid body
   gl::A3 pose_{};
 
 public:
   // getter function
-  void set_pose(gl::A3 &pose);
+  void set_pose(const gl::A3 &pose);
 
-  void set_trans(gl::V3 pos);
+  void set_position(const gl::V3 pos);
 
-  void set_rot(gl::Q quat);
+  void set_rot(const gl::Q quat);
 
   // getter functions
   auto &pose() { return pose_; }
 
-  auto &position() { return pose_.translation(); }
+  auto position() { return pose_.translation(); }
 
-  auto &orientationR() { return pose_.rotation(); }
-}
+  auto orientationR() { return pose_.rotation(); }
+};
