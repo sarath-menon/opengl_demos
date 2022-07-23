@@ -65,7 +65,7 @@ int main() {
     glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(proj_m));
 
     // Link vaO to vbO
-    va.LinkAttrib(vb[0], 0, cube.vertices(), GL_FLOAT);
+    va.LinkAttrib(vb[0], 0, GL_FLOAT);
 
     viewer.clear_display(glfwGetTime());
 
