@@ -11,10 +11,12 @@
 class Cube {
 
 private:
-  gl::V3 coord_{};
+  gl::V3 coord_;
+
+  // length of each side
   float length_{};
 
-  Eigen::Matrix<float, 1, Eigen::Dynamic> vertices_;
+  gl::M3DC vertices_;
 
 public:
   // Equilateral triangle given starting coord and side length

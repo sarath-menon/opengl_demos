@@ -4,6 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 project(cube VERSION 0.1.0)
 
 find_package(glfw3 3.3 REQUIRED)
+find_package(GLEW REQUIRED)
 find_package(OpenGL 4.1 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
 

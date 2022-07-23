@@ -49,9 +49,9 @@ Viewer::Viewer(const int width, const int height) {
     // return -1;
   }
 
-  // Set widnow area for rendering
-  glViewport(0, 0, width, height);
-  glfwSetFramebufferSizeCallback(handle_, framebuffer_size_callback);
+  // // Set widnow area for rendering
+  // glViewport(0, 0, width, height);
+  // glfwSetFramebufferSizeCallback(handle_, framebuffer_size_callback);
 }
 
 // Callback definition
@@ -73,6 +73,7 @@ void Viewer::display(Shader &shader, double current_time) {
 
   // set clear colour to front buffer
   glClear(GL_COLOR_BUFFER_BIT);
+  glClear(GL_DEPTH_BUFFER_BIT);
 }
 
 void Viewer::terminate() {

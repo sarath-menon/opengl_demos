@@ -63,8 +63,6 @@ int main() {
     model_m.translation() = cube.coord();
     modelview_m = view_m * model_m;
 
-    std::cout << modelview_m.translation() << '\n' << '\n';
-
     // copy matrix data to corresponding uniform variables
     glUniformMatrix4fv(modelview_loc, 1, GL_FALSE, modelview_m.data());
     glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(proj_m));

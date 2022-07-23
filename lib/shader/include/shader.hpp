@@ -1,6 +1,8 @@
 #pragma once
-#include <fstream>
 #include <glad/glad.h>
+//
+#include "utils.hpp"
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -23,14 +25,14 @@ private:
   std::string vs_path_{};
   std::string fs_path_{};
 
-  void create_program_shader();
+  // void create_program_shader();
+
+  // // read .glsl shader file and covert to string format
+  // std::string readShaderSource(const char *filePath);
 
   // Deletes the Shader Program
   void Delete();
 
-  // read .glsl shader file and covert to string format
-  std::string readShaderSource(const char *filePath);
-
-  // Checks if the different Shaders have compiled properly
-  void compileErrors(unsigned int shader, const char *type);
+  // // Checks if the different Shaders have compiled properly
+  // void compileErrors(unsigned int shader, const char *type);
 };

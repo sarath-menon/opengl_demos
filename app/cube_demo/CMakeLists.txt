@@ -1,7 +1,7 @@
 
 set(EXEC_NAME "cube_demo")
 
-add_executable(${EXEC_NAME} src/main.cpp)
+add_executable(${EXEC_NAME} src/main.cpp )
 
 target_include_directories(${EXEC_NAME} PUBLIC include)
 
