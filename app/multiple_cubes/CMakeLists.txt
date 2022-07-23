@@ -1,5 +1,5 @@
 #template for executables
-set(EXEC_NAME triangle_demo)
+set(EXEC_NAME multiple_cubes)
 
 # list of c++ source files
 set(CPP_FILES
