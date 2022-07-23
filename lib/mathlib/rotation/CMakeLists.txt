@@ -1,15 +1,13 @@
-set(MODULE_NAME obj_common)
+set(MODULE_NAME rotation)
 
 # list of c++ source files
 set(CPP_FILES
-src/rigid3d.cpp
-src/rotation.cpp
+src/${MODULE_NAME}.cpp
 )
 
 # list of library dependendcies
 set(LIB_DEP
 common
-# mathlib
 Eigen3::Eigen
 )
 
@@ -20,4 +18,6 @@ add_library(${MODULE_NAME} STATIC ${CPP_FILES})
 target_include_directories(${MODULE_NAME} PUBLIC include)
 
 target_link_libraries(${MODULE_NAME} PRIVATE ${LIB_DEP})
+
+
 

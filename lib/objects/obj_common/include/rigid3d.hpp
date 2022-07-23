@@ -1,6 +1,7 @@
 #pragma once
 
 #include "gl_common.hpp"
+#include "rotation.hpp"
 #include <cmath>
 
 /// Represents a Rigid body
@@ -17,7 +18,7 @@ public:
 
   void set_position(const gl::V3 pos);
 
-  void set_rot(const gl::Q quat);
+  void set_orientation(const gl::Q quat);
 
   // getter functions
   auto &pose() { return pose_; }
