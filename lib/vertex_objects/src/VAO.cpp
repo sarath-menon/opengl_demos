@@ -11,7 +11,7 @@ VAO::VAO() {
 VAO::~VAO() { this->Delete(); }
 
 // Links a vbo to the VAO using a certain layout
-void VAO::LinkAttrib(VBO &vbo, GLuint layout, gl::M3DC &M, GLenum type) {
+void VAO::LinkAttrib(VBO &vbo, GLuint layout, GLenum type) {
 
   // safety checks
   assert(vbo.data_set_flag() == true);
