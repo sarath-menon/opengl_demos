@@ -3,6 +3,9 @@
 
 Viewer::Viewer(const int width, const int height) {
 
+  // safety checks
+  assert(width > 0 && height > 0);
+
   // set parameters
   width_ = width;
   height_ = height;
