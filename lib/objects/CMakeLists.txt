@@ -5,6 +5,7 @@ set(LIB_NAME objects)
 
 # list of libs to combine as one interface lib
 set(SUB_LIBS 
+obj_common
 triangle
 cube
 )
