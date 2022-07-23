@@ -4,8 +4,8 @@
 Cube::Cube(const gl::V3 coord, const float length) {
 
   pose_ = gl::A3::Identity();
-
   pose_.translation() = coord;
+
   length_ = length;
 
   // set vertices

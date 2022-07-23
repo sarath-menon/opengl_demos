@@ -12,7 +12,5 @@ private:
   inline static gl::M3 R;
 
 public:
-  Rot();
-
   static void axis(gl::A3 &pose, axis ax, const float angle);
 };

@@ -29,7 +29,7 @@ int main() {
   // to hold id's of uniform variables
   GLuint modelview_loc, proj_loc;
 
-  Cube cube(gl::V3(0.0, 0.0, 0.0), 1.0);
+  Cube cube(gl::V3(1.0, -2.0, -1.0), 1.0);
 
   // vertex array object to prganize vertex buffers
   VAO va;
@@ -42,12 +42,9 @@ int main() {
   modelview_loc = glGetUniformLocation(shader.getHandle(), "modelview");
   proj_loc = glGetUniformLocation(shader.getHandle(), "proj");
 
-  // build perspective matrix
-  // gl::perspective(gl::deg2rad(45.0f)
-  proj_m = glm::perspective(1.0472f, viewer.aspect_ratio(), 0.1f,
-                            1000.0f); // 1.0472 radians == 60 degrees
-
   t.start();
+
+  cube.set_position(gl::V3(1.0f, 1.0f, 1.0f));
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
@@ -60,6 +57,10 @@ int main() {
     // Draw cube ////////////////////////////////
 
     cube.rotate_y(M_PI / 100.0f);
+
+    // build perspective matrix
+    proj_m = glm::perspective(gl::deg2rad(60.0f), viewer.aspect_ratio(), 0.1f,
+                              1000.0f); // 1.0472 radians == 60 degrees
 
     // build view,model matrices
     view_m.translation() = -camera.coord();
