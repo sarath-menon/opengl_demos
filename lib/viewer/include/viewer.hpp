@@ -17,7 +17,7 @@ private:
 public:
   Viewer(const int width, const int height);
 
-  void display(Shader &shader, double current_time);
+  void clear_display(double current_time);
 
   static void framebuffer_size_callback(GLFWwindow *handle, int width,
                                         int height);

@@ -31,14 +31,13 @@ int main() {
     // Inputs
     viewer.processInput();
 
-    // Display
-    viewer.display(shader, glfwGetTime());
-
     // Load the compiled shaders to the GPU
     shader.Activate();
 
     // Link VAO to VBO
     VA.LinkAttrib(vb[0], 0, t1.vertices(), GL_FLOAT);
+
+    viewer.clear_display(glfwGetTime());
 
     // send data in vertex buffer to the shader and start drawing
     // (primitive,start vertex, vertex count)

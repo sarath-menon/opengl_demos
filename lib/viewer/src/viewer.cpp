@@ -66,7 +66,7 @@ void Viewer::processInput() {
     glfwSetWindowShouldClose(handle_, true);
 }
 
-void Viewer::display(Shader &shader, double current_time) {
+void Viewer::clear_display(double current_time) {
 
   // set clear (reset) colour
   glClearColor(0.2f, 0.3f, 0.3f, 1.0f);

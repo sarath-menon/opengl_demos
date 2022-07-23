@@ -41,9 +41,6 @@ int main() {
     // Inputs
     viewer.processInput();
 
-    // Display
-    viewer.display(shader, glfwGetTime());
-
     // Load the compiled shaders to the GPU
     shader.Activate();
 
@@ -69,6 +66,8 @@ int main() {
 
     // Link vaO to vbO
     va.LinkAttrib(vb[0], 0, cube.vertices(), GL_FLOAT);
+
+    viewer.clear_display(glfwGetTime());
 
     // send data in vertex buffer to the shader and start drawing
     // adjust OpenGL settings and draw model
