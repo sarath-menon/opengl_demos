@@ -1,16 +1,11 @@
+
 # Template for pure interface library
 
-set(LIB_NAME gl_lib)
+set(LIB_NAME animation)
 
 # list of libs to combine as one interface lib
 set(SUB_LIBS 
-common
-objects
-shader
-vertex_objects
-viewer
-camera
-animation
+timer
 )
 
 ####### Do not modify !
@@ -22,6 +17,3 @@ target_link_libraries(${LIB_NAME} INTERFACE ${SUB_LIBS})
 foreach(LIB ${SUB_LIBS})
     add_subdirectory(${LIB})
 endforeach()
-
-
-

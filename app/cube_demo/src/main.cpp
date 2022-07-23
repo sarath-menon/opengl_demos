@@ -4,6 +4,7 @@
 #include "cube.hpp"
 #include "shader.hpp"
 #include "stb_image.h"
+#include "timer.hpp"
 #include "triangle.hpp"
 #include "viewer.hpp"
 #include <iostream>
@@ -16,6 +17,7 @@ int main() {
 
   Viewer viewer(600, 600);
   Camera camera(gl::V3(0.0, 0.0, 8.0));
+  gl::Timer t;
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
@@ -27,7 +29,7 @@ int main() {
   // to hold id's of uniform variables
   GLuint modelview_loc, proj_loc;
 
-  Cube cube(gl::V3(0.0, -2.0, 0.0), 1.0);
+  Cube cube(gl::V3(0.0, 0.0, 0.0), 1.0);
 
   // vertex array object to prganize vertex buffers
   VAO va;
@@ -45,6 +47,8 @@ int main() {
   proj_m = glm::perspective(1.0472f, viewer.aspect_ratio(), 0.1f,
                             1000.0f); // 1.0472 radians == 60 degrees
 
+  t.start();
+
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
     // Inputs
@@ -55,9 +59,11 @@ int main() {
 
     // Draw cube ////////////////////////////////
 
+    cube.rot_x(M_PI / 10.0f);
+
     // build view,model matrices
     view_m.translation() = -camera.coord();
-    model_m.translation() = cube.coord();
+    model_m = cube.pose();
     modelview_m = view_m * model_m;
 
     // copy matrix data to corresponding uniform variables
