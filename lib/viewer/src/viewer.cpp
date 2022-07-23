@@ -49,6 +49,10 @@ Viewer::Viewer(const int width, const int height) {
     // return -1;
   }
 
+  // enable depth
+  glEnable(GL_DEPTH_TEST);
+  glDepthFunc(GL_LEQUAL);
+
   // // Set widnow area for rendering
   // glViewport(0, 0, width, height);
   // glfwSetFramebufferSizeCallback(handle_, framebuffer_size_callback);

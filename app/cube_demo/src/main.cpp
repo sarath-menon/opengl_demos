@@ -70,9 +70,6 @@ int main() {
     viewer.clear_display(glfwGetTime());
 
     // send data in vertex buffer to the shader and start drawing
-    // adjust OpenGL settings and draw model
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
