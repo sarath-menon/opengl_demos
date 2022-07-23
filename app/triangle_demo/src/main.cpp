@@ -9,7 +9,7 @@
 
 int main() {
 
-  Viewer viewer(720, 480);
+  Viewer viewer(600, 600);
 
   Shader shader("shaders/2d_vertShader.glsl", "shaders/2d_fragShader.glsl");
 
@@ -40,14 +40,6 @@ int main() {
     // (primitive,start vertex, vertex count)
     glDrawArrays(GL_TRIANGLES, 0, 3);
 
-    // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-    // Swap the back buffer with the front buffer
-    glfwSwapBuffers(viewer.getHandle());
-    // handles window events, such as close button pressed
-    glfwPollEvents();
+    viewer.start_display();
   }
-
-  viewer.terminate();
-  return 0;
 }
