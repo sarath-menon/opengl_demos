@@ -1,10 +1,9 @@
 #include "camera.hpp"
-#include <iostream>
 
-// void Camera::terminate() {
+Camera::Camera(const gl::V3 &coord) { this->set_coord(coord); }
 
-//   // Delete window before ending the program
-//   glfwDestroyWindow(handle_);
-//   // Terminate GLFW before ending the program
-//   glfwTerminate();
-// }
+void Camera::set_coord(const gl::V3 &coord) {
+  coord_(0) = coord(0);
+  coord_(1) = coord(1);
+  coord_(2) = coord(2);
+}

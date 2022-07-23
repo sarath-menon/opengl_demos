@@ -84,6 +84,8 @@
         "functional": "cpp",
         "iterator": "cpp",
         "utility": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "queue": "cpp",
+        "*.ipp": "cpp"
     }
 }
