@@ -23,9 +23,6 @@ int main() {
   VBO vb[2];
   vb[0].set_data(t1.vertices());
 
-  // Gets ID of uniform called "scale"
-  GLuint uniID = glGetUniformLocation(shader.getHandle(), "scale");
-
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
     // Inputs
@@ -34,7 +31,7 @@ int main() {
     // Load the compiled shaders to the GPU
     shader.Activate();
 
-    // Link VAO to VBO
+    // Link VBO attribute to VAO
     VA.LinkAttrib(vb[0], 0, GL_FLOAT);
 
     viewer.clear_display(glfwGetTime());
