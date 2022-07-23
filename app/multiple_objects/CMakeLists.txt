@@ -1,5 +1,5 @@
 #template for executables
-set(EXEC_NAME multiple_cubes)
+set(EXEC_NAME multiple_objects)
 
 # list of c++ source files
 set(CPP_FILES

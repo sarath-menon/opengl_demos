@@ -9,7 +9,7 @@ Pyramid::Pyramid(const gl::V3 coord, const float length) {
   length_ = length;
 
   // set vertices
-  vertices_ = Eigen::Matrix3Xf::Zero(3, 54);
+  vertices_ = Eigen::Matrix3Xf::Zero(3, 18);
 
   vertices_ << -1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
       -1.0f, 1.0f, 1.0f, -1.0f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f, -1.0f, -1.0f,
