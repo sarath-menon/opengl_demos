@@ -58,6 +58,8 @@ Viewer::Viewer(const int width, const int height) {
   // glfwSetFramebufferSizeCallback(handle_, framebuffer_size_callback);
 }
 
+Viewer::~Viewer() { terminate(); }
+
 // Callback definition
 void Viewer::framebuffer_size_callback(GLFWwindow *handle, const int width,
                                        const int height) {
@@ -78,6 +80,13 @@ void Viewer::clear_display(double current_time) {
   // set clear colour to front buffer
   glClear(GL_COLOR_BUFFER_BIT);
   glClear(GL_DEPTH_BUFFER_BIT);
+}
+
+void Viewer::start_display() {
+  // Swap the back buffer with the front buffer
+  glfwSwapBuffers(handle_);
+  // handles window events, such as close button pressed
+  glfwPollEvents();
 }
 
 void Viewer::terminate() {

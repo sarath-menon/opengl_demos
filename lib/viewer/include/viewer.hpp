@@ -16,8 +16,11 @@ private:
 
 public:
   Viewer(const int width, const int height);
+  ~Viewer();
 
   void clear_display(double current_time);
+
+  void start_display();
 
   static void framebuffer_size_callback(GLFWwindow *handle, int width,
                                         int height);
