@@ -7,11 +7,10 @@
 class Cube : public Rigid3d {
 
 private:
-  // gl::A3 pose_{};
-
   // length of each side
   float length_{};
 
+  // matrix containing vertex coordinates
   gl::M3DC vertices_;
 
 public:
