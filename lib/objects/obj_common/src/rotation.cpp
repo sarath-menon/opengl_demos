@@ -1,36 +1,29 @@
 #include "rotation.hpp"
+#include <iostream>
 
-namespace gl {
+Rot::Rot() {}
 
-Rot::Rot() {
-  R_x = gl::M3::Identity();
-  R_y = gl::M3::Identity();
-  R_z = gl::M3::Identity();
-}
+void Rot::axis(gl::A3 &pose, enum axis ax, const float angle) {
 
-void Rot::axis(enum axis ax, const float angle) {
+  R = gl::M3::Identity();
 
   switch (ax) {
 
   case axis::x:
-    R_x(2, 2) = cos(angle);
-    R_x(2, 3) = -sin(angle);
-    R_x(3, 2) = sin(angle);
-    R_x(3, 3) = cos(angle);
+    R.row(1) << 0.0f, cos(angle), -sin(angle);
+    R.row(2) << 0.0f, sin(angle), cos(angle);
     break;
   case axis::y:
-    R_x(2, 2) = cos(angle);
-    R_x(2, 3) = -sin(angle);
-    R_x(3, 2) = sin(angle);
-    R_x(3, 3) = cos(angle);
+
+    R.row(0) << cos(angle), 0.0f, -sin(angle);
+    R.row(2) << sin(angle), 0.0f, cos(angle);
     break;
   case axis::z:
-    R_x(2, 2) = cos(angle);
-    R_x(2, 3) = -sin(angle);
-    R_x(3, 2) = sin(angle);
-    R_x(3, 3) = cos(angle);
+    R.row(0) << cos(angle), -sin(angle), 0.0f;
+    R.row(1) << sin(angle), cos(angle), 0.0f;
     break;
   }
-}
 
-} // namespace gl
+  // apply rotation
+  pose = R * pose.rotation();
+}

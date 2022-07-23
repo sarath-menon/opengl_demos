@@ -7,7 +7,6 @@
 /// Represents a Rigid body
 class Rigid3d {
 
-private:
 protected:
   // pose of the rigid body
   gl::A3 pose_{};
@@ -19,6 +18,10 @@ public:
   void set_position(const gl::V3 pos);
 
   void set_orientation(const gl::Q quat);
+
+  void rotate_x(const float angle);
+  void rotate_y(const float angle);
+  void rotate_z(const float angle);
 
   // getter functions
   auto &pose() { return pose_; }
