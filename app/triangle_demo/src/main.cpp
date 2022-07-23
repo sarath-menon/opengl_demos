@@ -22,16 +22,6 @@ int main() {
   // vertex buffer to be sent to vertex shader
   VBO VB[] = {VBO(t1.vertices())};
 
-  // Activate the VA
-  VA.Bind();
-
-  // Link VAO to VBO
-  VA.LinkAttrib(VB[0], 0, t1.vertices(), GL_FLOAT);
-
-  // Unbind all to prevent accidentally modifying them
-  VA.Unbind();
-  VB[0].Unbind();
-
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.getHandle(), "scale");
 
@@ -46,8 +36,8 @@ int main() {
     // Load the compiled shaders to the GPU
     shader.Activate();
 
-    // Bind the VAO so OpenGL knows to use it
-    VA.Bind();
+    // Link VAO to VBO
+    VA.LinkAttrib(VB[0], 0, t1.vertices(), GL_FLOAT);
 
     // send data in vertex buffer to the shader and start drawing
     // (primitive,start vertex, vertex count)
