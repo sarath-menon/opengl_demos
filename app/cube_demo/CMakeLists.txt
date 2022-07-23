@@ -16,7 +16,7 @@ gl_lib
 
 ####### Do not modify !
 
-add_library(${EXEC_NAME} STATIC ${CPP_FILES})
+add_executable(${EXEC_NAME} ${CPP_FILES})
 
 target_include_directories(${EXEC_NAME} PUBLIC include)
 
