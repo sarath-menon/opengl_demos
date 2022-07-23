@@ -35,7 +35,7 @@ int main() {
     shader.Activate();
 
     // Link VAO to VBO
-    VA.LinkAttrib(vb[0], 0, t1.vertices(), GL_FLOAT);
+    VA.LinkAttrib(vb[0], 0, GL_FLOAT);
 
     viewer.clear_display(glfwGetTime());
 
