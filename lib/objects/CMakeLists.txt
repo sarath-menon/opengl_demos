@@ -8,6 +8,7 @@ set(SUB_LIBS
 obj_common
 triangle
 cube
+pyramid
 )
 
 ####### Do not modify !
