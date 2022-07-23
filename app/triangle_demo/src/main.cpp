@@ -21,7 +21,7 @@ int main() {
 
   // vertex buffer to be sent to vertex shader
   VBO vb[2];
-  // vb[0].set_data(t1.vertices());
+  vb[0].set_data(t1.vertices());
 
   // Gets ID of uniform called "scale"
   GLuint uniID = glGetUniformLocation(shader.getHandle(), "scale");
