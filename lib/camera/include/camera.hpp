@@ -9,6 +9,19 @@ private:
 
   gl::V3 coord_{};
 
+  // // to hold id's of uniform variables
+  // GLuint modelview_loc_, proj_loc_;
+
+  // // Transformation matrices
+  // // model matrix
+  // gl::A3 model_m = gl::A3::Identity();
+  // // view matrix
+  // gl::A3 view_m = gl::A3::Identity();
+  // // (model * view) matrix
+  // gl::A3 modelview_m = gl::A3::Identity();
+  // // peerspective matrix
+  // glm::mat4 proj_m;
+
 public:
   Camera(const gl::V3 &coord);
 

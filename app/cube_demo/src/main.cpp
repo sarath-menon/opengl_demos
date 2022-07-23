@@ -36,6 +36,15 @@ int main() {
   VBO vb[2];
   vb[0].set_data(cube.vertices());
 
+  // get locations of uniforms in the shader program
+  modelview_loc = glGetUniformLocation(shader.getHandle(), "modelview");
+  proj_loc = glGetUniformLocation(shader.getHandle(), "proj");
+
+  // build perspective matrix
+  // gl::perspective(gl::deg2rad(45.0f)
+  proj_m = glm::perspective(1.0472f, viewer.aspect_ratio(), 0.1f,
+                            1000.0f); // 1.0472 radians == 60 degrees
+
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
     // Inputs
@@ -45,15 +54,6 @@ int main() {
     shader.Activate();
 
     // Draw cube ////////////////////////////////
-
-    // get locations of uniforms in the shader program
-    modelview_loc = glGetUniformLocation(shader.getHandle(), "modelview");
-    proj_loc = glGetUniformLocation(shader.getHandle(), "proj");
-
-    // build perspective matrix
-    // gl::perspective(gl::deg2rad(45.0f)
-    proj_m = glm::perspective(1.0472f, viewer.aspect_ratio(), 0.1f,
-                              1000.0f); // 1.0472 radians == 60 degrees
 
     // build view,model matrices
     view_m.translation() = -camera.coord();
@@ -70,6 +70,7 @@ int main() {
     viewer.clear_display(glfwGetTime());
 
     // send data in vertex buffer to the shader and start drawing
+
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
     // Process events~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
