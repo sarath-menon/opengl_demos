@@ -1,7 +1,12 @@
 #include "VAO.hpp"
 
 // Constructor that generates a VAO ID
-VAO::VAO() { glGenVertexArrays(1, &ID); }
+VAO::VAO() {
+  // create vertex array
+  glGenVertexArrays(1, &ID);
+  // Activate the VA
+  this->Bind();
+}
 
 VAO::~VAO() { this->Delete(); }
 
@@ -10,8 +15,7 @@ void VAO::LinkAttrib(VBO &VBO, GLuint layout, gl::M3DC &M, GLenum type) {
   VBO.Bind();
 
   // associate active buffer with the (layout)th vertex attribute in the shader
-  glVertexAttribPointer(layout, M.cols(), type, GL_FALSE, 3 * sizeof(float),
-                        (GLvoid *)0);
+  glVertexAttribPointer(layout, 3, type, GL_FALSE, 0, (GLvoid *)0);
 
   // enable the (layout)th vertex attribute
   glEnableVertexAttribArray(layout);

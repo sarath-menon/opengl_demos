@@ -8,7 +8,7 @@ public:
   GLuint ID;
 
   // Constructor that generates a Vertex Buffer Object and links it to vertices
-  VBO(gl::M3DC &V);
+  VBO(gl::M3DC &M);
 
   ~VBO();
 
