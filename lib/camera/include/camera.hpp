@@ -1,39 +1,40 @@
 #pragma once
-#include "gl_common.hpp"
+
+#include <glad/glad.h>
+//
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtx/rotate_vector.hpp>
+#include <glm/gtx/vector_angle.hpp>
+
+#include "shader.hpp"
 
 class Camera {
-
-private:
-  GLFWwindow *handle_{};
-
-  gl::V3 coord_{};
-
-  // // to hold id's of uniform variables
-  // GLuint modelview_loc_, proj_loc_;
-
-  // // Transformation matrices
-  // // model matrix
-  // gl::A3 model_m = gl::A3::Identity();
-  // // view matrix
-  // gl::A3 view_m = gl::A3::Identity();
-  // // (model * view) matrix
-  // gl::A3 modelview_m = gl::A3::Identity();
-  // // peerspective matrix
-  // glm::mat4 proj_m;
-
 public:
-  Camera(const gl::V3 &coord);
+  // Stores the main vectors of the camera
+  glm::vec3 Position;
+  glm::vec3 Orientation = glm::vec3(0.0f, 0.0f, -1.0f);
+  glm::vec3 Up = glm::vec3(0.0f, 1.0f, 0.0f);
 
-  // set camera coordinates
-  void set_coord(const gl::V3 &coord);
+  // Prevents the camera from jumping around when first clicking left click
+  bool firstClick = true;
 
-  // getter functions
-  auto getHandle() const { return handle_; }
+  // Stores the width and height of the window
+  int width;
+  int height;
 
-  auto coord() const { return coord_; }
+  // Adjust the speed of the camera and it's sensitivity when looking around
+  float speed = 0.1f;
+  float sensitivity = 100.0f;
 
-  auto x() const { return coord_(0); }
-  auto y() const { return coord_(1); }
-  auto z() const { return coord_(2); }
+  // Camera constructor to set up initial values
+  Camera(int width, int height, glm::vec3 position);
+
+  // Updates and exports the camera matrix to the Vertex Shader
+  void Matrix(float FOVdeg, float nearPlane, float farPlane, Shader &shader,
+              const char *uniform);
+  // Handles camera inputs
+  void Inputs(GLFWwindow *window);
 };

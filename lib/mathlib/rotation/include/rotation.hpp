@@ -9,12 +9,8 @@ class Rot {
 
 private:
   // Rot matrices
-  gl::M3 R_x = gl::M3::Identity();
-  gl::M3 R_y = gl::M3::Identity();
-  gl::M3 R_z = gl::M3::Identity();
+  inline static gl::M3 R;
 
 public:
-  Rot();
-
-  void axis(axis ax, const float angle);
+  static void axis(gl::A3 &pose, axis ax, const float angle);
 };

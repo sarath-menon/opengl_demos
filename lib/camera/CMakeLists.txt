@@ -10,6 +10,7 @@ set(LIB_DEP
 common
 glfw
 external
+shader
 )
 
 ####### Do not modify !

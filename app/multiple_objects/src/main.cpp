@@ -69,7 +69,7 @@ int main() {
     cube.global_rotate_y(M_PI / 100.0f);
 
     // build view,model matrices
-    view_m.translation() = -camera.coord();
+    view_m.translation() = -camera.pose();
     model_m = cube.global_pose();
     modelview_m = view_m * model_m;
 
@@ -85,7 +85,7 @@ int main() {
 
     // Draw pyramid ////////////////////////////////
     // build view,model matrices
-    view_m.translation() = -camera.coord();
+    view_m.translation() = -camera.pose();
     model_m = pyramid.global_pose();
     modelview_m = view_m * model_m;
 

@@ -3,12 +3,12 @@ set(MODULE_NAME obj_common)
 # list of c++ source files
 set(CPP_FILES
 src/rigid3d.cpp
-src/rotation.cpp
 )
 
 # list of library dependendcies
 set(LIB_DEP
 common
+mathlib
 Eigen3::Eigen
 )
 

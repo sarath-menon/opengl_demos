@@ -4,6 +4,7 @@ set(MODULE_NAME common)
 
 # list of libs to combine as one interface lib
 set(SUB_LIBS 
+mathlib
 Eigen3::Eigen
 )
 
