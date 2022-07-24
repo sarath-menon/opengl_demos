@@ -192,11 +192,11 @@ static int get_exts(void) {
             const char *gl_str_tmp = (const char*)glGetStringi(GL_EXTENSIONS, index);
             size_t len = strlen(gl_str_tmp);
 
-            char *local_str = (char*)malloc((len+1) * sizeof(char));
-            if(local_str != NULL) {
-                memcpy(local_str, gl_str_tmp, (len+1) * sizeof(char));
+            char *global_str = (char*)malloc((len+1) * sizeof(char));
+            if(global_str != NULL) {
+                memcpy(global_str, gl_str_tmp, (len+1) * sizeof(char));
             }
-            exts_i[index] = local_str;
+            exts_i[index] = global_str;
         }
     }
 #endif

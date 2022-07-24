@@ -3,8 +3,8 @@
 
 Pyramid::Pyramid(const gl::V3 coord, const float length) {
 
-  local_pose_ = gl::A3::Identity();
-  local_pose_.translation() = coord;
+  global_pose_ = gl::A3::Identity();
+  global_pose_.translation() = coord;
 
   length_ = length;
 

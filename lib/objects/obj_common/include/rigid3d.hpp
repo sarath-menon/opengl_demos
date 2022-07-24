@@ -8,26 +8,27 @@
 class Rigid3d {
 
 protected:
+  // global parameters -----------
+
   // pose of the rigid body
-  gl::A3 local_pose_{};
+  gl::A3 global_pose_{};
 
 public:
-  // getter function
-  void set_local_pose(const gl::A3 &pose);
+  // set global parameters -----------
+  void set_global_pose(const gl::A3 &pose);
 
-  void set_local_position(const gl::V3 pos);
+  void set_global_position(const gl::V3 pos);
 
-  void set_local_orientation(const gl::Q quat);
+  void set_global_orientation(const gl::Q quat);
 
-  void local_rotate_x(const float angle);
-  void local_rotate_y(const float angle);
-  void local_rotate_z(const float angle);
+  void global_rotate_x(const float angle);
+  void global_rotate_y(const float angle);
+  void global_rotate_z(const float angle);
 
   // getter functions
-  auto &local_pose() { return local_pose_; }
+  auto &global_pose() { return global_pose_; }
 
-  auto local_position() { return local_pose_.translation(); }
+  auto global_position() { return global_pose_.translation(); }
 
-  auto orientationR() { return local_pose_.rotation(); }
+  auto orientationR() { return global_pose_.rotation(); }
 };
-
