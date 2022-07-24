@@ -59,8 +59,9 @@ int main() {
     cube.rotate_y(M_PI / 100.0f);
 
     // build perspective matrix
-    proj_m = glm::perspective(gl::deg2rad(60.0f), viewer.aspect_ratio(), 0.1f,
-                              1000.0f); // 1.0472 radians == 60 degrees
+    proj_m =
+        glm::perspective(gl::deg2rad(60.0_deg), viewer.aspect_ratio(), 0.1f,
+                         1000.0f); // 1.0472 radians == 60 degrees
 
     // build view,model matrices
     view_m.translation() = -camera.coord();
