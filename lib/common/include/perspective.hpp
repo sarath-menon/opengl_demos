@@ -10,16 +10,16 @@ namespace gl {
 //   assert(aspect > 0);
 //   assert(zFar > zNear);
 
-//   const float tanHalfFovy = tan(fovy / 2);
+//   const float tanHalfFovy = std::tan(fovy / 2.0f);
 
 //   // gl::A4 result;
-//   Eigen::Matrix<float, 4, 4> result;
+//   gl::M4 result = gl::M4::Zero();
 
-//   result(0, 0) = 1.0 / (aspect * tanHalfFovy);
-//   result(1, 1) = 1.0 / (tanHalfFovy);
+//   result(0, 0) = 1.0f / (aspect * tanHalfFovy);
+//   result(1, 1) = 1.0f / (tanHalfFovy);
 //   result(2, 2) = -(zFar + zNear) / (zFar - zNear);
-//   result(3, 2) = -1.0;
-//   result(2, 3) = -(2.0 * zFar * zNear) / (zFar - zNear);
+//   result(3, 2) = -1.0f;
+//   result(2, 3) = -(2.0f * zFar * zNear) / (zFar - zNear);
 
 //   return result;
 // }
