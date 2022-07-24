@@ -3,8 +3,8 @@
 
 Cube::Cube(const gl::V3 coord, const float length) {
 
-  pose_ = gl::A3::Identity();
-  pose_.translation() = coord;
+  local_pose_ = gl::A3::Identity();
+  local_pose_.translation() = coord;
 
   length_ = length;
 

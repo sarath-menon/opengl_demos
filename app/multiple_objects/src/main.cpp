@@ -46,7 +46,7 @@ int main() {
 
   t.start();
 
-  cube.set_position(gl::V3(1.0f, 3.0f, 1.0f));
+  cube.set_local_position(gl::V3(1.0f, 3.0f, 1.0f));
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
@@ -66,11 +66,11 @@ int main() {
 
     // Draw cube ////////////////////////////////
 
-    cube.rotate_y(M_PI / 100.0f);
+    cube.local_rotate_y(M_PI / 100.0f);
 
     // build view,model matrices
     view_m.translation() = -camera.coord();
-    model_m = cube.pose();
+    model_m = cube.local_pose();
     modelview_m = view_m * model_m;
 
     // copy matrix data to corresponding uniform variables
@@ -86,7 +86,7 @@ int main() {
     // Draw pyramid ////////////////////////////////
     // build view,model matrices
     view_m.translation() = -camera.coord();
-    model_m = pyramid.pose();
+    model_m = pyramid.local_pose();
     modelview_m = view_m * model_m;
 
     // copy matrix data to corresponding uniform variables
