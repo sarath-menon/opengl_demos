@@ -7,7 +7,7 @@ src/${MODULE_NAME}.cpp
 
 # list of library dependendcies
 set(LIB_DEP
-shader
+common
 glfw
 external
 )

@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 //
-#include "shader.hpp"
+#include "gl_common.hpp"
 #include <GLFW/glfw3.h>
 
 class Viewer {
@@ -10,8 +10,13 @@ class Viewer {
 private:
   GLFWwindow *handle_{};
 
-  int width_{};
-  int height_{};
+  // default parameters
+  int width_ = 600;
+  int height_ = 600;
+
+  float clear_colour_[4] = {0.2f, 0.3f, 0.3f, 1.0f};
+
+  // derived parameters
   float aspect_ratio_{};
 
 public:

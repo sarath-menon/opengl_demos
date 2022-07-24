@@ -78,7 +78,8 @@ void Viewer::processInput() {
 void Viewer::clear_display(double current_time) {
 
   // set clear (reset) colour
-  glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+  glClearColor(clear_colour_[0], clear_colour_[1], clear_colour_[2],
+               clear_colour_[3]);
 
   // set clear colour to front buffer
   glClear(GL_COLOR_BUFFER_BIT);
