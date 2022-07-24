@@ -15,40 +15,38 @@
 
 int main() {
 
-  Viewer viewer(600, 600);
-  // Camera camera(100, 100, gl::V3(0.0, 0.0, 8.0));
-  gl::Timer t;
+  constexpr float width = 600;
+  constexpr float height = 600;
 
-  // Transformation matrices
-  gl::A3 model_m = gl::A3::Identity();
-  // gl::A3 view_m = gl::A3::Identity();
-  // gl::A3 proj_m = gl::A3::Identity();
-  glm::mat4 view_m;
-  glm::mat4 proj_m;
+  constexpr float camera_fov = 60.0_deg;
+  constexpr float cam_pos[3] = {0.0f, 0.0f, 10.0f};
+  constexpr float near_plane = 0.1f;
+  constexpr float far_plane = 100.0f;
 
+  constexpr float cube_pos[3] = {1.0, -2.0, -1.0};
+
+  Viewer viewer(width, height);
   Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");
-  // Camera camera(100, 100, gl::V3(0.0, 0.0, 8.0), shader);
-
-  // Creates camera object
-  Camera camera(600, 600, glm::vec3(0.0f, 0.0f, 10.0f));
+  Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
+  Cube cube(gl::V3(cube_pos[0], cube_pos[1], cube_pos[2]), 1.0);
 
   // to hold id's of uniform variables
-  GLuint model_loc, view_loc, proj_loc;
+  GLuint model_loc;
 
-  Cube cube(gl::V3(1.0, -2.0, -1.0), 1.0);
+  gl::Timer t;
 
   // vertex array object to prganize vertex buffers
   VAO va;
-
   // vertex buffer to be sent to vertex shader
   VBO vb[2];
   vb[0].set_data(cube.vertices());
 
+  // Transformation matrices
+  gl::A3 model_m = gl::A3::Identity();
   // get locations of uniforms in the shader program
   model_loc = glGetUniformLocation(shader.getHandle(), "model");
-  view_loc = glGetUniformLocation(shader.getHandle(), "view");
-  proj_loc = glGetUniformLocation(shader.getHandle(), "proj");
 
+  // start timer
   t.start();
 
   cube.set_global_position(gl::V3(1.0f, 1.0f, 1.0f));
@@ -65,31 +63,17 @@ int main() {
 
     cube.global_rotate_y(M_PI / 100.0f);
 
-    // // build perspective matrix
-    // proj_m =
-    //     glm::perspective(gl::deg2rad(60.0_deg), viewer.aspect_ratio(), 0.1f,
-    //                      1000.0f); // 1.0472 radians == 60 degrees
-
-    // proj_m = gl::perspective(gl::deg2rad(60.0_deg), viewer.aspect_ratio(),
-    // 0.1f,
-    //                          1000.0f); // 1.0472 radians == 60 degrees
-
-    // // build view,model matrices
-    // view_m = glm::translate(glm::mat4(1.0f), glm::vec3(0.0f, 0.0f, -8.0f));
+    // create model matrix
     model_m = cube.global_pose();
 
     // copy matrix data to corresponding uniform variables
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
-    // glUniformMatrix4fv(view_loc, 1, GL_FALSE, view_m.data());
-    // glUniformMatrix4fv(proj_loc, 1, GL_FALSE, proj_m.data());
-
-    // glUniformMatrix4fv(view_loc, 1, GL_FALSE, glm::value_ptr(view_m));
-    glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(proj_m));
 
     // Handles camera inputs
     camera.Inputs(viewer.getHandle());
+
     // Updates and exports the camera matrix to the Vertex Shader
-    camera.Matrix(60.0f, 0.1f, 1000.0f, shader, "cam_view");
+    camera.Matrix(camera_fov, near_plane, far_plane, shader, "cam_view");
 
     // Link vaO to vbO
     va.LinkAttrib(vb[0], 0, GL_FLOAT);
