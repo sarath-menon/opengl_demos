@@ -16,18 +16,18 @@
 int main() {
 
   Viewer viewer(600, 600);
-  Camera camera(gl::V3(0.0, 0.0, 8.0));
+  Camera camera(100, 100, gl::V3(0.0, 0.0, 8.0));
   gl::Timer t;
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
   gl::A3 view_m = gl::A3::Identity();
-  gl::A3 modelview_m = gl::A3::Identity();
   glm::mat4 proj_m;
 
   Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");
+
   // to hold id's of uniform variables
-  GLuint modelview_loc, proj_loc;
+  GLuint model_loc, view_loc, proj_loc;
 
   Cube cube(gl::V3(1.0, -2.0, -1.0), 1.0);
 
@@ -39,7 +39,8 @@ int main() {
   vb[0].set_data(cube.vertices());
 
   // get locations of uniforms in the shader program
-  modelview_loc = glGetUniformLocation(shader.getHandle(), "modelview");
+  model_loc = glGetUniformLocation(shader.getHandle(), "model");
+  view_loc = glGetUniformLocation(shader.getHandle(), "view");
   proj_loc = glGetUniformLocation(shader.getHandle(), "proj");
 
   t.start();
@@ -64,12 +65,12 @@ int main() {
                          1000.0f); // 1.0472 radians == 60 degrees
 
     // build view,model matrices
-    view_m.translation() = -camera.coord();
+    view_m.translation() = -camera.position();
     model_m = cube.global_pose();
-    modelview_m = view_m * model_m;
 
     // copy matrix data to corresponding uniform variables
-    glUniformMatrix4fv(modelview_loc, 1, GL_FALSE, modelview_m.data());
+    glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
+    glUniformMatrix4fv(view_loc, 1, GL_FALSE, view_m.data());
     glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(proj_m));
 
     // Link vaO to vbO
