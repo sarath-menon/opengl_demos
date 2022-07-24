@@ -4,24 +4,23 @@
 
 namespace gl {
 
-// static auto perspective(float fovy, float aspect, float zNear, float zFar) {
+static auto perspective(float fovy, float aspect, float zNear, float zFar) {
 
-//   // safety checks
-//   assert(aspect > 0);
-//   assert(zFar > zNear);
+  // safety checks
+  assert(aspect > 0);
+  assert(zFar > zNear);
 
-//   const float tanHalfFovy = std::tan(fovy / 2.0f);
+  const float tanHalfFovy = std::tan(fovy / 2.0f);
 
-//   // gl::A4 result;
-//   gl::M4 result = gl::M4::Zero();
+  gl::M4 result = gl::M4::Zero();
 
-//   result(0, 0) = 1.0f / (aspect * tanHalfFovy);
-//   result(1, 1) = 1.0f / (tanHalfFovy);
-//   result(2, 2) = -(zFar + zNear) / (zFar - zNear);
-//   result(3, 2) = -1.0f;
-//   result(2, 3) = -(2.0f * zFar * zNear) / (zFar - zNear);
+  result(0, 0) = 1.0f / (aspect * tanHalfFovy);
+  result(1, 1) = 1.0f / (tanHalfFovy);
+  result(2, 2) = -(zFar + zNear) / (zFar - zNear);
+  result(3, 2) = -1.0f;
+  result(2, 3) = -(2.0f * zFar * zNear) / (zFar - zNear);
 
-//   return result;
-// }
+  return result;
+}
 
 } // namespace gl
