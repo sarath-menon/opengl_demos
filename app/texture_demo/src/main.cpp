@@ -22,7 +22,7 @@ int main() {
   constexpr float height = 600;
 
   constexpr float camera_fov = 60.0_deg;
-  constexpr float cam_pos[3] = {0.0f, 0.0f, 8.0f};
+  constexpr float cam_pos[3] = {0.0f, 2.0f, 10.0f};
   constexpr float near_plane = 0.1f;
   constexpr float far_plane = 100.0f;
 
@@ -42,7 +42,8 @@ int main() {
   VAO va;
   // vertex buffer to be sent to vertex shader
   VBO vb[2];
-  vb[0].set_data(pyramid.vertices());
+  vb[0].set_vertices(pyramid.vertices());
+  vb[1].set_texture(pyramid.texture_coord());
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
@@ -55,10 +56,8 @@ int main() {
   pyramid.set_global_position(gl::V3(1.0f, 1.0f, 1.0f));
 
   // load texture
-  std::string parentDir = (fs::current_path().fs::path::parent_path()).string();
-  std::string texPath = "/resources/textures";
-
-  // Texture
+  std::string parentDir = (fs::current_path()).string();
+  std::string texPath = "/resources/textures/";
   Texture floor((parentDir + texPath + "floor.png").c_str(), GL_TEXTURE_2D,
                 GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
   floor.texUnit(shader, "tex0", 0);
@@ -71,11 +70,8 @@ int main() {
     // Load the compiled shaders to the GPU
     shader.Activate();
 
-    // // Binds texture so that is appears in rendering
-    // floor.Bind();
-
     // Draw pyramid ////////////////////////////////
-    // pyramid.global_rotate_y(M_PI / 100.0f);
+    pyramid.global_rotate_y(M_PI / 100.0f);
 
     // create model matrix
     model_m = pyramid.global_pose();
@@ -90,7 +86,8 @@ int main() {
     camera.Matrix(camera_fov, near_plane, far_plane, shader, "cam_view");
 
     // Link vaO to vbO
-    va.LinkAttrib(vb[0], 0, GL_FLOAT);
+    va.link_vertices(vb[0], 0, GL_FLOAT);
+    va.link_texture(vb[1], 1, GL_FLOAT);
 
     viewer.clear_display(glfwGetTime());
 
