@@ -7,14 +7,12 @@
 #include "timer.hpp"
 #include "triangle.hpp"
 #include "viewer.hpp"
+#include <filesystem>
 #include <iostream>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp> // glm::value_ptr
-
-#include <filesystem>
-namespace fs = std::filesystem;
 
 int main() {
 
@@ -59,7 +57,7 @@ int main() {
   pyramid.set_global_position(gl::V3(1.0f, 1.0f, 1.0f));
 
   // load texture
-  std::string parentDir = (fs::current_path()).string();
+  std::string parentDir = (std::filesystem::current_path()).string();
   Texture floor((parentDir + texPath + texture_file).c_str(), GL_TEXTURE_2D,
                 GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
   floor.texUnit(shader, "tex0", 0);
@@ -68,6 +66,9 @@ int main() {
   while (!glfwWindowShouldClose(viewer.getHandle())) {
     // Inputs
     viewer.processInput();
+
+    viewer.clear_display();
+    //////////////////////////////
 
     // Load the compiled shaders to the GPU
     shader.Activate();
@@ -95,8 +96,6 @@ int main() {
     // Link vaO to vbO
     va.link_vertices(vb[0], 0, GL_FLOAT);
     va.link_texture(vb[1], 1, GL_FLOAT);
-
-    viewer.clear_display();
 
     // send data in vertex buffer to the shader and start drawing
     glDrawArrays(GL_TRIANGLES, 0, 36);
