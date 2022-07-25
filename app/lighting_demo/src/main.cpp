@@ -29,12 +29,15 @@ int main() {
   Viewer viewer(width, height);
   Shader object_shader("shaders/3d_vertShader.glsl",
                        "shaders/3d_fragShader.glsl");
+  Shader light_shader("shaders/light_vertShader.glsl",
+                      "shaders/light_fragShader.glsl");
+
   Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
   Cube cube(gl::V3(cube_pos[0], cube_pos[1], cube_pos[2]), 1.0);
   Pyramid pyramid(gl::V3(pyramid_pos[0], pyramid_pos[1], pyramid_pos[2]), 1.0);
 
   // to hold id's of uniform variables
-  GLuint model_loc;
+  GLuint model_loc, light_model_loc;
 
   // vertex array object to prganize vertex buffers
   VAO va;
@@ -49,6 +52,7 @@ int main() {
 
   // get locations of uniforms in the shader program
   model_loc = glGetUniformLocation(object_shader.getHandle(), "model");
+  light_model_loc = glGetUniformLocation(object_shader.getHandle(), "model");
 
   cube.set_global_position(gl::V3(1.0f, 3.0f, 1.0f));
 
