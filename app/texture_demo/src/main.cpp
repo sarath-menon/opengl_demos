@@ -91,7 +91,7 @@ int main() {
     va.link_vertices(vb[0], 0, GL_FLOAT);
     va.link_texture(vb[1], 1, GL_FLOAT);
 
-    viewer.clear_display(glfwGetTime());
+    viewer.clear_display();
 
     // send data in vertex buffer to the shader and start drawing
     glDrawArrays(GL_TRIANGLES, 0, 36);

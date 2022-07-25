@@ -56,7 +56,7 @@ int main() {
     // Inputs
     viewer.processInput();
     // clear display
-    viewer.clear_display(glfwGetTime());
+    viewer.clear_display();
     // Load the compiled shaders to the GPU
     shader.Activate();
 

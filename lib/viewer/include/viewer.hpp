@@ -23,7 +23,7 @@ public:
   Viewer(const int width, const int height);
   ~Viewer();
 
-  void clear_display(double current_time) const;
+  void clear_display() const;
 
   void start_display() const;
 

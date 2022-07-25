@@ -12,11 +12,11 @@ public:
 
   ~Shader();
 
-  auto getType() const { return type_; }
-  auto getHandle() const { return handle_; }
+  const auto getType() const { return type_; }
+  const auto getHandle() const { return handle_; }
 
   // Activates the Shader Program
-  void Activate();
+  void Activate() const;
 
 private:
   GLenum type_;
@@ -31,7 +31,7 @@ private:
   // std::string readShaderSource(const char *filePath);
 
   // Deletes the Shader Program
-  void Delete();
+  void Delete() const;
 
   // // Checks if the different Shaders have compiled properly
   // void compileErrors(unsigned int shader, const char *type);

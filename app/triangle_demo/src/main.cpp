@@ -34,7 +34,7 @@ int main() {
     // Link VBO attribute to VAO
     VA.link_vertices(vb[0], 0, GL_FLOAT);
 
-    viewer.clear_display(glfwGetTime());
+    viewer.clear_display();
 
     // send data in vertex buffer to the shader and start drawing
     // (primitive,start vertex, vertex count)

@@ -13,10 +13,10 @@ Shader::Shader(std::string vs_path, std::string fs_path) {
 Shader::~Shader() { this->Delete(); }
 
 // Activates the Shader Program
-void Shader::Activate() { glUseProgram(handle_); }
+void Shader::Activate() const { glUseProgram(handle_); }
 
 // Deletes the Shader Program
-void Shader::Delete() { glDeleteProgram(handle_); }
+void Shader::Delete() const { glDeleteProgram(handle_); }
 
 // // Checks if the different Shaders have compiled properly
 // void Shader::compileErrors(unsigned int shader, const char *type) {

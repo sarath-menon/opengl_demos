@@ -75,7 +75,7 @@ void Viewer::processInput() const {
     glfwSetWindowShouldClose(handle_, true);
 }
 
-void Viewer::clear_display(double current_time) const {
+void Viewer::clear_display() const {
 
   // set clear (reset) colour
   glClearColor(clear_colour_[0], clear_colour_[1], clear_colour_[2],

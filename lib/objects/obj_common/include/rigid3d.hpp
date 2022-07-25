@@ -26,9 +26,9 @@ public:
   void global_rotate_z(const float angle);
 
   // getter functions
-  auto &global_pose() { return global_pose_; }
+  auto &global_pose() const { return global_pose_; }
 
-  auto global_position() { return global_pose_.translation(); }
+  auto global_position() const { return global_pose_.translation(); }
 
-  auto orientationR() { return global_pose_.rotation(); }
+  auto orientationR() const { return global_pose_.rotation(); }
 };
