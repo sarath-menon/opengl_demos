@@ -60,9 +60,6 @@ Texture::Texture(const char *image_path, GLenum texType, GLenum slot,
     std::cout << "Texture failed to load at path: " << image_path << std::endl;
     stbi_image_free(data);
   }
-
-  //   // Unbinds the OpenGL Texture object so that it can't accidentally be
-  //   modified glBindTexture(texType, 0);
 }
 
 Texture::~Texture() { Texture::Delete(); }
