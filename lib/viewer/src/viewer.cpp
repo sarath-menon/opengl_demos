@@ -63,19 +63,19 @@ Viewer::Viewer(const int width, const int height) {
 
 Viewer::~Viewer() { terminate(); }
 
-// Callback definition
-void Viewer::framebuffer_size_callback(GLFWwindow *handle, const int width,
-                                       const int height) {
-  glViewport(0, 0, width, height);
-}
+// // Callback definition
+// void Viewer::framebuffer_size_callback(GLFWwindow *handle, const int width,
+//                                        const int height) {
+//   glViewport(0, 0, width, height);
+// }
 
 // close window when esc key pressed
-void Viewer::processInput() {
+void Viewer::processInput() const {
   if (glfwGetKey(handle_, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     glfwSetWindowShouldClose(handle_, true);
 }
 
-void Viewer::clear_display(double current_time) {
+void Viewer::clear_display(double current_time) const {
 
   // set clear (reset) colour
   glClearColor(clear_colour_[0], clear_colour_[1], clear_colour_[2],
@@ -86,14 +86,14 @@ void Viewer::clear_display(double current_time) {
   glClear(GL_DEPTH_BUFFER_BIT);
 }
 
-void Viewer::start_display() {
+void Viewer::start_display() const {
   // Swap the back buffer with the front buffer
   glfwSwapBuffers(handle_);
   // handles window events, such as close button pressed
   glfwPollEvents();
 }
 
-void Viewer::terminate() {
+void Viewer::terminate() const {
 
   // Delete window before ending the program
   glfwDestroyWindow(handle_);

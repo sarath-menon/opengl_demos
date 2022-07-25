@@ -23,23 +23,23 @@ public:
   Viewer(const int width, const int height);
   ~Viewer();
 
-  void clear_display(double current_time);
+  void clear_display(double current_time) const;
 
-  void start_display();
+  void start_display() const;
 
-  static void framebuffer_size_callback(GLFWwindow *handle, int width,
-                                        int height);
-  void processInput();
+  // static void framebuffer_size_callback(GLFWwindow *handle, int width,
+  //                                       int height);
+  void processInput() const;
 
-  void terminate();
+  void terminate() const;
 
   // getter functions
 
-  auto getHandle() const { return handle_; }
+  const auto getHandle() const { return handle_; }
 
-  auto width() const { return width_; }
+  const auto width() const { return width_; }
 
-  auto height() const { return height_; }
+  const auto height() const { return height_; }
 
-  auto aspect_ratio() const { return aspect_ratio_; }
+  const auto aspect_ratio() const { return aspect_ratio_; }
 };
