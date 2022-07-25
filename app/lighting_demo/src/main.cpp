@@ -58,22 +58,21 @@ int main() {
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
-    // Inputs
+    // viewer
     viewer.processInput();
-
     viewer.clear_display();
-
-    // Load the compiled shaders to the GPU
-    object_shader.Activate();
 
     // camera
     // Handles camera inputs
     camera.Inputs(viewer.getHandle());
-
     // Update the camera position according to mouse interaction
     camera.updateMatrix(camera_fov, 0.1f, 100.0f);
 
     // Draw pyramid ////////////////////////////////
+
+    // Load the compiled shaders to the GPU
+    object_shader.Activate();
+
     // build view,model matrices
     pyramid.global_rotate_x(M_PI / 100.0f);
 
@@ -89,8 +88,14 @@ int main() {
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 18);
 
-    //////////////////////////////////////////
-    // Draw cube
+    // Export the camMatrix to the Vertex Shader of the pyramid
+    camera.Matrix(object_shader, "cam_view");
+
+    //// Draw cube    ////////////////////////////////////////
+
+    // Load the compiled shaders to the GPU
+    light_shader.Activate();
+
     cube.global_rotate_y(M_PI / 100.0f);
 
     // create model matrix
@@ -104,10 +109,10 @@ int main() {
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
-    //////////////////////////////////////////////////////////
-
     // Export the camMatrix to the Vertex Shader of the pyramid
-    camera.Matrix(object_shader, "cam_view");
+    camera.Matrix(light_shader, "cam_view");
+
+    //////////////////////////////////////////////////////////
 
     viewer.start_display();
   }
