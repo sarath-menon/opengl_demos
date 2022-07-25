@@ -21,7 +21,7 @@ int main() {
 
   // vertex buffer to be sent to vertex shader
   VBO vb[2];
-  vb[0].set_data(t1.vertices());
+  vb[0].set_vertices(t1.vertices());
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
@@ -32,7 +32,7 @@ int main() {
     shader.Activate();
 
     // Link VBO attribute to VAO
-    VA.LinkAttrib(vb[0], 0, GL_FLOAT);
+    VA.link_vertices(vb[0], 0, GL_FLOAT);
 
     viewer.clear_display(glfwGetTime());
 

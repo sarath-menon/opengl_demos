@@ -40,8 +40,8 @@ int main() {
 
   // vertex buffer to be sent to vertex shader
   VBO vb[2];
-  vb[0].set_data(cube.vertices());
-  vb[1].set_data(pyramid.vertices());
+  vb[0].set_vertices(cube.vertices());
+  vb[1].set_vertices(pyramid.vertices());
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
@@ -78,7 +78,7 @@ int main() {
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
     // Link vaO to vbO
-    va.LinkAttrib(vb[0], 0, GL_FLOAT);
+    va.link_vertices(vb[0], 0, GL_FLOAT);
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
@@ -93,7 +93,7 @@ int main() {
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
     // Link vaO to vbO
-    va.LinkAttrib(vb[1], 0, GL_FLOAT);
+    va.link_vertices(vb[1], 0, GL_FLOAT);
 
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 18);

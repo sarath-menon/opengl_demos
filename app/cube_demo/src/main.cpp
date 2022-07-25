@@ -39,7 +39,7 @@ int main() {
   VAO va;
   // vertex buffer to be sent to vertex shader
   VBO vb[2];
-  vb[0].set_data(cube.vertices());
+  vb[0].set_vertices(cube.vertices());
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
@@ -78,7 +78,7 @@ int main() {
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
     // Link vaO to vbO
-    va.LinkAttrib(vb[0], 0, GL_FLOAT);
+    va.link_vertices(vb[0], 0, GL_FLOAT);
 
     // Drawring/////////////
     // send data in vertex buffer to the shader and start drawing
