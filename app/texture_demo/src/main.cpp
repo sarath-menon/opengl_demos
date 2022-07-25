@@ -22,11 +22,11 @@ int main() {
   constexpr float height = 600;
 
   constexpr float camera_fov = 60.0_deg;
-  constexpr float cam_pos[3] = {0.0f, 0.0f, 6.0f};
+  constexpr float cam_pos[3] = {0.0f, 0.0f, 8.0f};
   constexpr float near_plane = 0.1f;
   constexpr float far_plane = 100.0f;
 
-  constexpr float pyramid_pos[3] = {0.0, 0.0, -1.0};
+  constexpr float pyramid_pos[3] = {1.0, -2.0, -1.0};
 
   Viewer viewer(width, height);
   Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");

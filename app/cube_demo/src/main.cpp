@@ -55,9 +55,17 @@ int main() {
   while (!glfwWindowShouldClose(viewer.getHandle())) {
     // Inputs
     viewer.processInput();
-
+    // clear display
+    viewer.clear_display(glfwGetTime());
     // Load the compiled shaders to the GPU
     shader.Activate();
+
+    // Camera ////////////////////////////////
+    // Handles camera inputs
+    camera.Inputs(viewer.getHandle());
+
+    // Updates and exports the camera matrix to the Vertex Shader
+    camera.Matrix(camera_fov, near_plane, far_plane, shader, "cam_view");
 
     // Draw cube ////////////////////////////////
 
@@ -69,20 +77,12 @@ int main() {
     // copy matrix data to corresponding uniform variables
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
-    // Handles camera inputs
-    camera.Inputs(viewer.getHandle());
-
-    // Updates and exports the camera matrix to the Vertex Shader
-    camera.Matrix(camera_fov, near_plane, far_plane, shader, "cam_view");
-
     // Link vaO to vbO
     va.LinkAttrib(vb[0], 0, GL_FLOAT);
 
-    viewer.clear_display(glfwGetTime());
-
+    // Drawring/////////////
     // send data in vertex buffer to the shader and start drawing
     glDrawArrays(GL_TRIANGLES, 0, 36);
-
     viewer.start_display();
   }
 }

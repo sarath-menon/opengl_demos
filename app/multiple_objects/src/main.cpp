@@ -15,22 +15,25 @@
 
 int main() {
 
-  Viewer viewer(600, 600);
-  Camera camera(gl::V3(0.0, 2.0, 8.0));
-  gl::Timer t;
+  constexpr float width = 600;
+  constexpr float height = 600;
 
-  // Transformation matrices
-  gl::A3 model_m = gl::A3::Identity();
-  gl::A3 view_m = gl::A3::Identity();
-  gl::A3 modelview_m = gl::A3::Identity();
-  glm::mat4 proj_m;
+  constexpr float camera_fov = 60.0_deg;
+  constexpr float cam_pos[3] = {0.0f, 2.0f, 10.0f};
+  constexpr float near_plane = 0.1f;
+  constexpr float far_plane = 100.0f;
 
+  constexpr float cube_pos[3] = {1.0, -2.0, -1.0};
+  constexpr float pyramid_pos[3] = {0.0, 0.0, 0.0};
+
+  Viewer viewer(width, height);
   Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");
-  // to hold id's of uniform variables
-  GLuint modelview_loc, proj_loc;
+  Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
+  Cube cube(gl::V3(cube_pos[0], cube_pos[1], cube_pos[2]), 1.0);
+  Pyramid pyramid(gl::V3(pyramid_pos[0], pyramid_pos[1], pyramid_pos[2]), 1.0);
 
-  Cube cube(gl::V3(1.0, -2.0, -1.0), 1.0);
-  Pyramid pyramid(gl::V3(0.0, 0.0, 0.0), 1.0);
+  // to hold id's of uniform variables
+  GLuint model_loc;
 
   // vertex array object to prganize vertex buffers
   VAO va;
@@ -40,11 +43,10 @@ int main() {
   vb[0].set_data(cube.vertices());
   vb[1].set_data(pyramid.vertices());
 
+  // Transformation matrices
+  gl::A3 model_m = gl::A3::Identity();
   // get locations of uniforms in the shader program
-  modelview_loc = glGetUniformLocation(shader.getHandle(), "modelview");
-  proj_loc = glGetUniformLocation(shader.getHandle(), "proj");
-
-  t.start();
+  model_loc = glGetUniformLocation(shader.getHandle(), "model");
 
   cube.set_global_position(gl::V3(1.0f, 3.0f, 1.0f));
 
@@ -58,42 +60,39 @@ int main() {
     // Load the compiled shaders to the GPU
     shader.Activate();
 
-    /// Move camera ///////////////////////////////
-    // build perspective matrix
-    proj_m =
-        glm::perspective(gl::deg2rad(60.0_deg), viewer.aspect_ratio(), 0.1f,
-                         1000.0f); // 1.0472 radians == 60 degrees
+    // camera
+    // Handles camera inputs
+    camera.Inputs(viewer.getHandle());
 
-    // Draw cube ////////////////////////////////
+    // Updates and exports the camera matrix to the Vertex Shader
+    camera.Matrix(camera_fov, near_plane, far_plane, shader, "cam_view");
+
+    // Draw cube
 
     cube.global_rotate_y(M_PI / 100.0f);
 
-    // build view,model matrices
-    view_m.translation() = -camera.pose();
+    // create model matrix
     model_m = cube.global_pose();
-    modelview_m = view_m * model_m;
 
     // copy matrix data to corresponding uniform variables
-    glUniformMatrix4fv(modelview_loc, 1, GL_FALSE, modelview_m.data());
-    glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(proj_m));
+    glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
-    // Link VAO to VBO
+    // Link vaO to vbO
     va.LinkAttrib(vb[0], 0, GL_FLOAT);
-
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
     // Draw pyramid ////////////////////////////////
     // build view,model matrices
-    view_m.translation() = -camera.pose();
+    pyramid.global_rotate_x(M_PI / 100.0f);
+
+    // create model matrix
     model_m = pyramid.global_pose();
-    modelview_m = view_m * model_m;
 
     // copy matrix data to corresponding uniform variables
-    glUniformMatrix4fv(modelview_loc, 1, GL_FALSE, modelview_m.data());
-    glUniformMatrix4fv(proj_loc, 1, GL_FALSE, glm::value_ptr(proj_m));
+    glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
-    // Link VAO to VBO
+    // Link vaO to vbO
     va.LinkAttrib(vb[1], 0, GL_FLOAT);
 
     // draw
