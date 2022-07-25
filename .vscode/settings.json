@@ -86,6 +86,9 @@
         "utility": "cpp",
         "filesystem": "cpp",
         "queue": "cpp",
-        "*.ipp": "cpp"
+        "*.ipp": "cpp",
+        "any": "cpp",
+        "codecvt": "cpp",
+        "condition_variable": "cpp"
     }
 }

@@ -30,13 +30,13 @@ void VBO::set_texture(const gl::M2DC &M) {
   texture_set_flag_ = true;
 }
 
-VBO::~VBO() { this->Delete(); }
+VBO::~VBO() { VBO::Delete(); }
 
 // Binds the VBO
-void VBO::Bind() { glBindBuffer(GL_ARRAY_BUFFER, ID); }
+void VBO::Bind() const { glBindBuffer(GL_ARRAY_BUFFER, ID); }
 
 // Unbinds the VBO
-void VBO::Unbind() { glBindBuffer(GL_ARRAY_BUFFER, ID); }
+void VBO::Unbind() const { glBindBuffer(GL_ARRAY_BUFFER, ID); }
 
 // Deletes the VBO
-void VBO::Delete() { glDeleteBuffers(1, &ID); }
+void VBO::Delete() const { glDeleteBuffers(1, &ID); }

@@ -28,6 +28,9 @@ int main() {
 
   constexpr float pyramid_pos[3] = {1.0, -2.0, -1.0};
 
+  const std::string texPath = "/resources/textures/";
+  const std::string texture_file = "floor.png";
+
   Viewer viewer(width, height);
   Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");
   Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
@@ -57,8 +60,7 @@ int main() {
 
   // load texture
   std::string parentDir = (fs::current_path()).string();
-  std::string texPath = "/resources/textures/";
-  Texture floor((parentDir + texPath + "floor.png").c_str(), GL_TEXTURE_2D,
+  Texture floor((parentDir + texPath + texture_file).c_str(), GL_TEXTURE_2D,
                 GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
   floor.texUnit(shader, "tex0", 0);
 

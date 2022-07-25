@@ -16,8 +16,6 @@ Texture::Texture(const char *image_path, GLenum texType, GLenum slot,
   unsigned char *data =
       stbi_load(image_path, &widthImg, &heightImg, &numColCh, 0);
 
-  std::cout << "data: " << image_path << '\n';
-
   if (data) {
     GLenum format_ = 0;
     if (numColCh == 1)

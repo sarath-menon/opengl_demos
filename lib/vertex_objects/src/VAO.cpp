@@ -5,13 +5,14 @@ VAO::VAO() {
   // create vertex array
   glGenVertexArrays(1, &ID);
   // Activate the VA
-  this->Bind();
+  VAO::Bind();
 }
 
 VAO::~VAO() { this->Delete(); }
 
 // Links a vbo to the VAO using a certain layout
-void VAO::link_vertices(VBO &vbo, GLuint layout, GLenum type) {
+void VAO::link_vertices(VBO &vbo, const GLuint layout,
+                        const GLenum type) const {
 
   // safety checks
   assert(vbo.data_set_flag() == true);
@@ -26,7 +27,7 @@ void VAO::link_vertices(VBO &vbo, GLuint layout, GLenum type) {
 }
 
 // Links a vbo to the VAO using a certain layout
-void VAO::link_texture(VBO &vbo, GLuint layout, GLenum type) {
+void VAO::link_texture(VBO &vbo, const GLuint layout, const GLenum type) const {
 
   // safety checks
   assert(vbo.texture_set_flag() == true);
@@ -41,10 +42,10 @@ void VAO::link_texture(VBO &vbo, GLuint layout, GLenum type) {
 }
 
 // Activate the VAO
-void VAO::Bind() { glBindVertexArray(ID); }
+void VAO::Bind() const { glBindVertexArray(ID); }
 
 // Unbinds the VAO
-void VAO::Unbind() { glBindVertexArray(0); }
+void VAO::Unbind() const { glBindVertexArray(0); }
 
 // Deletes the VAO
 void VAO::Delete() { glDeleteVertexArrays(1, &ID); }

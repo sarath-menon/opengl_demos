@@ -13,16 +13,16 @@ public:
   ~VBO();
 
   // Binds the VBO
-  void Bind();
+  void Bind() const;
   // Unbinds the VBO
-  void Unbind();
+  void Unbind() const;
 
   void set_vertices(const gl::M3DC &M);
   void set_texture(const gl::M2DC &M);
 
   // getter functions
-  auto &data_set_flag() { return data_set_flag_; }
-  auto &texture_set_flag() { return texture_set_flag_; }
+  const auto &data_set_flag() const { return data_set_flag_; }
+  const auto &texture_set_flag() const { return texture_set_flag_; }
 
 private:
   // true if data has been set
@@ -30,5 +30,5 @@ private:
   bool texture_set_flag_{};
 
   // Deletes the VBO
-  void Delete();
+  void Delete() const;
 };
