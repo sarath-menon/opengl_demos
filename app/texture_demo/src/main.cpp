@@ -20,6 +20,9 @@ int main() {
   constexpr float height = 600;
 
   constexpr float cam_pos[3] = {0.0f, 2.0f, 10.0f};
+  constexpr float near_plane = 0.1f;
+  constexpr float far_plane = 100.0f;
+
   const gl::V3 pyramid_pos(1.0, -2.0, -1.0);
 
   const std::string texPath = "/resources/textures/";
