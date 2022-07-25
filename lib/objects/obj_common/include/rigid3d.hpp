@@ -13,6 +13,13 @@ protected:
   // pose of the rigid body
   gl::A3 global_pose_{};
 
+  // one (x,y,z) position coordinate per row
+  gl::M3DC vertices_;
+  // one (u,v) texture coordinate per row
+  gl::M2DC texture_coord_;
+  // one (x,y,z) normal vector per row
+  gl::M3DC normals_;
+
 public:
   // set global parameters -----------
   void set_global_pose(const gl::A3 &pose);
