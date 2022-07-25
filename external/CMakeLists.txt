@@ -1,10 +1,19 @@
+# Template for pure interface library
 
-add_library(external INTERFACE)
+set(LIB_NAME external)
 
-target_link_libraries(external INTERFACE 
+# list of libs to combine as one interface lib
+set(SUB_LIBS 
 glad
-stb_image
+stb
 )
 
-add_subdirectory(glad)
-add_subdirectory(stb_image)
+####### Do not modify !
+
+add_library(${LIB_NAME} INTERFACE)
+
+target_link_libraries(${LIB_NAME} INTERFACE ${SUB_LIBS})
+
+foreach(LIB ${SUB_LIBS})
+    add_subdirectory(${LIB})
+endforeach()

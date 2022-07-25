@@ -3,13 +3,17 @@ set(MODULE_NAME obj_common)
 # list of c++ source files
 set(CPP_FILES
 src/rigid3d.cpp
+src/texture.cpp
 )
 
 # list of library dependendcies
 set(LIB_DEP
 common
+shader
+glfw
 mathlib
 Eigen3::Eigen
+external
 )
 
 ####### Do not modify !
