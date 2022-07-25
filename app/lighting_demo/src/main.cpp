@@ -5,8 +5,10 @@
 #include "pyramid.hpp"
 #include "shader.hpp"
 #include "stb_image.h"
+#include "texture.hpp"
 #include "timer.hpp"
 #include "viewer.hpp"
+#include <filesystem>
 #include <iostream>
 
 #include <glm/glm.hpp>
@@ -26,6 +28,9 @@ int main() {
   constexpr float cube_pos[3] = {1.0, -2.0, -1.0};
   constexpr float pyramid_pos[3] = {0.0, 0.0, 0.0};
 
+  const std::string texPath = "/resources/textures/";
+  const std::string texture_file = "floor.png";
+
   Viewer viewer(width, height);
   Shader object_shader("shaders/3d_vertShader.glsl",
                        "shaders/3d_fragShader.glsl");
@@ -43,18 +48,27 @@ int main() {
   VAO va;
 
   // vertex buffer to be sent to vertex shader
-  VBO vb[2];
+  VBO vb[3];
   vb[0].set_vertices(cube.vertices());
   vb[1].set_vertices(pyramid.vertices());
+  vb[2].set_texture(pyramid.texture_coord());
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
 
   // get locations of uniforms in the shader program
   model_loc = glGetUniformLocation(object_shader.getHandle(), "model");
-  light_model_loc = glGetUniformLocation(object_shader.getHandle(), "model");
+  light_model_loc = glGetUniformLocation(light_shader.getHandle(), "model");
 
   cube.set_global_position(gl::V3(1.0f, 3.0f, 1.0f));
+
+  // load texture
+  std::string parentDir = (std::filesystem::current_path()).string();
+  Texture floor((parentDir + texPath + texture_file).c_str(), GL_TEXTURE_2D,
+                GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+  floor.texUnit(object_shader, "tex0", 0);
+
+  glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
@@ -84,6 +98,7 @@ int main() {
 
     // Link vaO to vbO
     va.link_vertices(vb[1], 0, GL_FLOAT);
+    va.link_texture(vb[2], 1, GL_FLOAT);
 
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 18);
@@ -91,7 +106,7 @@ int main() {
     // Export the camMatrix to the Vertex Shader of the pyramid
     camera.Matrix(object_shader, "cam_view");
 
-    //// Draw cube    ////////////////////////////////////////
+    //// Draw light cube    ////////////////////////////////////////
 
     // Load the compiled shaders to the GPU
     light_shader.Activate();
@@ -104,8 +119,13 @@ int main() {
     // copy matrix data to corresponding uniform variables
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
+    // set light colour
+    glUniform4f(glGetUniformLocation(light_shader.getHandle(), "lightColor"),
+                lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+
     // Link vaO to vbO
     va.link_vertices(vb[0], 0, GL_FLOAT);
+
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
