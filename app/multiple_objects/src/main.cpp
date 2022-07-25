@@ -64,8 +64,8 @@ int main() {
     // Handles camera inputs
     camera.Inputs(viewer.getHandle());
 
-    // Updates and exports the camera matrix to the Vertex Shader
-    camera.Matrix(camera_fov, near_plane, far_plane, shader, "cam_view");
+    // Update the camera position according to mouse interaction
+    camera.updateMatrix(camera_fov, 0.1f, 100.0f);
 
     // Draw cube
 
@@ -94,6 +94,11 @@ int main() {
 
     // Link vaO to vbO
     va.link_vertices(vb[1], 0, GL_FLOAT);
+
+    //////////////////////////////////////////////////////////
+
+    // Export the camMatrix to the Vertex Shader of the pyramid
+    camera.Matrix(shader, "cam_view");
 
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 18);
