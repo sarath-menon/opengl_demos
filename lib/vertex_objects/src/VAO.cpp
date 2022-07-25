@@ -11,7 +11,7 @@ VAO::VAO() {
 VAO::~VAO() { this->Delete(); }
 
 // Links a vbo to the VAO using a certain layout
-void VAO::LinkAttrib(VBO &vbo, GLuint layout, GLenum type) {
+void VAO::link_vertices(VBO &vbo, GLuint layout, GLenum type) {
 
   // safety checks
   assert(vbo.data_set_flag() == true);
@@ -23,8 +23,21 @@ void VAO::LinkAttrib(VBO &vbo, GLuint layout, GLenum type) {
 
   // enable the (layout)th vertex attribute
   glEnableVertexAttribArray(layout);
+}
 
-  // vbo.Unbind();
+// Links a vbo to the VAO using a certain layout
+void VAO::link_texture(VBO &vbo, GLuint layout, GLenum type) {
+
+  // safety checks
+  assert(vbo.texture_set_flag() == true);
+
+  vbo.Bind();
+
+  // associate active buffer with the (layout)th vertex attribute in the shader
+  glVertexAttribPointer(layout, 2, type, GL_FALSE, 0, (GLvoid *)0);
+
+  // enable the (layout)th vertex attribute
+  glEnableVertexAttribArray(layout);
 }
 
 // Activate the VAO
