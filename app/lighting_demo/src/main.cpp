@@ -20,9 +20,9 @@ int main() {
   constexpr float width = 600;
   constexpr float height = 600;
 
-  constexpr float cam_pos[3] = {0.0f, 2.0f, 10.0f};
+  const glm::vec3 camera_pos = glm::vec3(0.0f, 2.0f, 8.0f);
 
-  const gl::V3 light_cube_pos = gl::V3(1.0, -2.0, -1.0);
+  const gl::V3 light_cube_pos = gl::V3(0.5f, 0.5f, 0.5f);
   const glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
   const gl::V3 pyramid_pos = gl::V3(0.0, 0.0, 0.0);
@@ -36,7 +36,7 @@ int main() {
   Shader light_shader("shaders/light_vshader.glsl",
                       "shaders/light_fshader.glsl");
 
-  Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
+  Camera camera(width, height, camera_pos);
   Cube light_cube(light_cube_pos, 1.0);
   Pyramid pyramid(pyramid_pos, 1.0);
 
