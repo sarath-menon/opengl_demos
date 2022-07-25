@@ -2,6 +2,7 @@
 
 #include <glad/glad.h>
 //
+#include "gl_common.hpp"
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -30,16 +31,18 @@ public:
   float speed = 0.1f;
   float sensitivity = 100.0f;
 
+  float near_plane_ = 0.1f;
+  float far_plane_ = 100.0f;
+  float fov_degrees_ = 60.0_deg;
+
   // Camera constructor to set up initial values
   Camera(const int width, const int height, const glm::vec3 position);
 
   // Updates and exports the camera matrix to the Vertex Shader
-  void Matrix(const float fov_degrees, const float near_plane,
-              const float far_plane, const Shader &shader,
-              const char *uniform) const;
+  void Matrix(const Shader &shader, const char *uniform) const;
 
   // Updates the camera matrix to the Vertex Shader
-  void updateMatrix(float FOVdeg, float nearPlane, float farPlane);
+  void updateMatrix();
   // Exports the camera matrix to a shader
   void Matrix(Shader &shader, const char *uniform);
 
