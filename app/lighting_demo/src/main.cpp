@@ -67,6 +67,15 @@ int main() {
                 GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
   floor.texUnit(obj_shader, "tex0", 0);
 
+  // set light colour
+  light_shader.Activate();
+  glUniform4f(glGetUniformLocation(light_shader.getHandle(), "lightColor"),
+              lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+
+  obj_shader.Activate();
+  glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "lightColor"),
+              lightColor.x, lightColor.y, lightColor.z, lightColor.w);
+
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
     // viewer
@@ -113,10 +122,6 @@ int main() {
 
     // copy matrix data to corresponding uniform variables
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
-
-    // set light colour
-    glUniform4f(glGetUniformLocation(light_shader.getHandle(), "lightColor"),
-                lightColor.x, lightColor.y, lightColor.z, lightColor.w);
 
     // Link vaO to vbO
     va.link_vertices(vb[0], 0, GL_FLOAT);
