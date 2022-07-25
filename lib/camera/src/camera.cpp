@@ -6,9 +6,25 @@ Camera::Camera(const int width, const int height, const glm::vec3 position) {
   position_ = position;
 }
 
-void Camera::Matrix(const float fov_degrees, const float near_plane,
-                    const float farPlane, const Shader &shader,
-                    const char *uniform) const {
+// void Camera::Matrix(const float fov_degrees, const float near_plane,
+//                     const float farPlane, const Shader &shader,
+//                     const char *uniform) const {
+//   // Initializes matrices since otherwise they will be the null matrix
+//   glm::mat4 view = glm::mat4(1.0f);
+//   glm::mat4 projection = glm::mat4(1.0f);
+
+//   // Makes camera look in the right direction from the right position
+//   view = glm::lookAt(position_, position_ + orientation_, Up);
+//   // Adds perspective to the scene
+//   projection = glm::perspective(glm::radians(fov_degrees),
+//                                 (float)width / height, near_plane, farPlane);
+
+//   // Exports the camera matrix to the Vertex Shader
+//   glUniformMatrix4fv(glGetUniformLocation(shader.getHandle(), uniform), 1,
+//                      GL_FALSE, glm::value_ptr(projection * view));
+// }
+
+void Camera::updateMatrix(float FOVdeg, float nearPlane, float farPlane) {
   // Initializes matrices since otherwise they will be the null matrix
   glm::mat4 view = glm::mat4(1.0f);
   glm::mat4 projection = glm::mat4(1.0f);
@@ -16,12 +32,17 @@ void Camera::Matrix(const float fov_degrees, const float near_plane,
   // Makes camera look in the right direction from the right position
   view = glm::lookAt(position_, position_ + orientation_, Up);
   // Adds perspective to the scene
-  projection = glm::perspective(glm::radians(fov_degrees),
-                                (float)width / height, near_plane, farPlane);
+  projection = glm::perspective(glm::radians(FOVdeg), (float)width / height,
+                                nearPlane, farPlane);
 
-  // Exports the camera matrix to the Vertex Shader
+  // Sets new camera matrix
+  cam_mat = projection * view;
+}
+
+void Camera::Matrix(Shader &shader, const char *uniform) {
+  // Exports camera matrix
   glUniformMatrix4fv(glGetUniformLocation(shader.getHandle(), uniform), 1,
-                     GL_FALSE, glm::value_ptr(projection * view));
+                     GL_FALSE, glm::value_ptr(cam_mat));
 }
 
 void Camera::Inputs(GLFWwindow *window) {
