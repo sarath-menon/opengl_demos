@@ -24,15 +24,16 @@ int main() {
   constexpr float near_plane = 0.1f;
   constexpr float far_plane = 100.0f;
 
-  constexpr float pyramid_pos[3] = {1.0, -2.0, -1.0};
+  const gl::V3 pyramid_pos(1.0, -2.0, -1.0);
 
   const std::string texPath = "/resources/textures/";
   const std::string texture_file = "floor.png";
 
   Viewer viewer(width, height);
-  Shader shader("shaders/3d_vertShader.glsl", "shaders/3d_fragShader.glsl");
+  Shader shader("shaders/3d_texture_vshader.glsl",
+                "shaders/3d_texture_fshader.glsl");
   Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
-  Pyramid pyramid(gl::V3(pyramid_pos[0], pyramid_pos[1], pyramid_pos[2]), 1.0);
+  Pyramid pyramid(pyramid_pos, 1.0);
 
   // to hold id's of uniform variables
   GLuint model_loc;

@@ -23,15 +23,16 @@ int main() {
   constexpr float near_plane = 0.1f;
   constexpr float far_plane = 100.0f;
 
-  constexpr float cube_pos[3] = {1.0, -2.0, -1.0};
-  constexpr float pyramid_pos[3] = {0.0, 0.0, 0.0};
+  const gl::V3 cube_pos = gl::V3(1.0, -2.0, -1.0);
+  const gl::V3 pyramid_pos = gl::V3(0.0, 0.0, 0.0);
+  const glm::vec4 obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
 
   Viewer viewer(width, height);
-  Shader object_shader("shaders/3d_vertShader.glsl",
-                       "shaders/3d_fragShader.glsl");
+  Shader obj_shader("shaders/3d_constcolour_vshader.glsl",
+                    "shaders/3d_constcolour_fshader.glsl");
   Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
-  Cube cube(gl::V3(cube_pos[0], cube_pos[1], cube_pos[2]), 1.0);
-  Pyramid pyramid(gl::V3(pyramid_pos[0], pyramid_pos[1], pyramid_pos[2]), 1.0);
+  Cube cube(cube_pos, 1.0);
+  Pyramid pyramid(pyramid_pos, 1.0);
 
   // to hold id's of uniform variables
   GLuint model_loc;
@@ -48,9 +49,16 @@ int main() {
   gl::A3 model_m = gl::A3::Identity();
 
   // get locations of uniforms in the shader program
-  model_loc = glGetUniformLocation(object_shader.getHandle(), "model");
+  model_loc = glGetUniformLocation(obj_shader.getHandle(), "model");
 
   cube.set_global_position(gl::V3(1.0f, 3.0f, 1.0f));
+
+  // Load the compiled shaders to the GPU
+  obj_shader.Activate();
+
+  // set light colour
+  glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "obj_colour"),
+              obj_colour.x, obj_colour.y, obj_colour.z, obj_colour.w);
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
@@ -58,9 +66,6 @@ int main() {
     viewer.processInput();
 
     viewer.clear_display();
-
-    // Load the compiled shaders to the GPU
-    object_shader.Activate();
 
     // camera
     // Handles camera inputs
@@ -103,7 +108,7 @@ int main() {
     //////////////////////////////////////////////////////////
 
     // Export the camMatrix to the Vertex Shader of the pyramid
-    camera.Matrix(object_shader, "cam_view");
+    camera.Matrix(obj_shader, "cam_view");
 
     viewer.start_display();
   }
