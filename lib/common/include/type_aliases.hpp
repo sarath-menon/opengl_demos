@@ -8,10 +8,12 @@ using V3 = Eigen::Vector3f;
 using V4 = Eigen::Vector4f;
 
 // static matrix
-using M3 = Eigen::Matrix<float, 3, 3>;
-using M4 = Eigen::Matrix<float, 4, 4>;
+using M3 = Eigen::Matrix3f;
+using M3 = Eigen::Matrix3f;
+using M4 = Eigen::Matrix4f;
 
 // dynamic matrices
+using M2DC = Eigen::Matrix<float, 2, Eigen::Dynamic, Eigen::RowMajor>;
 using M3DC = Eigen::Matrix<float, 3, Eigen::Dynamic, Eigen::RowMajor>;
 
 using A3 = Eigen::Affine3f;
