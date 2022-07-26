@@ -21,3 +21,8 @@ void Rigid3d::global_rotate_y(const float angle) {
 void Rigid3d::global_rotate_z(const float angle) {
   Rot::axis(global_pose_, axis::z, angle);
 }
+
+void Rigid3d::set_scale(const float scale) {
+  scale_ = scale;
+  vertices_ = vertices_ * scale;
+}
