@@ -4,6 +4,7 @@ set(MODULE_NAME obj_common)
 set(CPP_FILES
 src/rigid3d.cpp
 src/texture.cpp
+src/mesh.cpp
 )
 
 # list of library dependendcies
@@ -13,6 +14,7 @@ shader
 glfw
 mathlib
 Eigen3::Eigen
+assimp::assimp
 external
 )
 
