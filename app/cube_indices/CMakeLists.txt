@@ -1,5 +1,5 @@
 #template for executables
-set(EXEC_NAME cube_demo)
+set(EXEC_NAME cube_indices)
 
 # list of c++ source files
 set(CPP_FILES
