@@ -23,7 +23,7 @@ struct Vertex {
 };
 
 struct Texture {
-  unsigned int id;
-  std::string type;
+  unsigned int id;  // texture id
+  std::string type; // diffused or specular type
   std::string path;
 };

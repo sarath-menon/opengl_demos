@@ -4,4 +4,5 @@ add_subdirectory(texture_demo)
 add_subdirectory(lighting_demo)
 add_subdirectory(multiple_objects)
 add_subdirectory(mesh_demo)
+add_subdirectory(assimp_demo)
 

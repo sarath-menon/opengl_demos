@@ -7,6 +7,7 @@ find_package(glfw3 3.3 REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(OpenGL 4.1 REQUIRED)
 find_package(Eigen3 3.3 REQUIRED)
+find_package(Assimp 5.0 REQUIRED)
 
 
 add_subdirectory(app)
