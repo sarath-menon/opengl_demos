@@ -4,6 +4,7 @@ set(MODULE_NAME vertex_objects)
 set(CPP_FILES
 src/VAO.cpp
 src/VBO.cpp
+src/EBO.cpp
 )
 
 # list of library dependendcies
