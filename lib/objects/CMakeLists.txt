@@ -9,6 +9,7 @@ obj_common
 triangle
 cube
 pyramid
+cube_new
 )
 
 ####### Do not modify !

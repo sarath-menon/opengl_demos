@@ -1,7 +1,8 @@
+#include "EBO.hpp"
 #include "VAO.hpp"
 #include "VBO.hpp"
 #include "camera.hpp"
-#include "cube.hpp"
+#include "cube_new.hpp"
 #include "shader.hpp"
 #include "stb_image.h"
 #include "timer.hpp"
@@ -18,7 +19,7 @@ int main() {
   constexpr float width = 600;
   constexpr float height = 600;
 
-  constexpr float cam_pos[3] = {0.0f, 0.0f, 10.0f};
+  constexpr float cam_pos[3] = {0.0f, 0.0f, 5.0f};
   const gl::V3 cube_pos = gl::V3(1.0, -2.0, -1.0);
   const glm::vec4 obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
 
@@ -26,12 +27,12 @@ int main() {
   Shader obj_shader("shaders/3d_constcolour_vshader.glsl",
                     "shaders/3d_constcolour_fshader.glsl");
   Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
-  Cube cube(cube_pos, 1.0);
+  CubeNew cube(cube_pos, 1.0);
 
   // to hold id's of uniform variables
   GLuint model_loc;
 
-  gl::Timer t;
+  cube.set_scale(0.5f);
 
   // vertex array object to prganize vertex buffers
   VAO va;
@@ -39,13 +40,13 @@ int main() {
   VBO vb[2];
   vb[0].set_vertices(cube.vertices());
 
+  // Generates Element Buffer Object and links it to indices
+  EBO EBO1(cube.indices());
+
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
   // get locations of uniforms in the shader program
   model_loc = glGetUniformLocation(obj_shader.getHandle(), "model");
-
-  // start timer
-  t.start();
 
   cube.set_global_position(gl::V3(1.0f, 1.0f, 1.0f));
 
@@ -85,7 +86,7 @@ int main() {
     va.link_vertices(vb[0], 0, GL_FLOAT);
 
     // send data in vertex buffer to the obj_shader and start drawing
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDrawElements(GL_TRIANGLES, cube.indices().size(), GL_UNSIGNED_INT, 0);
 
     //////////////////////////////////////////////////////////
     // Export the camMatrix to the Vertex Shader of the pyramid
