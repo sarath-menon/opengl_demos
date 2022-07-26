@@ -13,8 +13,4 @@ private:
 public:
   // Equilateral triangle given starting coord and side length
   Pyramid(const gl::V3 coord, const float length);
-
-  const auto &vertices() const { return vertices_; }
-
-  const auto &texture_coord() const { return texture_coord_; }
 };

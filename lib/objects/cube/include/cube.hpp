@@ -13,6 +13,4 @@ private:
 public:
   // Equilateral triangle given starting coord and side length
   Cube(const gl::V3 coord, const float length);
-
-  const auto &vertices() const { return vertices_; }
 };
