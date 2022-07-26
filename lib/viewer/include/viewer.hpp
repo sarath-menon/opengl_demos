@@ -4,6 +4,7 @@
 //
 #include "gl_common.hpp"
 #include <GLFW/glfw3.h>
+#include <string>
 
 class Viewer {
 
@@ -20,7 +21,7 @@ private:
   float aspect_ratio_{};
 
 public:
-  Viewer(const int width, const int height);
+  Viewer(const int width, const int height, std::string window_name);
   ~Viewer();
 
   void clear_display() const;

@@ -1,7 +1,7 @@
 #include "viewer.hpp"
 #include <iostream>
 
-Viewer::Viewer(const int width, const int height) {
+Viewer::Viewer(const int width, const int height, std::string window_name) {
 
   // safety checks
   assert(width > 0 && height > 0);
@@ -30,7 +30,7 @@ Viewer::Viewer(const int width, const int height) {
 #endif
 
   // Parameters: width, height, windowname, full screen, resource sharing
-  handle_ = glfwCreateWindow(width, height, "LearnOpenGL", NULL, NULL);
+  handle_ = glfwCreateWindow(width, height, window_name.c_str(), NULL, NULL);
 
   // Error check for safety
   if (handle_ == NULL) {

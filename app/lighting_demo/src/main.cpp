@@ -30,7 +30,7 @@ int main() {
   const std::string texPath = "/resources/textures/";
   const std::string texture_file = "floor.png";
 
-  Viewer viewer(width, height);
+  Viewer viewer(width, height, "Lighting demo");
   Shader obj_shader("shaders/3d_texture_vshader.glsl",
                     "shaders/3d_texture_fshader.glsl");
   Shader light_shader("shaders/light_vshader.glsl",

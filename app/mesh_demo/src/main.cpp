@@ -24,7 +24,7 @@ int main() {
   const gl::V3 pyramid_pos = gl::V3(0.0, 0.0, 0.0);
   const glm::vec4 obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
 
-  Viewer viewer(width, height);
+  Viewer viewer(width, height, "Mesh demo");
   Shader obj_shader("shaders/3d_constcolour_vshader.glsl",
                     "shaders/3d_constcolour_fshader.glsl");
   Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));

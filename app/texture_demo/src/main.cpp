@@ -25,7 +25,7 @@ int main() {
   const std::string texPath = "/resources/textures/";
   const std::string texture_file = "floor.png";
 
-  Viewer viewer(width, height);
+  Viewer viewer(width, height, "Pyramid with texture");
   Shader shader("shaders/3d_texture_vshader.glsl",
                 "shaders/3d_texture_fshader.glsl");
   Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));

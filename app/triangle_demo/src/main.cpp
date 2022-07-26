@@ -9,7 +9,7 @@
 
 int main() {
 
-  Viewer viewer(600, 600);
+  Viewer viewer(600, 600, "Triangle");
 
   Shader shader("shaders/2d_vertShader.glsl", "shaders/2d_fragShader.glsl");
 
