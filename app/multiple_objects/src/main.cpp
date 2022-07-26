@@ -101,15 +101,14 @@ int main() {
     va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
 
     // enable wireframe drawing
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+    viewer.enable_wireframe_view();
 
     glDrawArrays(GL_TRIANGLES, 0, 36);
 
     // Disable wireframe drawing
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    viewer.enable_solid_view();
 
     //////////////////////////////////////////////////////////
-
     // Export the camMatrix to the Vertex Shader of the pyramid
     camera.Matrix(obj_shader, "cam_view");
 
