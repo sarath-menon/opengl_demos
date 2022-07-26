@@ -13,8 +13,10 @@ using M3 = Eigen::Matrix3f;
 using M4 = Eigen::Matrix4f;
 
 // dynamic matrices
-using M2DC = Eigen::Matrix<float, 2, Eigen::Dynamic, Eigen::RowMajor>;
-using M3DC = Eigen::Matrix<float, 3, Eigen::Dynamic, Eigen::RowMajor>;
+using M2DR = Eigen::Matrix<float, 2, Eigen::Dynamic, Eigen::RowMajor>;
+using M3DR = Eigen::Matrix<float, 3, Eigen::Dynamic, Eigen::RowMajor>;
+
+using M3IDR = Eigen::Matrix<int, 3, Eigen::Dynamic, Eigen::RowMajor>;
 
 using A3 = Eigen::Affine3f;
 
