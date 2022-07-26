@@ -17,8 +17,8 @@ public:
   // Unbinds the VBO
   void Unbind() const;
 
-  void set_vertices(const gl::M3DC &M) const;
-  void set_texture(const gl::M2DC &M) const;
+  void set_vertices(const gl::M3DR &M) const;
+  void set_texture(const gl::M2DR &M) const;
 
   // getter functions
   const auto &data_set_flag() const { return data_set_flag_; }

@@ -4,7 +4,7 @@
 // Constructor that generates a Vertex Buffer Object and links it to vertices
 VBO::VBO() { glGenBuffers(1, &ID); }
 
-void VBO::set_vertices(const gl::M3DC &M) const {
+void VBO::set_vertices(const gl::M3DR &M) const {
   this->Bind();
 
   // We expect a matrix with each vertex position on a row, we then want to
@@ -17,7 +17,7 @@ void VBO::set_vertices(const gl::M3DC &M) const {
   data_set_flag_ = true;
 }
 
-void VBO::set_texture(const gl::M2DC &M) const {
+void VBO::set_texture(const gl::M2DR &M) const {
   this->Bind();
 
   // We expect a matrix with each texture coordinate pair in a row, we then want
