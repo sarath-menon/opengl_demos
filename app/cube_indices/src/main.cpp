@@ -57,6 +57,9 @@ int main() {
   glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "obj_colour"),
               obj_colour.x, obj_colour.y, obj_colour.z, obj_colour.w);
 
+  // Link VBO to  VAO
+  va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
+
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
     // Inputs
@@ -81,9 +84,6 @@ int main() {
 
     // copy matrix data to corresponding uniform variables
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
-
-    // Link vaO to vbO
-    va.link_vertices(vb[0], 0, GL_FLOAT);
 
     // send data in vertex buffer to the obj_shader and start drawing
     glDrawElements(GL_TRIANGLES, cube.indices().size(), GL_UNSIGNED_INT, 0);

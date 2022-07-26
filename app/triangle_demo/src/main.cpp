@@ -32,7 +32,7 @@ int main() {
     shader.Activate();
 
     // Link VBO attribute to VAO
-    VA.link_vertices(vb[0], 0, GL_FLOAT);
+    VA.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
 
     viewer.clear_display();
 

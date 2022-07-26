@@ -103,7 +103,7 @@ int main() {
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
     // Link vaO to vbO
-    va.link_vertices(vb[1], 0, GL_FLOAT);
+    va.set_vertex_attrb_ptrs(vb[1], 0, GL_FLOAT);
     va.link_texture(vb[2], 1, GL_FLOAT);
 
     // draw
@@ -124,7 +124,7 @@ int main() {
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
     // Link vaO to vbO
-    va.link_vertices(vb[0], 0, GL_FLOAT);
+    va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
 
     // draw
     glDrawArrays(GL_TRIANGLES, 0, 36);

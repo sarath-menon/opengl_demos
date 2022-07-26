@@ -53,7 +53,7 @@ int main() {
   // Load the compiled shaders to the GPU
   obj_shader.Activate();
 
-  // set object colour
+  // set light colour
   glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "obj_colour"),
               obj_colour.x, obj_colour.y, obj_colour.z, obj_colour.w);
 
@@ -99,14 +99,8 @@ int main() {
 
     // Link vaO to vbO
     va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
-
-    // enable wireframe drawing
-    glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+    // draw
     glDrawArrays(GL_TRIANGLES, 0, 36);
-
-    // Disable wireframe drawing
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
     //////////////////////////////////////////////////////////
 

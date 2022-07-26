@@ -91,7 +91,7 @@ int main() {
     // camera.Matrix(camera_fov, near_plane, far_plane, shader, "cam_view");
 
     // Link vaO to vbO
-    va.link_vertices(vb[0], 0, GL_FLOAT);
+    va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
     va.link_texture(vb[1], 1, GL_FLOAT);
 
     // send data in vertex buffer to the shader and start drawing
