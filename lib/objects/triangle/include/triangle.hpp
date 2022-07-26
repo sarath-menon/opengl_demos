@@ -12,7 +12,7 @@
 class Triangle {
 
 private:
-  gl::M3DC vertices_;
+  gl::M3DR vertices_;
 
 public:
   // Equilateral triangle given starting coord and side length
