@@ -14,13 +14,13 @@ protected:
   gl::A3 global_pose_{};
 
   // one (x,y,z) position coordinate per row
-  gl::M3DC vertices_;
+  gl::M3DR vertices_;
   // for vertext ordering, one per row
-  gl::M3DC indices_;
+  gl::M3IDR indices_;
   // one (u,v) texture coordinate per row
-  gl::M2DC texture_coord_;
+  gl::M2DR texture_coord_;
   // one (x,y,z) normal vector per row
-  gl::M3DC normals_;
+  gl::M3DR normals_;
 
 public:
   // set global parameters -----------
