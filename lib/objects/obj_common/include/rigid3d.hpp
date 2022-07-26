@@ -15,6 +15,8 @@ protected:
 
   // one (x,y,z) position coordinate per row
   gl::M3DC vertices_;
+  // for vertext ordering, one per row
+  gl::M3DC indices_;
   // one (u,v) texture coordinate per row
   gl::M2DC texture_coord_;
   // one (x,y,z) normal vector per row
@@ -33,9 +35,17 @@ public:
   void global_rotate_z(const float angle);
 
   // getter functions
-  auto &global_pose() const { return global_pose_; }
+  const auto &global_pose() const { return global_pose_; }
 
-  auto global_position() const { return global_pose_.translation(); }
+  const auto global_position() const { return global_pose_.translation(); }
 
-  auto orientationR() const { return global_pose_.rotation(); }
+  const auto orientationR() const { return global_pose_.rotation(); }
+
+  const auto &vertices() const { return vertices_; }
+
+  const auto &indices() const { return indices_; }
+
+  const auto &normals() const { return normals_; }
+
+  const auto &texture_coord() const { return texture_coord_; }
 };
