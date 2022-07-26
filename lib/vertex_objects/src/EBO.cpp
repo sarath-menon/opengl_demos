@@ -2,7 +2,8 @@
 
 EBO::EBO(const gl::M3IDR &indices) {
   glGenBuffers(1, &ID);
-  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
+  EBO::Bind();
+
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indices.size(),
                indices.data(), GL_STATIC_DRAW);
 }

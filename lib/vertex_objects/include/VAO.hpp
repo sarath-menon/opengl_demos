@@ -3,6 +3,9 @@
 #include "gl_common.hpp"
 
 class VAO {
+  //
+  // To organize vertex buffer objects
+  //
 public:
   // ID reference for the Vertex Array Object
   GLuint ID;
@@ -12,7 +15,8 @@ public:
   ~VAO();
 
   // Links a VBO to the VAO using a certain layout
-  void link_vertices(VBO &vbo, const GLuint layout, const GLenum type) const;
+  void set_vertex_attrb_ptrs(VBO &vbo, const GLuint layout,
+                             const GLenum type) const;
   void link_texture(VBO &vbo, const GLuint layout, const GLenum type) const;
 
 private:
@@ -20,6 +24,8 @@ private:
   void Bind() const;
   // Unbinds the VAO
   void Unbind() const;
+
+  void create_one_vertex_array();
 
   // Deletes the VAO
   void Delete();

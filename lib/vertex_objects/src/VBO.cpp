@@ -2,15 +2,24 @@
 #include <iostream>
 
 // Constructor that generates a Vertex Buffer Object and links it to vertices
-VBO::VBO() { glGenBuffers(1, &ID); }
+VBO::VBO() { VBO::create_one_buffer(); }
 
 void VBO::set_vertices(const gl::M3DR &M) const {
-  this->Bind();
+
+  VBO::Bind();
 
   // We expect a matrix with each vertex position on a row, we then want to
   // pass this data to OpenGL reading across rows (row-major)
 
-  // copy vertices to the active vertex buffer
+  /* copy vertex data to the active vertex buffer
+   API: (buffer type, data size, data, usage)
+   usage -> tell the graphics card how to manage the data
+
+   GL_STREAM_DRAW: the data is set only once and used by the GPU at most a few
+   times.
+   GL_STATIC_DRAW: the data is set only once and used many times.
+   GL_DYNAMIC_DRAW: the data is changed a lot and used many times.*/
+
   glBufferData(GL_ARRAY_BUFFER, sizeof(float) * M.size(), M.data(),
                GL_STATIC_DRAW);
 
@@ -32,10 +41,13 @@ void VBO::set_texture(const gl::M2DR &M) const {
 
 VBO::~VBO() { VBO::Delete(); }
 
-// Binds the VBO
+// create a memory buffer on the GPU and get it's ID
+void VBO::create_one_buffer() { glGenBuffers(1, &ID); }
+
+// Bind the memory buffer to array type, since it is the type used by VBO's
 void VBO::Bind() const { glBindBuffer(GL_ARRAY_BUFFER, ID); }
 
-// Unbinds the VBO
+// Unbind the memory buffer
 void VBO::Unbind() const { glBindBuffer(GL_ARRAY_BUFFER, ID); }
 
 // Deletes the VBO

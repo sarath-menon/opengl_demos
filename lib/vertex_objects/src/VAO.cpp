@@ -2,8 +2,8 @@
 
 // Constructor that generates a VAO ID
 VAO::VAO() {
-  // create vertex array
-  glGenVertexArrays(1, &ID);
+  VAO::create_one_vertex_array();
+
   // Activate the VA
   VAO::Bind();
 }
@@ -11,8 +11,8 @@ VAO::VAO() {
 VAO::~VAO() { this->Delete(); }
 
 // Links a vbo to the VAO using a certain layout
-void VAO::link_vertices(VBO &vbo, const GLuint layout,
-                        const GLenum type) const {
+void VAO::set_vertex_attrb_ptrs(VBO &vbo, const GLuint layout,
+                                const GLenum type) const {
 
   // safety checks
   assert(vbo.data_set_flag() == true);
@@ -40,6 +40,9 @@ void VAO::link_texture(VBO &vbo, const GLuint layout, const GLenum type) const {
   // enable the (layout)th vertex attribute
   glEnableVertexAttribArray(layout);
 }
+
+//
+void VAO::create_one_vertex_array() { glGenVertexArrays(1, &ID); }
 
 // Activate the VAO
 void VAO::Bind() const { glBindVertexArray(ID); }

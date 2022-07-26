@@ -3,6 +3,10 @@
 #include <glad/glad.h>
 
 class VBO {
+  //
+  // Creates meomry buffers in the GPU and send data large batches of data the
+  // GPU
+  //
 public:
   // Reference ID of the Vertex Buffer Object
   GLuint ID;
@@ -28,6 +32,8 @@ private:
   // true if data has been set
   mutable bool data_set_flag_{};
   mutable bool texture_set_flag_{};
+
+  void create_one_buffer();
 
   // Deletes the VBO
   void Delete() const;

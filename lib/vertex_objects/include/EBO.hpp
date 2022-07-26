@@ -4,6 +4,9 @@
 #include <glad/glad.h>
 
 class EBO {
+  /*
+  Specifies the order in which vertices should be drawn
+  */
 public:
   // ID reference of Elements Buffer Object
   GLuint ID;
