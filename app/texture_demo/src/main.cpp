@@ -65,7 +65,12 @@ int main() {
     viewer.processInput();
 
     viewer.clear_display();
-    //////////////////////////////
+
+    // Handles camera inputs
+    camera.Inputs(viewer.getHandle());
+
+    // Updates and exports the camera matrix to the Vertex Shader
+    camera.updateMatrix();
 
     // Load the compiled shaders to the GPU
     shader.Activate();
@@ -79,23 +84,15 @@ int main() {
     // copy matrix data to corresponding uniform variables
     glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
-    // Handles camera inputs
-    camera.Inputs(viewer.getHandle());
-    // Updates and exports the camera matrix to the Vertex Shader
-    camera.updateMatrix();
-
-    // Export the camMatrix to the Vertex Shader of the pyramid
-    camera.Matrix(shader, "cam_view");
-
-    // // Updates and exports the camera matrix to the Vertex Shader
-    // camera.Matrix(camera_fov, near_plane, far_plane, shader, "cam_view");
-
     // Link vaO to vbO
     va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
     va.link_texture(vb[1], 1, GL_FLOAT);
 
     // send data in vertex buffer to the shader and start drawing
     glDrawArrays(GL_TRIANGLES, 0, 36);
+
+    // Export the camMatrix to the Vertex Shader of the pyramid
+    camera.Matrix(shader, "cam_view");
 
     viewer.start_display();
   }
