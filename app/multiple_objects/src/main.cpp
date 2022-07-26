@@ -53,7 +53,7 @@ int main() {
   // Load the compiled shaders to the GPU
   obj_shader.Activate();
 
-  // set light colour
+  // set object colour
   glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "obj_colour"),
               obj_colour.x, obj_colour.y, obj_colour.z, obj_colour.w);
 
@@ -99,8 +99,9 @@ int main() {
 
     // Link vaO to vbO
     va.link_vertices(vb[0], 0, GL_FLOAT);
-    // draw
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+
+    // draw wireframe
+    glDrawArrays(GL_LINE_STRIP, 0, 36);
 
     //////////////////////////////////////////////////////////
 
