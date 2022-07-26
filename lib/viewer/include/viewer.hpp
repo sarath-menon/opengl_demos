@@ -27,11 +27,16 @@ public:
 
   void start_display() const;
 
-  // static void framebuffer_size_callback(GLFWwindow *handle, int width,
-  //                                       int height);
+  void enable_wireframe_view() const;
+
+  void enable_solid_view() const;
+
   void processInput() const;
 
   void terminate() const;
+
+  // static void framebuffer_size_callback(GLFWwindow *handle, int width,
+  //                                       int height);
 
   // getter functions
 

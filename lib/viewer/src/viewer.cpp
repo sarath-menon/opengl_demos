@@ -100,3 +100,11 @@ void Viewer::terminate() const {
   // Terminate GLFW before ending the program
   glfwTerminate();
 }
+
+void Viewer::enable_wireframe_view() const {
+  glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+}
+
+void Viewer::enable_solid_view() const {
+  glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+}
