@@ -11,8 +11,8 @@ Pyramid::Pyramid(const gl::V3 coord, const float length) {
   // set vertices and texture coordinates
   vertices_ = gl::M3DR::Zero(3, 5);
 
-  vertices_ << -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, -0.5f, 0.5f, 0.0f, -0.5f, 0.5f,
-      0.0f, 0.5f, 0.0f, 0.8f, 0.0f;
+  vertices_ << -1.0f, 0.0f, 1.0f, -1.0f, 0.0f, -1.0f, 1.0f, 0.0f, -1.0f, 1.0f,
+      0.0f, 1.0f, 0.0f, 1.5f, 0.0f;
 
   // set texture coordinates
   texture_coord_ = gl::M2DR ::Zero(2, 5);
