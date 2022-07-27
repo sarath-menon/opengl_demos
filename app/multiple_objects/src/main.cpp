@@ -45,21 +45,22 @@ int main() {
   cube_vb[0].set_vertices(cube.vertices());
   // Generates Element Buffer Object and links it to indices
   EBO cube_eb(cube.indices());
-  cube_va.Bind();
   // Link VBO to  VAO
   cube_va.set_vertex_attrb_ptrs(cube_vb[0], 0, GL_FLOAT);
-  // cube_eb.Unbind();
   cube_va.Unbind();
+  cube_eb.Unbind();
 
-  // // vertex array object to prganize vertex buffers
-  // VAO pyramid_va;
-  // // vertex buffer to be sent to vertex shader
-  // VBO pyramid_vb[2];
-  // pyramid_vb[0].set_vertices(pyramid.vertices());
-  // // Generates Element Buffer Object and links it to indices
-  // EBO pyramid_eb(pyramid.indices());
-  // pyramid_eb.Unbind();
-  // pyramid_va.Unbind();
+  // vertex array object to prganize vertex buffers
+  VAO pyramid_va;
+  // vertex buffer to be sent to vertex shader
+  VBO pyramid_vb[2];
+  pyramid_vb[0].set_vertices(pyramid.vertices());
+  // Generates Element Buffer Object and links it to indices
+  EBO pyramid_eb(pyramid.indices());
+  // Link VBO to  VAO
+  pyramid_va.set_vertex_attrb_ptrs(pyramid_vb[0], 0, GL_FLOAT);
+  pyramid_va.Unbind();
+  pyramid_eb.Unbind();
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
@@ -74,8 +75,6 @@ int main() {
   // set object colour
   glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "obj_colour"),
               obj_colour.x, obj_colour.y, obj_colour.z, obj_colour.w);
-
-  cube_va.Bind();
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
@@ -96,6 +95,8 @@ int main() {
 
     cube.global_rotate_y(M_PI / 100.0f);
 
+    cube_va.Bind();
+
     // create model matrix
     model_m = cube.global_pose();
 
@@ -104,6 +105,19 @@ int main() {
 
     // send data in vertex buffer to the obj_shader and start drawing
     glDrawElements(GL_TRIANGLES, cube.indices().size(), GL_UNSIGNED_INT, 0);
+
+    // Draw pyramid ////////////////////////////////
+
+    pyramid_va.Bind();
+
+    // create model matrix
+    model_m = pyramid.global_pose();
+
+    // copy matrix data to corresponding uniform variables
+    glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
+
+    // send data in vertex buffer to the obj_shader and start drawing
+    glDrawElements(GL_TRIANGLES, pyramid.indices().size(), GL_UNSIGNED_INT, 0);
 
     //////////////////////////////////////////////////////////
     // Export the camMatrix to the Vertex Shader of the pyramid
