@@ -19,12 +19,13 @@ public:
                              const GLenum type) const;
   void link_texture(VBO &vbo, const GLuint layout, const GLenum type) const;
 
-private:
-  // Binds the VAO
-  void Bind() const;
   // Unbinds the VAO
   void Unbind() const;
 
+  // Binds the VAO
+  void Bind() const;
+
+private:
   void create_one_vertex_array();
 
   // Deletes the VAO
