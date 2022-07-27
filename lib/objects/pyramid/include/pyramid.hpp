@@ -1,10 +1,10 @@
 #pragma once
 
 #include "gl_common.hpp"
-#include "rigid3d.hpp"
+#include "simple_model.hpp"
 #include <cmath>
 
-class Pyramid : public Rigid3d {
+class Pyramid : public SimpleModel {
 
 private:
   // length of each side

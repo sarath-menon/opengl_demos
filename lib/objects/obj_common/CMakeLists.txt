@@ -2,7 +2,7 @@ set(MODULE_NAME obj_common)
 
 # list of c++ source files
 set(CPP_FILES
-src/rigid3d.cpp
+src/simple_model.cpp
 src/texture.cpp
 src/mesh.cpp
 )
