@@ -1,5 +1,5 @@
 #template for executables
-set(EXEC_NAME add_subdirectory)
+set(EXEC_NAME assimp_demo)
 
 # list of c++ source files
 set(CPP_FILES
