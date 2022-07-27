@@ -1,3 +1,4 @@
+#include "EBO.hpp"
 #include "VAO.hpp"
 #include "VBO.hpp"
 #include "camera.hpp"
@@ -42,6 +43,9 @@ int main() {
   VBO vb[2];
   vb[0].set_vertices(pyramid.vertices());
   vb[1].set_texture(pyramid.texture_coord());
+
+  // Generates Element Buffer Object and links it to indices
+  EBO EBO1(pyramid.indices());
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
@@ -88,8 +92,8 @@ int main() {
     va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
     va.link_texture(vb[1], 1, GL_FLOAT);
 
-    // send data in vertex buffer to the shader and start drawing
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    // send data in vertex buffer to the obj_shader and start drawing
+    glDrawElements(GL_TRIANGLES, pyramid.indices().size(), GL_UNSIGNED_INT, 0);
 
     // Export the camMatrix to the Vertex Shader of the pyramid
     camera.Matrix(shader, "cam_view");

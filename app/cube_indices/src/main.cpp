@@ -2,7 +2,7 @@
 #include "VAO.hpp"
 #include "VBO.hpp"
 #include "camera.hpp"
-#include "cube_new.hpp"
+#include "cube.hpp"
 #include "shader.hpp"
 #include "stb_image.h"
 #include "timer.hpp"
@@ -27,7 +27,7 @@ int main() {
   Shader obj_shader("shaders/3d_constcolour_vshader.glsl",
                     "shaders/3d_constcolour_fshader.glsl");
   Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
-  CubeNew cube(cube_pos, 1.0);
+  Cube cube(cube_pos, 1.0);
 
   // to hold id's of uniform variables
   GLuint model_loc;
