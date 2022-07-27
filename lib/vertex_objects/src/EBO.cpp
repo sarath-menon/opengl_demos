@@ -1,9 +1,11 @@
 #include "EBO.hpp"
 
-EBO::EBO(const gl::M3IDR &indices) {
+EBO::EBO() {
   glGenBuffers(1, &ID);
   EBO::Bind();
+}
 
+void EBO::set_indices(const gl::M3IDR &indices) {
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(int) * indices.size(),
                indices.data(), GL_STATIC_DRAW);
 }
