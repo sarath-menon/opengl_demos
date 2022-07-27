@@ -5,14 +5,13 @@ set(CPP_FILES
 src/simple_model.cpp
 src/texture.cpp
 src/mesh.cpp
+src/rotation.cpp
 )
 
 # list of library dependendcies
 set(LIB_DEP
 common
 shader
-glfw
-mathlib
 Eigen3::Eigen
 assimp::assimp
 external

@@ -5,7 +5,6 @@ set(LIB_NAME gl_lib)
 # list of libs to combine as one interface lib
 set(SUB_LIBS 
 common
-mathlib
 objects
 shader
 vertex_objects
