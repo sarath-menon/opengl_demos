@@ -1,5 +1,8 @@
 #pragma once
 
+#include "EBO.hpp"
+#include "VAO.hpp"
+#include "VBO.hpp"
 #include "gl_common.hpp"
 #include "rotation.hpp"
 #include <cmath>
@@ -27,7 +30,19 @@ protected:
   // one (x,y,z) normal vector per row
   gl::M3DR normals_;
 
+  // vertex array object to prganize vertex buffers
+  VAO va;
+  // vertex buffer to be sent to vertex shader
+  VBO vb[2];
+
+  // Generates Element Buffer Object and links it to indices
+  EBO eb;
+
+  void initialize();
+
 public:
+  void display();
+
   // set global parameters -----------
   void set_global_pose(const gl::A3 &pose);
   void set_global_position(const gl::V3 pos);

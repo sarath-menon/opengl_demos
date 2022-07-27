@@ -6,6 +6,9 @@ src/simple_model.cpp
 src/texture.cpp
 src/mesh.cpp
 src/rotation.cpp
+src/EBO.cpp
+src/VBO.cpp
+src/VAO.cpp
 )
 
 # list of library dependendcies

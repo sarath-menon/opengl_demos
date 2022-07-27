@@ -5,6 +5,7 @@ set(MODULE_NAME common)
 # list of libs to combine as one interface lib
 set(SUB_LIBS 
 Eigen3::Eigen
+external
 )
 
 ####### Do not modify !

@@ -7,7 +7,6 @@ set(SUB_LIBS
 common
 objects
 shader
-vertex_objects
 viewer
 camera
 animation

@@ -34,18 +34,18 @@ int main() {
 
   cube.set_scale(0.5f);
 
-  // vertex array object to prganize vertex buffers
-  VAO cube_va;
-  // vertex buffer to be sent to vertex shader
-  VBO cube_vb[2];
-  cube_vb[0].set_vertices(cube.vertices());
-  // Generates Element Buffer Object and links it to indices
-  EBO cube_eb;
-  cube_eb.set_indices(cube.indices());
-  // Link VBO to  VAO
-  cube_va.set_vertex_attrb_ptrs(cube_vb[0], 0, GL_FLOAT);
-  cube_va.Unbind();
-  cube_eb.Unbind();
+  // // vertex array object to prganize vertex buffers
+  // VAO cube_va;
+  // // vertex buffer to be sent to vertex shader
+  // VBO cube_vb[2];
+  // cube_vb[0].set_vertices(cube.vertices());
+  // // Generates Element Buffer Object and links it to indices
+  // EBO cube_eb;
+  // cube_eb.set_indices(cube.indices());
+  // // Link VBO to  VAO
+  // cube_va.set_vertex_attrb_ptrs(cube_vb[0], 0, GL_FLOAT);
+  // cube_va.Unbind();
+  // cube_eb.Unbind();
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
@@ -83,7 +83,7 @@ int main() {
 
     cube.global_rotate_y(M_PI / 100.0f);
 
-    cube_va.Bind();
+    cube.display();
 
     // create model matrix
     model_m = cube.global_pose();
