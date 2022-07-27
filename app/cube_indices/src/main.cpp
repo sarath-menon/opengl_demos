@@ -40,7 +40,8 @@ int main() {
   VBO cube_vb[2];
   cube_vb[0].set_vertices(cube.vertices());
   // Generates Element Buffer Object and links it to indices
-  EBO cube_eb(cube.indices());
+  EBO cube_eb;
+  cube_eb.set_indices(cube.indices());
   // Link VBO to  VAO
   cube_va.set_vertex_attrb_ptrs(cube_vb[0], 0, GL_FLOAT);
   cube_va.Unbind();

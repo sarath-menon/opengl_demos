@@ -11,9 +11,11 @@ public:
   // ID reference of Elements Buffer Object
   GLuint ID;
   // Constructor that generates a Elements Buffer Object and links it to indices
-  EBO(const gl::M3IDR &indices);
+  EBO();
 
   ~EBO();
+
+  void set_indices(const gl::M3IDR &indices);
 
   // Binds the EBO
   void Bind();
