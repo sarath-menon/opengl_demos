@@ -35,8 +35,8 @@ int main() {
   // glfw: initialize and configure
   // ------------------------------
   glfwInit();
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+  glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
   glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 #ifdef __APPLE__
@@ -81,11 +81,8 @@ int main() {
 
   // load models
   // -----------
-  std::string path =
-      (std::filesystem::current_path()).string() + "/resources/models/cube.obj";
-  Model ourModel(path);
-
-  std::cout << "Path: " << path << std::endl;
+  Model ourModel(std::filesystem::current_path().string() +
+                 "/resources/models/cube.obj");
 
   // draw in wireframe
   // glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
