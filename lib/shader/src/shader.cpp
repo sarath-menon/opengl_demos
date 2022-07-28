@@ -15,6 +15,8 @@ Shader::~Shader() { this->Delete(); }
 // Activates the Shader Program
 void Shader::Activate() const { glUseProgram(handle_); }
 
+void Shader::Deactivate() const { glUseProgram(0); }
+
 // Deletes the Shader Program
 void Shader::Delete() const { glDeleteProgram(handle_); }
 

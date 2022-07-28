@@ -22,6 +22,7 @@ public:
 
   // Activates the Shader Program
   void Activate() const;
+  void Deactivate() const;
 
   void setVec3(const GLuint loc, const glm::vec3 &vec) const;
   void setVec4(const GLuint loc, const glm::vec4 &vec) const;
