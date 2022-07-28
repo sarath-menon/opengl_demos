@@ -22,10 +22,10 @@ public:
   // Activates the Shader Program
   void Activate() const;
 
-  void setVec3(const std::string &name, const glm::vec3 &vec) const;
-  void setVec4(const std::string &name, const glm::vec4 &vec) const;
-  void setMat3(const std::string &name, const glm::mat3 &mat) const;
-  void setMat4(const std::string &name, const glm::mat4 &mat) const;
+  void setVec3(const GLuint loc, const glm::vec3 &vec) const;
+  void setVec4(const GLuint loc, const glm::vec4 &vec) const;
+  void setMat3(const GLuint loc, const glm::mat3 &mat) const;
+  void setMat4(const GLuint loc, const glm::mat4 &mat) const;
 
 private:
   GLenum type_;

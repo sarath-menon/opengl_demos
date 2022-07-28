@@ -26,7 +26,8 @@ int main() {
   Viewer viewer(width, height, "Cube with vertices drawn using indices");
   Shader obj_shader("shaders/3d_constcolour_vshader.glsl",
                     "shaders/3d_constcolour_fshader.glsl");
-  Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)));
+
+  Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)), obj_shader);
   Cube cube(cube_pos, 1.0);
 
   // to hold id's of uniform variables
@@ -76,7 +77,7 @@ int main() {
 
     //////////////////////////////////////////////////////////
     // Export the camMatrix to the Vertex Shader of the pyramid
-    camera.update(obj_shader, "cam_view");
+    camera.update(obj_shader);
     viewer.start_display();
   }
 }

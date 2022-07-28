@@ -37,15 +37,19 @@ public:
   float fov_degrees_ = 60.0_deg;
 
   // Camera constructor to set up initial values
-  Camera(const int width, const int height, const glm::vec3 position);
+  Camera(const int width, const int height, const glm::vec3 position,
+         const Shader &shader);
 
   // Exports the camera matrix to a shader
-  void update(const Shader &shader, const std::string &uniform_name) const;
+  void update(const Shader &shader) const;
 
   // Handles camera inputs
   void Inputs(GLFWwindow *window);
 
 private:
+  // to hold id's of uniform variables
+  GLuint cam_mat_loc;
+
   // Updates the camera matrices
   void updateMatrix();
 };

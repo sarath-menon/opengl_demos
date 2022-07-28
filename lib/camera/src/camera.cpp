@@ -1,9 +1,13 @@
 #include "camera.hpp"
 
-Camera::Camera(const int width, const int height, const glm::vec3 position) {
+Camera::Camera(const int width, const int height, const glm::vec3 position,
+               const Shader &shader) {
   Camera::width = width;
   Camera::height = height;
   position_ = position;
+
+  // get locations of uniforms in the shader program
+  cam_mat_loc = glGetUniformLocation(shader.getHandle(), "cam_view");
 }
 
 void Camera::updateMatrix() {
@@ -21,9 +25,8 @@ void Camera::updateMatrix() {
   cam_mat = projection * view;
 }
 
-void Camera::update(const Shader &shader,
-                    const std::string &uniform_name) const {
-  shader.setMat4(uniform_name, cam_mat);
+void Camera::update(const Shader &shader) const {
+  shader.setMat4(cam_mat_loc, cam_mat);
 }
 
 void Camera::Inputs(GLFWwindow *window) {

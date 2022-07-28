@@ -18,24 +18,20 @@ void Shader::Activate() const { glUseProgram(handle_); }
 // Deletes the Shader Program
 void Shader::Delete() const { glDeleteProgram(handle_); }
 
-void Shader::setVec3(const std::string &name, const glm::vec3 &vec) const {
-  glUniform3fv(glGetUniformLocation(handle_, name.c_str()), 1,
-               glm::value_ptr(vec));
+void Shader::setVec3(const GLuint loc, const glm::vec3 &vec) const {
+  glUniform3fv(loc, 1, glm::value_ptr(vec));
 }
 
-void Shader::setVec4(const std::string &name, const glm::vec4 &vec) const {
-  glUniform4fv(glGetUniformLocation(handle_, name.c_str()), 1,
-               glm::value_ptr(vec));
+void Shader::setVec4(const GLuint loc, const glm::vec4 &vec) const {
+  glUniform4fv(loc, 1, glm::value_ptr(vec));
 }
 
-void Shader::setMat3(const std::string &name, const glm::mat3 &mat) const {
-  glUniformMatrix3fv(glGetUniformLocation(handle_, name.c_str()), 1, GL_FALSE,
-                     glm::value_ptr(mat));
+void Shader::setMat3(const GLuint loc, const glm::mat3 &mat) const {
+  glUniformMatrix3fv(loc, 1, GL_FALSE, glm::value_ptr(mat));
 }
 
-void Shader::setMat4(const std::string &name, const glm::mat4 &mat) const {
-  glUniformMatrix4fv(glGetUniformLocation(handle_, name.c_str()), 1, GL_FALSE,
-                     glm::value_ptr(mat));
+void Shader::setMat4(const GLuint loc, const glm::mat4 &mat) const {
+  glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(mat));
 }
 
 // // Checks if the different Shaders have compiled properly
