@@ -8,9 +8,12 @@
 #include "gl_common.hpp"
 #include "rotation.hpp"
 #include "shader.hpp"
+#include "texture.hpp"
 #include <cmath>
+#include <filesystem>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <memory>
 
 /// Represents a Rigid body
 class SimpleModel {
@@ -45,11 +48,18 @@ protected:
   // Generates Element Buffer Object and links it to indices
   EBO eb;
 
-  void set_vertex_buffers();
+  void set_vertex_buffers(const Shader &shader);
 
 private:
   // to hold id's of uniform variables
   GLuint model_loc, colour_loc;
+
+  const std::string texPath = "/resources/textures/";
+  const std::string texture_file = "floor.png";
+  std::string texture_dir =
+      (std::filesystem::current_path().string() + texPath + texture_file);
+
+  std::unique_ptr<Texture> texture;
 
 public:
   SimpleModel(const Shader &shader);

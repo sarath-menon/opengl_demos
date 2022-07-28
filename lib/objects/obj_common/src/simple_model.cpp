@@ -1,8 +1,8 @@
 #include "simple_model.hpp"
 
 SimpleModel::SimpleModel(const Shader &shader) {
-  model_loc = glGetUniformLocation(shader.getHandle(), "model");
 
+  model_loc = glGetUniformLocation(shader.getHandle(), "model");
   colour_loc = glGetUniformLocation(shader.getHandle(), "obj_colour");
 
   obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
@@ -13,6 +13,9 @@ SimpleModel::SimpleModel(const Shader &shader) {
   // copy matrix data to corresponding uniform variables
   glUniform4f(colour_loc, obj_colour.x, obj_colour.y, obj_colour.z,
               obj_colour.w);
+
+  texture = std::make_unique<Texture>(texture_dir.c_str(), GL_TEXTURE_2D,
+                                      GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 
   shader.Deactivate();
 }
@@ -28,17 +31,11 @@ void SimpleModel::set_vertex_buffers(const Shader &shader) {
   eb.set_indices(indices_);
 
   // load texture
-  const std::string texPath = "/resources/textures/";
-  const std::string texture_file = "floor.png";
-  std::string parentDir = (std::filesystem::current_path()).string();
-  Texture floor((parentDir + texPath + texture_file).c_str(), GL_TEXTURE_2D,
-                GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
-  floor.texUnit(shader, "tex0", 0);
-
-  va.Bind();
+  texture->texUnit(shader, "tex0", 0);
 
   // Link VBO to  VAO
   va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
+  va.link_texture(vb[1], 1, GL_FLOAT);
 
   // unbind after use
   va.Unbind();
