@@ -19,15 +19,15 @@ int main() {
   constexpr float width = 600;
   constexpr float height = 600;
 
-  constexpr float cam_pos[3] = {0.0f, 0.0f, 5.0f};
-  const gl::V3 cube_pos = gl::V3(1.0, -2.0, -1.0);
-  const glm::vec4 obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
+  const glm::vec3 cam_pos(0.0f, 0.0f, 5.0f);
+  const gl::V3 cube_pos(1.0, -2.0, -1.0);
+  const glm::vec4 obj_colour(0.8f, 0.3f, 0.02f, 1.0f);
 
   Viewer viewer(width, height, "Cube with vertices drawn using indices");
   Shader obj_shader("shaders/3d_constcolour_vshader.glsl",
                     "shaders/3d_constcolour_fshader.glsl");
 
-  Camera camera(width, height, glm::vec3(glm::make_vec3(cam_pos)), obj_shader);
+  Camera camera(width, height, cam_pos, obj_shader);
   Cube cube(cube_pos, 1.0);
 
   // to hold id's of uniform variables
