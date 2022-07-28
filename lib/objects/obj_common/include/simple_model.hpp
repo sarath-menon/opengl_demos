@@ -40,7 +40,7 @@ protected:
   // one (x,y,z) normal vector per row
   gl::M3DR normals_;
 
-  glm::vec4 colour_;
+  glm::vec4 obj_colour_;
 
   // vertex array object to prganize vertex buffers
   VAO va;

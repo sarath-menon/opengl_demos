@@ -3,16 +3,16 @@
 SimpleModel::SimpleModel(const Shader &shader) {
 
   model_loc = glGetUniformLocation(shader.getHandle(), "model");
-  // colour_loc = glGetUniformLocation(shader.getHandle(), "obj_colour");
+  colour_loc = glGetUniformLocation(shader.getHandle(), "obj_colour");
 
-  // obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
+  obj_colour_ = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
 
   //  shader needs to be activated before setting values
   shader.Activate();
 
-  // // copy matrix data to corresponding uniform variables
-  // glUniform4f(colour_loc, obj_colour.x, obj_colour.y, obj_colour.z,
-  //             obj_colour.w);
+  // copy matrix data to corresponding uniform variables
+  glUniform4f(colour_loc, obj_colour_.x, obj_colour_.y, obj_colour_.z,
+              obj_colour_.w);
 
   texture = std::make_unique<Texture>(texture_dir.c_str(), GL_TEXTURE_2D,
                                       GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
@@ -21,11 +21,12 @@ SimpleModel::SimpleModel(const Shader &shader) {
 }
 
 void SimpleModel::set_colour(const glm::vec4 colour, const Shader &shader) {
-  colour_ = colour; //  shader needs to be activated before setting values
+  obj_colour_ = colour; //  shader needs to be activated before setting values
   shader.Activate();
 
-  // // copy matrix data to corresponding uniform variables
-  // glUniform4f(colour_loc, colour_.x, colour_.y, colour_.z, colour_.w);
+  // copy matrix data to corresponding uniform variables
+  glUniform4f(colour_loc, obj_colour_.x, obj_colour_.y, obj_colour_.z,
+              obj_colour_.w);
 
   shader.Deactivate();
 }
