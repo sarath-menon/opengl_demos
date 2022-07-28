@@ -1,6 +1,7 @@
 #pragma once
 
 #include "gl_common.hpp"
+#include "shader.hpp"
 #include "simple_model.hpp"
 #include <cmath>
 
@@ -12,5 +13,5 @@ private:
 
 public:
   // Equilateral triangle given starting coord and side length
-  Pyramid(const gl::V3 coord, const float length);
+  Pyramid(const gl::V3 coord, const Shader &shader);
 };

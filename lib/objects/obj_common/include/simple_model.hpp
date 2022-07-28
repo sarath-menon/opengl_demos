@@ -48,7 +48,7 @@ private:
   GLuint model_loc;
 
 public:
-  // SimpleModel(Shader &shader);
+  SimpleModel(const Shader &shader);
 
   void display() const;
 

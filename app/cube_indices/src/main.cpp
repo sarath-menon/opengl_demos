@@ -28,18 +28,9 @@ int main() {
                     "shaders/3d_constcolour_fshader.glsl");
 
   Camera camera(width, height, cam_pos, obj_shader);
-  Cube cube(cube_pos, 1.0);
-
-  // to hold id's of uniform variables
-  GLuint model_loc;
+  Cube cube(cube_pos, obj_shader);
 
   cube.set_scale(0.5f);
-
-  // Transformation matrices
-  gl::A3 model_m = gl::A3::Identity();
-
-  // get locations of uniforms in the shader program
-  model_loc = glGetUniformLocation(obj_shader.getHandle(), "model");
 
   cube.set_global_position(gl::V3(1.0f, 1.0f, 1.0f));
 
@@ -65,12 +56,6 @@ int main() {
     // Draw cube ////////////////////////////////
 
     cube.global_rotate_y(M_PI / 100.0f);
-
-    // create model matrix
-    model_m = cube.global_pose();
-
-    // copy matrix data to corresponding uniform variables
-    glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
 
     // send data in vertex buffer to the obj_shader and start drawing
     cube.display();

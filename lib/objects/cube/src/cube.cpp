@@ -1,12 +1,10 @@
 #include "cube.hpp"
 #include <iostream>
 
-Cube::Cube(const gl::V3 coord, const float length) {
+Cube::Cube(const gl::V3 coord, const Shader &shader) : SimpleModel(shader) {
 
   global_pose_ = gl::A3::Identity();
   global_pose_.translation() = coord;
-
-  length_ = length;
 
   // set vertices
   vertices_ = Eigen::Matrix3Xf::Zero(3, 8);

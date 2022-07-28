@@ -1,8 +1,8 @@
 #include "simple_model.hpp"
 
-// SimpleModel::SimpleModel(Shader &shader) {
-//   model_loc = glGetUniformLocation(shader.getHandle(), "model");
-// }
+SimpleModel::SimpleModel(const Shader &shader) {
+  model_loc = glGetUniformLocation(shader.getHandle(), "model");
+}
 
 void SimpleModel::set_vertex_buffers() {
 
@@ -20,6 +20,16 @@ void SimpleModel::set_vertex_buffers() {
 }
 
 void SimpleModel::display() const {
+
+  // Transformation matrices
+  gl::A3 model_m = gl::A3::Identity();
+
+  // create model matrix
+  model_m = global_pose_;
+
+  // copy matrix data to corresponding uniform variables
+  glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
+
   va.Bind();
   glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_INT, 0);
 }
