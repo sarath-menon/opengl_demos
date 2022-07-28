@@ -2,12 +2,6 @@
 #include "VBO.hpp"
 #include "gl_common.hpp"
 
-enum class VertexData {
-  vertices,
-  colours,
-  texture,
-};
-
 class VAO {
   //
   // To organize vertex buffer objects
