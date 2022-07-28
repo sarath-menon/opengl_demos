@@ -3,19 +3,29 @@
 SimpleModel::SimpleModel(const Shader &shader) {
 
   model_loc = glGetUniformLocation(shader.getHandle(), "model");
-  colour_loc = glGetUniformLocation(shader.getHandle(), "obj_colour");
+  // colour_loc = glGetUniformLocation(shader.getHandle(), "obj_colour");
 
-  obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
+  // obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
 
   //  shader needs to be activated before setting values
   shader.Activate();
 
-  // copy matrix data to corresponding uniform variables
-  glUniform4f(colour_loc, obj_colour.x, obj_colour.y, obj_colour.z,
-              obj_colour.w);
+  // // copy matrix data to corresponding uniform variables
+  // glUniform4f(colour_loc, obj_colour.x, obj_colour.y, obj_colour.z,
+  //             obj_colour.w);
 
   texture = std::make_unique<Texture>(texture_dir.c_str(), GL_TEXTURE_2D,
                                       GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+
+  shader.Deactivate();
+}
+
+void SimpleModel::set_colour(const glm::vec4 colour, const Shader &shader) {
+  colour_ = colour; //  shader needs to be activated before setting values
+  shader.Activate();
+
+  // // copy matrix data to corresponding uniform variables
+  // glUniform4f(colour_loc, colour_.x, colour_.y, colour_.z, colour_.w);
 
   shader.Deactivate();
 }
@@ -27,15 +37,17 @@ void SimpleModel::set_vertex_buffers(const Shader &shader) {
   assert(indices_.size() != 0);
 
   vb[0].set_vertices(vertices_);
-  vb[1].set_texture(texture_coord_);
+  vb[1].set_colours(colours_);
+  vb[2].set_texture(texture_coord_);
   eb.set_indices(indices_);
 
   // load texture
   texture->texUnit(shader, "tex0", 0);
 
   // Link VBO to  VAO
-  va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
-  va.link_texture(vb[1], 1, GL_FLOAT);
+  va.set_vertex_attrb_ptrs(vb[0], VertexData::vertices);
+  va.set_vertex_attrb_ptrs(vb[1], VertexData::colours);
+  va.set_vertex_attrb_ptrs(vb[2], VertexData::texture);
 
   // unbind after use
   va.Unbind();

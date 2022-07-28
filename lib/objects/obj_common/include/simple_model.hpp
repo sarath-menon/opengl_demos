@@ -29,6 +29,8 @@ protected:
   // for vertext ordering, one per row
   gl::M3IDR indices_;
 
+  gl::M3DR colours_;
+
   float scale_{};
 
   // appearance parameters -----------
@@ -38,12 +40,12 @@ protected:
   // one (x,y,z) normal vector per row
   gl::M3DR normals_;
 
-  glm::vec4 obj_colour;
+  glm::vec4 colour_;
 
   // vertex array object to prganize vertex buffers
   VAO va;
   // vertex buffer to be sent to vertex shader
-  VBO vb[2];
+  VBO vb[3];
 
   // Generates Element Buffer Object and links it to indices
   EBO eb;
@@ -63,6 +65,8 @@ private:
 
 public:
   SimpleModel(const Shader &shader);
+
+  void set_colour(const glm::vec4 colour, const Shader &shader);
 
   void display(const Shader &shader) const;
 
