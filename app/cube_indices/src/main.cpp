@@ -34,25 +34,12 @@ int main() {
 
   cube.set_global_position(gl::V3(1.0f, 1.0f, 1.0f));
 
-  // Load the compiled shaders to the GPU
-  obj_shader.Activate();
-
-  // // set object colour
-  // glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "obj_colour"),
-  //             obj_colour.x, obj_colour.y, obj_colour.z, obj_colour.w);
-
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
     // Inputs
     viewer.processInput();
-    // clear display
     viewer.clear_display();
-
-    // Camera ////////////////////////////////
-    // camera
-    // Handles camera inputs
     camera.Inputs(viewer.getHandle());
-
     // Draw cube ////////////////////////////////
 
     cube.global_rotate_y(M_PI / 100.0f);

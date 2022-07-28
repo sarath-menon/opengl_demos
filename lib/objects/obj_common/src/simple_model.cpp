@@ -7,7 +7,7 @@ SimpleModel::SimpleModel(const Shader &shader) {
 
   obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
 
-  // shader needs to be activated  to set the colour
+  // shader needs to be activated before setting values
   shader.Activate();
 
   // copy matrix data to corresponding uniform variables
@@ -37,6 +37,9 @@ void SimpleModel::display(const Shader &shader) const {
 
   // create model matrix
   model_m = global_pose_;
+
+  // shader needs to be activated before setting values
+  shader.Activate();
 
   // copy matrix data to corresponding uniform variables
   shader.setAff4(model_loc, model_m);
