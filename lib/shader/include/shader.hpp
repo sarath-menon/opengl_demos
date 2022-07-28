@@ -22,9 +22,10 @@ public:
   // Activates the Shader Program
   void Activate() const;
 
-  void setVec3(const std::string &name, const glm::vec3 &value) const {
-    glUniform3fv(glGetUniformLocation(handle_, name.c_str()), 1, &value[0]);
-  }
+  void setVec3(const std::string &name, const glm::vec3 &vec) const;
+  void setVec4(const std::string &name, const glm::vec4 &vec) const;
+  void setMat3(const std::string &name, const glm::mat3 &mat) const;
+  void setMat4(const std::string &name, const glm::mat4 &mat) const;
 
 private:
   GLenum type_;

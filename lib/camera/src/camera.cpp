@@ -22,11 +22,8 @@ void Camera::updateMatrix() {
 }
 
 void Camera::update(const Shader &shader,
-                    const std::string uniform_name) const {
-  // Exports camera matrix
-  glUniformMatrix4fv(
-      glGetUniformLocation(shader.getHandle(), uniform_name.c_str()), 1,
-      GL_FALSE, glm::value_ptr(cam_mat));
+                    const std::string &uniform_name) const {
+  shader.setMat4(uniform_name, cam_mat);
 }
 
 void Camera::Inputs(GLFWwindow *window) {

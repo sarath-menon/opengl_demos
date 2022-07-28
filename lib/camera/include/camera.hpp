@@ -40,7 +40,7 @@ public:
   Camera(const int width, const int height, const glm::vec3 position);
 
   // Exports the camera matrix to a shader
-  void update(const Shader &shader, const std::string uniform_name) const;
+  void update(const Shader &shader, const std::string &uniform_name) const;
 
   // Handles camera inputs
   void Inputs(GLFWwindow *window);
