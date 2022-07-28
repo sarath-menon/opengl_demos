@@ -7,6 +7,7 @@
 #include "VBO.hpp"
 #include "gl_common.hpp"
 #include "rotation.hpp"
+#include "shader.hpp"
 #include <cmath>
 
 /// Represents a Rigid body
@@ -42,7 +43,13 @@ protected:
 
   void set_vertex_buffers();
 
+private:
+  // to hold id's of uniform variables
+  GLuint model_loc;
+
 public:
+  // SimpleModel(Shader &shader);
+
   void display() const;
 
   // set global parameters -----------

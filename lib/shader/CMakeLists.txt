@@ -20,4 +20,4 @@ add_library(${MODULE_NAME} STATIC ${CPP_FILES})
 
 target_include_directories(${MODULE_NAME} PUBLIC include)
 
-target_link_libraries(${MODULE_NAME} PRIVATE ${LIB_DEP})
+target_link_libraries(${MODULE_NAME} PUBLIC ${LIB_DEP})

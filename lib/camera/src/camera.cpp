@@ -21,10 +21,12 @@ void Camera::updateMatrix() {
   cam_mat = projection * view;
 }
 
-void Camera::Matrix(Shader &shader, const char *uniform) {
+void Camera::update(const Shader &shader,
+                    const std::string uniform_name) const {
   // Exports camera matrix
-  glUniformMatrix4fv(glGetUniformLocation(shader.getHandle(), uniform), 1,
-                     GL_FALSE, glm::value_ptr(cam_mat));
+  glUniformMatrix4fv(
+      glGetUniformLocation(shader.getHandle(), uniform_name.c_str()), 1,
+      GL_FALSE, glm::value_ptr(cam_mat));
 }
 
 void Camera::Inputs(GLFWwindow *window) {
@@ -99,4 +101,7 @@ void Camera::Inputs(GLFWwindow *window) {
     // Makes sure the next time the camera looks around it doesn't jump
     firstClick = true;
   }
+
+  // update the view, projection matrices
+  Camera::updateMatrix();
 }

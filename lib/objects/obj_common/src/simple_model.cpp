@@ -1,5 +1,9 @@
 #include "simple_model.hpp"
 
+// SimpleModel::SimpleModel(Shader &shader) {
+//   model_loc = glGetUniformLocation(shader.getHandle(), "model");
+// }
+
 void SimpleModel::set_vertex_buffers() {
 
   // safety checks

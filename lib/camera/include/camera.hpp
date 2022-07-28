@@ -9,6 +9,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 #include <glm/gtx/vector_angle.hpp>
+#include <string>
 
 #include "shader.hpp"
 
@@ -38,14 +39,13 @@ public:
   // Camera constructor to set up initial values
   Camera(const int width, const int height, const glm::vec3 position);
 
-  // Updates and exports the camera matrix to the Vertex Shader
-  void Matrix(const Shader &shader, const char *uniform) const;
-
-  // Updates the camera matrix to the Vertex Shader
-  void updateMatrix();
   // Exports the camera matrix to a shader
-  void Matrix(Shader &shader, const char *uniform);
+  void update(const Shader &shader, const std::string uniform_name) const;
 
   // Handles camera inputs
   void Inputs(GLFWwindow *window);
+
+private:
+  // Updates the camera matrices
+  void updateMatrix();
 };

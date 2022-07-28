@@ -6,6 +6,10 @@
 #include <iostream>
 #include <string>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp> // glm::value_ptr
+
 class Shader {
 public:
   Shader(std::string vs_path, std::string fs_path);
@@ -17,6 +21,10 @@ public:
 
   // Activates the Shader Program
   void Activate() const;
+
+  void setVec3(const std::string &name, const glm::vec3 &value) const {
+    glUniform3fv(glGetUniformLocation(handle_, name.c_str()), 1, &value[0]);
+  }
 
 private:
   GLenum type_;

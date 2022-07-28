@@ -36,6 +36,7 @@ int main() {
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
+
   // get locations of uniforms in the shader program
   model_loc = glGetUniformLocation(obj_shader.getHandle(), "model");
 
@@ -60,9 +61,6 @@ int main() {
     // Handles camera inputs
     camera.Inputs(viewer.getHandle());
 
-    // Update the camera position according to mouse interaction
-    camera.updateMatrix();
-
     // Draw cube ////////////////////////////////
 
     cube.global_rotate_y(M_PI / 100.0f);
@@ -78,7 +76,7 @@ int main() {
 
     //////////////////////////////////////////////////////////
     // Export the camMatrix to the Vertex Shader of the pyramid
-    camera.Matrix(obj_shader, "cam_view");
+    camera.update(obj_shader, "cam_view");
     viewer.start_display();
   }
 }
