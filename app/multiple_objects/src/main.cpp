@@ -14,7 +14,9 @@ int main() {
   const glm::vec3 cam_pos(0.0f, 0.0f, 5.0f);
   const gl::V3 cube_pos(1.0, -2.0, -1.0);
   const gl::V3 pyramid_pos(0.0, -2.0, 0.0);
-  const glm::vec4 obj_colour(0.8f, 0.3f, 0.02f, 1.0f);
+
+  const glm::vec4 cube_colour(0.8f, 0.3f, 0.02f, 1.0f);
+  const glm::vec4 pyramid_colour(0.0f, 1.0f, 0.0f, 1.0f);
 
   Viewer viewer(width, height, "Cube with vertices drawn using indices");
   Shader obj_shader("shaders/3d_constcolour_vshader.glsl",
@@ -25,7 +27,8 @@ int main() {
   Cube cube(cube_pos, obj_shader);
   Pyramid pyramid(pyramid_pos, obj_shader);
 
-  cube.set_scale(0.5f);
+  cube.set_colour(cube_colour, obj_shader);
+  pyramid.set_colour(pyramid_colour, obj_shader);
 
   cube.set_global_position(gl::V3(1.0f, 1.0f, 1.0f));
 
