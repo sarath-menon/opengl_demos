@@ -2,6 +2,10 @@
 
 void SimpleModel::initialize() {
 
+  // safety checks
+  assert(vertices_.size() != 0);
+  assert(indices_.size() != 0);
+
   vb[0].set_vertices(vertices_);
 
   eb.set_indices(indices_);
