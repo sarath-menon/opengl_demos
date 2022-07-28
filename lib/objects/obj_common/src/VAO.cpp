@@ -1,4 +1,5 @@
 #include "VAO.hpp"
+#include <iostream>
 
 // Constructor that generates a VAO ID
 VAO::VAO() {
@@ -11,33 +12,34 @@ VAO::VAO() {
 VAO::~VAO() { this->Delete(); }
 
 // Links a vbo to the VAO using a certain layout
-void VAO::set_vertex_attrb_ptrs(VBO &vbo, const GLuint layout,
-                                const GLenum type) const {
-
-  // safety checks
-  assert(vbo.data_set_flag() == true);
+void VAO::set_vertex_attrb_ptrs(VBO &vbo, const enum VertexData attrib) const {
 
   vbo.Bind();
+  int layout{}, rowsize{};
 
   // associate active buffer with the (layout)th vertex attribute in the shader
-  glVertexAttribPointer(layout, 3, type, GL_FALSE, 0, (GLvoid *)0);
+  switch (attrib) {
 
-  // enable the (layout)th vertex attribute
-  glEnableVertexAttribArray(layout);
-}
+  case VertexData::vertices:
+    assert(vbo.data_set_flag() == true);
+    layout = 0;
+    rowsize = 3;
+    break;
 
-// Links a vbo to the VAO using a certain layout
-void VAO::link_texture(VBO &vbo, const GLuint layout, const GLenum type) const {
+  case VertexData::colours:
+    assert(vbo.colours_set_flag() == true);
+    layout = 1;
+    rowsize = 2;
+    break;
 
-  // safety checks
-  assert(vbo.texture_set_flag() == true);
+  case VertexData::texture:
+    assert(vbo.texture_set_flag() == true);
+    layout = 2;
+    rowsize = 2;
+    break;
+  }
 
-  vbo.Bind();
-
-  // associate active buffer with the (layout)th vertex attribute in the shader
-  glVertexAttribPointer(layout, 2, type, GL_FALSE, 0, (GLvoid *)0);
-
-  // enable the (layout)th vertex attribute
+  glVertexAttribPointer(layout, rowsize, GL_FLOAT, GL_FALSE, 0, (GLvoid *)0);
   glEnableVertexAttribArray(layout);
 }
 
