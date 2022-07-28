@@ -1,7 +1,6 @@
 #include "VAO.hpp"
 #include "VBO.hpp"
 #include "shader.hpp"
-#include "stb_image.h"
 #include "triangle.hpp"
 #include "viewer.hpp"
 #include <Eigen/Dense>
@@ -32,7 +31,7 @@ int main() {
     shader.Activate();
 
     // Link VBO attribute to VAO
-    VA.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
+    VA.set_vertex_attrb_ptrs(vb[0], VertexData::vertices);
 
     viewer.clear_display();
 
