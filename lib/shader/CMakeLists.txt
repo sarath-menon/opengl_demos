@@ -9,6 +9,7 @@ src/utils.cpp
 # list of library dependendcies
 set(LIB_DEP
 glfw
+common
 GLEW::GLEW
 external
 Eigen3::Eigen

@@ -37,9 +37,9 @@ int main() {
   // Load the compiled shaders to the GPU
   obj_shader.Activate();
 
-  // set object colour
-  glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "obj_colour"),
-              obj_colour.x, obj_colour.y, obj_colour.z, obj_colour.w);
+  // // set object colour
+  // glUniform4f(glGetUniformLocation(obj_shader.getHandle(), "obj_colour"),
+  //             obj_colour.x, obj_colour.y, obj_colour.z, obj_colour.w);
 
   //  Render loop: show window till close button is pressed
   while (!glfwWindowShouldClose(viewer.getHandle())) {
@@ -58,7 +58,7 @@ int main() {
     cube.global_rotate_y(M_PI / 100.0f);
 
     // send data in vertex buffer to the obj_shader and start drawing
-    cube.display();
+    cube.display(obj_shader);
 
     //////////////////////////////////////////////////////////
     // Export the camMatrix to the Vertex Shader of the pyramid

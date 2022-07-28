@@ -2,6 +2,17 @@
 
 SimpleModel::SimpleModel(const Shader &shader) {
   model_loc = glGetUniformLocation(shader.getHandle(), "model");
+
+  colour_loc = glGetUniformLocation(shader.getHandle(), "obj_colour");
+
+  obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
+
+  // shader needs to be activated  to set the colour
+  shader.Activate();
+
+  // copy matrix data to corresponding uniform variables
+  glUniform4f(colour_loc, obj_colour.x, obj_colour.y, obj_colour.z,
+              obj_colour.w);
 }
 
 void SimpleModel::set_vertex_buffers() {
@@ -19,7 +30,7 @@ void SimpleModel::set_vertex_buffers() {
   eb.Unbind();
 }
 
-void SimpleModel::display() const {
+void SimpleModel::display(const Shader &shader) const {
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
@@ -28,7 +39,7 @@ void SimpleModel::display() const {
   model_m = global_pose_;
 
   // copy matrix data to corresponding uniform variables
-  glUniformMatrix4fv(model_loc, 1, GL_FALSE, model_m.data());
+  shader.setAff4(model_loc, model_m);
 
   va.Bind();
   glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_INT, 0);

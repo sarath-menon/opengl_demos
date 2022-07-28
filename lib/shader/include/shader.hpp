@@ -1,6 +1,7 @@
 #pragma once
 #include <glad/glad.h>
 //
+#include "gl_common.hpp"
 #include "utils.hpp"
 #include <fstream>
 #include <iostream>
@@ -26,6 +27,9 @@ public:
   void setVec4(const GLuint loc, const glm::vec4 &vec) const;
   void setMat3(const GLuint loc, const glm::mat3 &mat) const;
   void setMat4(const GLuint loc, const glm::mat4 &mat) const;
+
+  void setMat4(const GLuint loc, const gl::M4 &mat) const;
+  void setAff4(const GLuint loc, const gl::A3 &mat) const;
 
 private:
   GLenum type_;

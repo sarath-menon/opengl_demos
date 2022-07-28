@@ -34,6 +34,14 @@ void Shader::setMat4(const GLuint loc, const glm::mat4 &mat) const {
   glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(mat));
 }
 
+void Shader::setMat4(const GLuint loc, const gl::M4 &mat) const {
+  glUniformMatrix4fv(loc, 1, GL_FALSE, mat.data());
+}
+
+void Shader::setAff4(const GLuint loc, const gl::A3 &mat) const {
+  glUniformMatrix4fv(loc, 1, GL_FALSE, mat.data());
+}
+
 // // Checks if the different Shaders have compiled properly
 // void Shader::compileErrors(unsigned int shader, const char *type) {
 //   // Stores status of compilation

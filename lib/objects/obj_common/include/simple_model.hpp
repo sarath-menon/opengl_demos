@@ -9,6 +9,8 @@
 #include "rotation.hpp"
 #include "shader.hpp"
 #include <cmath>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 /// Represents a Rigid body
 class SimpleModel {
@@ -33,6 +35,8 @@ protected:
   // one (x,y,z) normal vector per row
   gl::M3DR normals_;
 
+  glm::vec4 obj_colour;
+
   // vertex array object to prganize vertex buffers
   VAO va;
   // vertex buffer to be sent to vertex shader
@@ -45,12 +49,12 @@ protected:
 
 private:
   // to hold id's of uniform variables
-  GLuint model_loc;
+  GLuint model_loc, colour_loc;
 
 public:
   SimpleModel(const Shader &shader);
 
-  void display() const;
+  void display(const Shader &shader) const;
 
   // set global parameters -----------
   void set_global_pose(const gl::A3 &pose);
