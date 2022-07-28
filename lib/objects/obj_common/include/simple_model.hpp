@@ -40,10 +40,10 @@ protected:
   // Generates Element Buffer Object and links it to indices
   EBO eb;
 
-  void initialize();
+  void set_vertex_buffers();
 
 public:
-  void display();
+  void display() const;
 
   // set global parameters -----------
   void set_global_pose(const gl::A3 &pose);

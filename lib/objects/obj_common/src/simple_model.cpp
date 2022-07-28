@@ -1,6 +1,6 @@
 #include "simple_model.hpp"
 
-void SimpleModel::initialize() {
+void SimpleModel::set_vertex_buffers() {
 
   // safety checks
   assert(vertices_.size() != 0);
@@ -15,7 +15,10 @@ void SimpleModel::initialize() {
   eb.Unbind();
 }
 
-void SimpleModel::display() { va.Bind(); }
+void SimpleModel::display() const {
+  va.Bind();
+  glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_INT, 0);
+}
 
 void SimpleModel::set_global_pose(const gl::A3 &pose) { global_pose_ = pose; }
 
