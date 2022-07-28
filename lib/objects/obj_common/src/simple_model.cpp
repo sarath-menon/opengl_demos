@@ -45,7 +45,10 @@ void SimpleModel::display(const Shader &shader) const {
   shader.setAff4(model_loc, model_m);
 
   va.Bind();
+
   glDrawElements(GL_TRIANGLES, indices_.size(), GL_UNSIGNED_INT, 0);
+
+  va.Unbind();
 }
 
 void SimpleModel::set_global_pose(const gl::A3 &pose) { global_pose_ = pose; }

@@ -22,4 +22,6 @@ Pyramid::Pyramid(const gl::V3 coord, const Shader &shader)
   indices_ = Eigen::Matrix3Xi::Zero(3, 6);
 
   indices_ << 0, 1, 2, 0, 2, 3, 0, 1, 4, 1, 2, 4, 2, 3, 4, 3, 0, 4;
+
+  set_vertex_buffers();
 }
