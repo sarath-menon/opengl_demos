@@ -2,6 +2,6 @@
 
 enum class VertexData {
   vertices,
-  colours,
+  normals,
   texture,
 };

@@ -24,7 +24,7 @@ void VBO::set_vertices(const gl::M3DR &M) const {
   data_set_flag_ = true;
 }
 
-void VBO::set_colours(const gl::M3DR &M) const {
+void VBO::set_normals(const gl::M3DR &M) const {
   VBO::Bind();
 
   // We expect a matrix with one (R,G,B) colour for one vertex in a row, we then
@@ -32,7 +32,7 @@ void VBO::set_colours(const gl::M3DR &M) const {
   glBufferData(GL_ARRAY_BUFFER, sizeof(float) * M.size(), M.data(),
                GL_STATIC_DRAW);
 
-  colours_set_flag_ = true;
+  normals_set_flag_ = true;
 }
 
 void VBO::set_texture(const gl::M2DR &M) const {

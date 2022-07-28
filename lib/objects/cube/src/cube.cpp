@@ -13,12 +13,15 @@ Cube::Cube(const gl::V3 coord, const Shader &shader) : SimpleModel(shader) {
       1.0f, -1.0f, 1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f, 1.0f,
       -1.0f, 1.0f, 1.0f, 1.0f;
 
-  //   // set indices
+  // set indices
 
   indices_ = Eigen::Matrix3Xi::Zero(3, 12);
 
   indices_ << 0, 1, 2, 0, 2, 3, 0, 4, 7, 0, 7, 3, 3, 7, 6, 3, 6, 2, 2, 6, 5, 2,
       5, 1, 1, 5, 4, 1, 4, 0, 4, 5, 6, 4, 6, 7;
+
+  // set vertices
+  normals_ = Eigen::Matrix3Xf::Zero(3, 8);
 
   set_vertex_buffers(shader);
 }

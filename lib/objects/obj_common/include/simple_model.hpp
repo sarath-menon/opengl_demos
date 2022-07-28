@@ -24,22 +24,23 @@ protected:
   // pose of the rigid body
   gl::A3 global_pose_{};
 
-  // one (x,y,z) position coordinate per row
-  gl::M3DR vertices_;
-  // for vertext ordering, one per row
-  gl::M3IDR indices_;
-
-  gl::M3DR colours_;
-
   float scale_{};
 
   // appearance parameters -----------
 
-  // one (u,v) texture coordinate per row
-  gl::M2DR texture_coord_;
+  // one (x,y,z) position coordinate per row
+  gl::M3DR vertices_;
+
+  // for vertext ordering, one per row
+  gl::M3IDR indices_;
+
   // one (x,y,z) normal vector per row
   gl::M3DR normals_;
 
+  // one (u,v) texture coordinate per row
+  gl::M2DR texture_coord_;
+
+  // (R,G,B, alpha) vector
   glm::vec4 obj_colour_;
 
   // vertex array object to prganize vertex buffers

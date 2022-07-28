@@ -26,10 +26,10 @@ void VAO::set_vertex_attrb_ptrs(VBO &vbo, const enum VertexData attrib) const {
     rowsize = 3;
     break;
 
-  case VertexData::colours:
-    assert(vbo.colours_set_flag() == true);
+  case VertexData::normals:
+    assert(vbo.normals_set_flag() == true);
     layout = 1;
-    rowsize = 2;
+    rowsize = 3;
     break;
 
   case VertexData::texture:

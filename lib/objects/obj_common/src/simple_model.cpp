@@ -32,7 +32,7 @@ void SimpleModel::set_vertex_buffers(const Shader &shader) {
   assert(indices_.size() != 0);
 
   vb[0].set_vertices(vertices_);
-  vb[1].set_colours(colours_);
+  vb[1].set_normals(normals_);
   vb[2].set_texture(texture_coord_);
   eb.set_indices(indices_);
 
@@ -41,7 +41,7 @@ void SimpleModel::set_vertex_buffers(const Shader &shader) {
 
   // Link VBO to  VAO
   va.set_vertex_attrb_ptrs(vb[0], VertexData::vertices);
-  va.set_vertex_attrb_ptrs(vb[1], VertexData::colours);
+  va.set_vertex_attrb_ptrs(vb[1], VertexData::normals);
   va.set_vertex_attrb_ptrs(vb[2], VertexData::texture);
 
   // unbind after use
