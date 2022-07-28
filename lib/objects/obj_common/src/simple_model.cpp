@@ -7,25 +7,40 @@ SimpleModel::SimpleModel(const Shader &shader) {
 
   obj_colour = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
 
-  // shader needs to be activated before setting values
+  //  shader needs to be activated before setting values
   shader.Activate();
 
   // copy matrix data to corresponding uniform variables
   glUniform4f(colour_loc, obj_colour.x, obj_colour.y, obj_colour.z,
               obj_colour.w);
+
+  shader.Deactivate();
 }
 
-void SimpleModel::set_vertex_buffers() {
+void SimpleModel::set_vertex_buffers(const Shader &shader) {
 
   // safety checks
   assert(vertices_.size() != 0);
   assert(indices_.size() != 0);
 
   vb[0].set_vertices(vertices_);
-
+  vb[1].set_texture(texture_coord_);
   eb.set_indices(indices_);
+
+  // load texture
+  const std::string texPath = "/resources/textures/";
+  const std::string texture_file = "floor.png";
+  std::string parentDir = (std::filesystem::current_path()).string();
+  Texture floor((parentDir + texPath + texture_file).c_str(), GL_TEXTURE_2D,
+                GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
+  floor.texUnit(shader, "tex0", 0);
+
+  va.Bind();
+
   // Link VBO to  VAO
   va.set_vertex_attrb_ptrs(vb[0], 0, GL_FLOAT);
+
+  // unbind after use
   va.Unbind();
   eb.Unbind();
 }
