@@ -1,5 +1,7 @@
 #pragma once
 
+#include <glad/glad.h>
+//
 #include "EBO.hpp"
 #include "VAO.hpp"
 #include "VBO.hpp"
