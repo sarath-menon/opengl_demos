@@ -6,7 +6,12 @@ uniform mat4 model;
 uniform mat4 cam_view;
 
 // texture
-layout(location = 1) in vec2 aTex;
+layout(location = 1) in vec2 acolor;
+// Outputs the texture coordinates to the fragment shader
+out vec2 colours;
+
+// texture
+layout(location = 2) in vec2 aTex;
 // Outputs the texture coordinates to the fragment shader
 out vec2 texCoord;
 
