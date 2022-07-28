@@ -1,19 +1,10 @@
-#include "EBO.hpp"
-#include "VAO.hpp"
-#include "VBO.hpp"
 #include "camera.hpp"
 #include "cube.hpp"
 #include "pyramid.hpp"
 #include "shader.hpp"
-#include "stb_image.h"
-#include "timer.hpp"
-#include "triangle.hpp"
 #include "viewer.hpp"
-#include <iostream>
-
 #include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp> // glm::value_ptr
+#include <iostream>
 
 int main() {
 
