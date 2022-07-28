@@ -63,6 +63,8 @@ private:
 
   std::unique_ptr<Texture> texture;
 
+  void activate_colour() const;
+
 public:
   SimpleModel(const Shader &shader);
 

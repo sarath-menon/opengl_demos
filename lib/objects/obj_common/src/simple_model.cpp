@@ -6,29 +6,23 @@ SimpleModel::SimpleModel(const Shader &shader) {
   colour_loc = glGetUniformLocation(shader.getHandle(), "obj_colour");
 
   obj_colour_ = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
-
-  //  shader needs to be activated before setting values
-  shader.Activate();
-
-  // copy matrix data to corresponding uniform variables
-  glUniform4f(colour_loc, obj_colour_.x, obj_colour_.y, obj_colour_.z,
-              obj_colour_.w);
+  SimpleModel::set_colour(obj_colour_, shader);
 
   texture = std::make_unique<Texture>(texture_dir.c_str(), GL_TEXTURE_2D,
                                       GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
-
-  shader.Deactivate();
 }
 
 void SimpleModel::set_colour(const glm::vec4 colour, const Shader &shader) {
   obj_colour_ = colour; //  shader needs to be activated before setting values
   shader.Activate();
+  SimpleModel::activate_colour();
+  shader.Deactivate();
+}
 
-  // copy matrix data to corresponding uniform variables
+void SimpleModel::activate_colour() const { // copy matrix data to corresponding
+                                            // uniform variables
   glUniform4f(colour_loc, obj_colour_.x, obj_colour_.y, obj_colour_.z,
               obj_colour_.w);
-
-  shader.Deactivate();
 }
 
 void SimpleModel::set_vertex_buffers(const Shader &shader) {
@@ -56,6 +50,8 @@ void SimpleModel::set_vertex_buffers(const Shader &shader) {
 }
 
 void SimpleModel::display(const Shader &shader) const {
+
+  SimpleModel::activate_colour();
 
   // Transformation matrices
   gl::A3 model_m = gl::A3::Identity();
