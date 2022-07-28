@@ -14,7 +14,7 @@ public:
   ~Texture();
 
   // Assigns a texture unit to a texture
-  void texUnit(Shader &shader, const char *uniform, GLuint unit) const;
+  void texUnit(const Shader &shader, const char *uniform, GLuint unit) const;
   // Binds a texture
   void Bind() const;
   // Unbinds a texture

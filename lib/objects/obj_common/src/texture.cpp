@@ -64,7 +64,8 @@ Texture::Texture(const char *image_path, GLenum texType, GLenum slot,
 
 Texture::~Texture() { Texture::Delete(); }
 
-void Texture::texUnit(Shader &shader, const char *uniform, GLuint unit) const {
+void Texture::texUnit(const Shader &shader, const char *uniform,
+                      GLuint unit) const {
   // Gets the location of the uniform
   GLuint texUni = glGetUniformLocation(shader.getHandle(), uniform);
   // Shader needs to be activated before changing the value of a uniform
