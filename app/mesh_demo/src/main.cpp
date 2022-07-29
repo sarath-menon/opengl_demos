@@ -15,8 +15,8 @@
 
 int main() {
 
-  constexpr int width = 600;
-  constexpr float height = 600;
+  static constexpr int width = 600;
+  static constexpr int height = 600;
 
   constexpr float cam_pos[3] = {0.0f, 2.0f, 10.0f};
 

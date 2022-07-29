@@ -8,8 +8,8 @@
 
 int main() {
 
-  constexpr int width = 600;
-  constexpr int height = 600;
+  static constexpr int width = 600;
+  static constexpr int height = 600;
 
   const glm::vec3 cam_pos(0.0f, 0.0f, 5.0f);
   const gl::V3 cube_pos(1.0, -2.0, -1.0);
