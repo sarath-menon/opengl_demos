@@ -13,7 +13,7 @@ int main() {
   Shader shader("shaders/2d_vertShader.glsl", "shaders/2d_fragShader.glsl");
 
   // create triangles
-  Triangle t1(gl::V3(-0.4, -0.4, 0), 1.0);
+  Triangle t1(gl::V3(-0.4f, -0.4f, 0.0f), 1.0);
 
   // vertex array object to prganize vertex buffers
   VAO VA;
