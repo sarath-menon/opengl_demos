@@ -7,12 +7,12 @@
 
 int main() {
 
-  constexpr float width = 600;
-  constexpr float height = 600;
+  constexpr int width = 600;
+  constexpr int height = 600;
 
   const glm::vec3 cam_pos(0.0f, 0.0f, 5.0f);
   const gl::V3 cube_pos(1.0, -2.0, -1.0);
-  const glm::vec4 obj_colour(0.8f, 0.3f, 0.02f, 1.0f);
+  const glm::vec4 obj_colour(0.0f, 1.0f, 0.0f, 1.0f);
 
   Viewer viewer(width, height, "Cube with vertices drawn using indices");
   Shader obj_shader("shaders/3d_constcolour_vshader.glsl",
@@ -22,6 +22,7 @@ int main() {
   Cube cube(cube_pos, obj_shader);
 
   cube.set_scale(0.5f);
+  cube.set_colour(obj_colour, obj_shader);
 
   // cube.set_global_position(gl::V3(1.0f, 1.0f, 1.0f));
 
@@ -33,7 +34,7 @@ int main() {
     camera.Inputs(viewer.getHandle());
     // Draw cube ////////////////////////////////
 
-    cube.global_rotate_y(M_PI / 100.0f);
+    cube.global_rotate_y(gl::pi / 100.0f);
 
     // send data in vertex buffer to the obj_shader and start drawing
     cube.display(obj_shader);

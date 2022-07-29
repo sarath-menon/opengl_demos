@@ -9,12 +9,11 @@
 
 int main() {
 
-  constexpr float width = 600;
-  constexpr float height = 600;
+  constexpr int width = 600;
+  constexpr int height = 600;
 
   const glm::vec3 cam_pos(0.0f, 0.0f, 5.0f);
   const gl::V3 pyramid_pos(1.0, -1.0, -1.0);
-  const glm::vec4 obj_colour(0.8f, 0.3f, 0.02f, 1.0f);
 
   Viewer viewer(width, height, "Pyramid with vertices drawn using indices");
   Shader obj_shader("shaders/3d_texture_vshader.glsl",
@@ -35,7 +34,7 @@ int main() {
     camera.Inputs(viewer.getHandle());
     // Draw pyramid ////////////////////////////////
 
-    pyramid.global_rotate_y(M_PI / 100.0f);
+    pyramid.global_rotate_y(gl::pi / 100.0f);
 
     // send data in vertex buffer to the obj_shader and start drawing
     pyramid.display(obj_shader);

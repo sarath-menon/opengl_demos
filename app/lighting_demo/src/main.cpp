@@ -8,8 +8,8 @@
 
 int main() {
 
-  constexpr float width = 600;
-  constexpr float height = 600;
+  constexpr int width = 600;
+  constexpr int height = 600;
 
   const glm::vec3 cam_pos(0.0f, 0.0f, 5.0f);
   const gl::V3 cube_pos(1.0, -2.0, -1.0);
@@ -54,8 +54,8 @@ int main() {
     cube.display(light_shader);
     camera.update(light_shader);
 
-    pyramid.global_rotate_y(M_PI / 100.0f);
-    pyramid2.global_rotate_y(M_PI / 100.0f);
+    pyramid.global_rotate_y(gl::pi / 100.0f);
+    pyramid2.global_rotate_y(gl::pi / 100.0f);
 
     pyramid.display(obj_shader);
     pyramid2.display(obj_shader);
