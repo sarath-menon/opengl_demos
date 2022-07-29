@@ -41,11 +41,11 @@ public:
 
   // getter functions
 
-  const auto getHandle() const { return handle_; }
+  constexpr auto getHandle() const { return handle_; }
 
-  const auto width() const { return width_; }
+  constexpr auto width() const { return width_; }
 
-  const auto height() const { return height_; }
+  constexpr auto height() const { return height_; }
 
-  const auto aspect_ratio() const { return aspect_ratio_; }
+  constexpr auto aspect_ratio() const { return aspect_ratio_; }
 };

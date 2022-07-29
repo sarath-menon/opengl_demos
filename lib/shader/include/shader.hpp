@@ -17,9 +17,6 @@ public:
 
   ~Shader();
 
-  const auto getType() const { return type_; }
-  const auto getHandle() const { return handle_; }
-
   // Activates the Shader Program
   void Activate() const;
   void Deactivate() const;
@@ -31,6 +28,10 @@ public:
 
   void setMat4(const GLuint loc, const gl::M4 &mat) const;
   void setAff4(const GLuint loc, const gl::A3 &mat) const;
+
+  // getetr functions
+  constexpr auto getType() const { return type_; }
+  constexpr auto getHandle() const { return handle_; }
 
 private:
   GLenum type_;

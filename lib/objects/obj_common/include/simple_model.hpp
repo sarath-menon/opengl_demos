@@ -85,19 +85,15 @@ public:
   void set_scale(const float scale);
 
   // getter functions
-  const auto &global_pose() const { return global_pose_; }
+  constexpr auto &global_pose() const { return global_pose_; }
 
-  const auto global_position() const { return global_pose_.translation(); }
+  constexpr auto &vertices() const { return vertices_; }
 
-  const auto orientationR() const { return global_pose_.rotation(); }
+  constexpr auto &normals() const { return normals_; }
 
-  const auto &vertices() const { return vertices_; }
+  constexpr auto &indices() const { return indices_; }
 
-  const auto &normals() const { return normals_; }
+  constexpr auto &scale() const { return scale_; }
 
-  const auto &indices() const { return indices_; }
-
-  const auto &scale() const { return scale_; }
-
-  const auto &texture_coord() const { return texture_coord_; }
+  constexpr auto &texture_coord() const { return texture_coord_; }
 };
