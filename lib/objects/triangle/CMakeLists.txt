@@ -6,10 +6,13 @@ src/${MODULE_NAME}.cpp
 )
 
 # list of library dependendcies
-set(LIB_DEP
+set(PUBLIC_LIB_DEP
 common
 glfw
-external
+shader
+)
+
+set(PRIVATE_LIB_DEP
 Eigen3::Eigen
 )
 
@@ -19,5 +22,7 @@ add_library(${MODULE_NAME} STATIC ${CPP_FILES})
 
 target_include_directories(${MODULE_NAME} PUBLIC include)
 
-target_link_libraries(${MODULE_NAME} PRIVATE ${LIB_DEP})
+target_link_libraries(${MODULE_NAME} PUBLIC ${PUBLIC_LIB_DEP})
+
+target_link_libraries(${MODULE_NAME} PRIVATE ${PRIVATE_LIB_DEP})
 

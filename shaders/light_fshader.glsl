@@ -3,6 +3,6 @@
 // Outputs colors in RGBA
 out vec4 FragColor;
 
-uniform vec4 lightColor;
+uniform vec4 obj_colour;
 
-void main() { FragColor = lightColor; }
+void main() { FragColor = obj_colour; }
