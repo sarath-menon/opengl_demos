@@ -22,3 +22,4 @@ target_include_directories(${EXEC_NAME} PUBLIC include)
 
 target_link_libraries(${EXEC_NAME} PRIVATE ${LIB_DEP})
 
+target_compile_options(${EXEC_NAME} PRIVATE ${COMMON_FLAGS})
