@@ -15,7 +15,7 @@ private:
 
 public:
   // start timer
-  void start() { start_point = std::chrono::steady_clock::now(); }
+  void start();
 
   // get current value in seconds
   float sec() const {
