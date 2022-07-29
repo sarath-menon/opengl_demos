@@ -1,5 +1,6 @@
 #pragma once
 #include <Eigen/Dense>
+#include <numbers>
 
 namespace gl {
 
@@ -22,5 +23,8 @@ using A3 = Eigen::Affine3f;
 
 // rotation transformations
 using Q = Eigen::Quaternionf;
+
+// constants
+inline constexpr float pi = std::numbers::pi_v<float>;
 
 } // namespace gl
