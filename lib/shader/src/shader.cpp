@@ -55,14 +55,14 @@ void Shader::setAff4(const GLuint loc, const gl::A3 &mat) const {
 //     if (hasCompiled == GL_FALSE) {
 //       glGetShaderInfoLog(shader, 1024, NULL, infoLog);
 //       std::cout << "SHADER_COMPILATION_ERROR for:" << type << "\n"
-//                 << infoLog << std::endl;
+//                 << infoLog << '\n';
 //     }
 //   } else {
 //     glGetProgramiv(shader, GL_LINK_STATUS, &hasCompiled);
 //     if (hasCompiled == GL_FALSE) {
 //       glGetProgramInfoLog(shader, 1024, NULL, infoLog);
 //       std::cout << "SHADER_LINKING_ERROR for:" << type << "\n"
-//                 << infoLog << std::endl;
+//                 << infoLog << '\n';
 //     }
 //   }
 // }

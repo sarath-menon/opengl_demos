@@ -57,7 +57,7 @@ Texture::Texture(const char *image_path, GLenum texType, GLenum slot,
   }
 
   else {
-    std::cout << "Texture failed to load at path: " << image_path << std::endl;
+    std::cout << "Texture failed to load at path: " << image_path << '\n';
     stbi_image_free(data);
   }
 }
