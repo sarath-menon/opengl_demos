@@ -62,7 +62,8 @@ private:
   std::string texture_dir =
       (std::filesystem::current_path().string() + texPath + texture_file);
 
-  std::unique_ptr<Texture> texture;
+  // std::unique_ptr<Texture> texture;
+  Texture texture;
 
   void activate_colour() const;
 

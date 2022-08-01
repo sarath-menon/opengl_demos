@@ -1,15 +1,14 @@
 #include "simple_model.hpp"
 
-SimpleModel::SimpleModel(const Shader &shader) {
+SimpleModel::SimpleModel(const Shader &shader)
+    : texture(texture_dir.c_str(), GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA,
+              GL_UNSIGNED_BYTE) {
 
   model_loc = glGetUniformLocation(shader.getHandle(), "model");
   colour_loc = glGetUniformLocation(shader.getHandle(), "obj_colour");
 
   obj_colour_ = glm::vec4(0.8f, 0.3f, 0.02f, 1.0f);
   SimpleModel::set_colour(obj_colour_, shader);
-
-  texture = std::make_unique<Texture>(texture_dir.c_str(), GL_TEXTURE_2D,
-                                      GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 }
 
 void SimpleModel::set_colour(const glm::vec4 colour, const Shader &shader) {
@@ -37,7 +36,7 @@ void SimpleModel::set_vertex_buffers(const Shader &shader) {
   eb.set_indices(indices_);
 
   // load texture
-  texture->texUnit(shader, "tex0", 0);
+  texture.texUnit(shader, "tex0", 0);
 
   // Link VBO to  VAO
   va.set_vertex_attrb_ptrs(vb[0], VertexData::vertices);
