@@ -1,14 +1,11 @@
 #include "viewer.hpp"
 #include <iostream>
 
-Viewer::Viewer(const int width, const int height, std::string window_name) {
+Viewer::Viewer(const int width, const int height, std::string window_name)
+    : width_(width), height_(height) {
 
   // safety checks
   assert(width > 0 && height > 0);
-
-  // set parameters
-  width_ = width;
-  height_ = height;
 
   aspect_ratio_ = static_cast<float>(width) / static_cast<float>(height);
 
